@@ -1,0 +1,55 @@
+version: 2
+project_name: kite-zerodha-pp-cli
+changelog:
+  disable: true
+builds:
+  - id: kite-zerodha-pp-cli
+    main: ./cmd/kite-zerodha-pp-cli
+    binary: kite-zerodha-pp-cli
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w -X kite-zerodha-pp-cli/internal/cli.version={{ .Version }}
+    targets:
+      - darwin_amd64
+      - darwin_arm64
+      - linux_amd64
+      - linux_arm64
+      - windows_amd64
+      - windows_arm64
+  - id: kite-zerodha-pp-mcp
+    main: ./cmd/kite-zerodha-pp-mcp
+    binary: kite-zerodha-pp-mcp
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w -X main.version={{ .Version }}
+    targets:
+      - darwin_amd64
+      - darwin_arm64
+      - linux_amd64
+      - linux_arm64
+      - windows_amd64
+      - windows_arm64
+archives:
+  - formats: [tar.gz]
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+checksum:
+  name_template: checksums.txt
+brews:
+  - name: kite-zerodha-pp-cli
+    repository:
+      owner: dev-abhirup-sc
+      name: homebrew-tap
+    homepage: "https://github.com/dev-abhirup-sc/kite-zerodha-pp-cli"
+    description: "Live broker truth for read-only portfolio and execution analytics, with historical Console coverage kept honest."
+    install: |
+      bin.install "kite-zerodha-pp-cli"
+      bin.install "kite-zerodha-pp-mcp"

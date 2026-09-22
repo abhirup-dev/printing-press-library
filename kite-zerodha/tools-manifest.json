@@ -1,0 +1,165 @@
+{
+  "api_name": "kite-zerodha",
+  "base_url": "https://api.kite.trade",
+  "description": "Live broker truth for read-only portfolio and execution analytics, with historical Console coverage kept honest.",
+  "mcp_ready": "full",
+  "http_transport": "standard",
+  "auth": {
+    "type": "bearer_token",
+    "header": "Authorization",
+    "format": "token {KITE_CONNECT_TOKEN}",
+    "env_vars": [
+      "KITE_CONNECT_TOKEN"
+    ],
+    "env_var_specs": [
+      {
+        "name": "KITE_CONNECT_TOKEN",
+        "kind": "per_call",
+        "required": true,
+        "sensitive": true,
+        "inferred": true
+      }
+    ]
+  },
+  "required_headers": [],
+  "tools": [
+    {
+      "name": "auctions_list",
+      "description": "List holdings auctions. Returns array of Auction.",
+      "method": "GET",
+      "path": "/portfolio/holdings/auctions",
+      "params": []
+    },
+    {
+      "name": "gtt_get",
+      "description": "Get one GTT trigger. Required: trigger_id. Returns the GTTTrigger.",
+      "method": "GET",
+      "path": "/gtt/triggers/{trigger_id}",
+      "params": [
+        {
+          "name": "trigger_id",
+          "type": "string",
+          "location": "path",
+          "description": "GTT trigger identifier",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "gtt_list",
+      "description": "List active and recent GTT triggers. Returns array of GTTTrigger.",
+      "method": "GET",
+      "path": "/gtt/triggers",
+      "params": []
+    },
+    {
+      "name": "holdings_list",
+      "description": "List current long-term holdings. Returns array of Holding.",
+      "method": "GET",
+      "path": "/portfolio/holdings",
+      "params": []
+    },
+    {
+      "name": "instruments_exchange",
+      "description": "Download one exchange instrument master as CSV. Required: exchange.",
+      "method": "GET",
+      "path": "/instruments/{exchange}",
+      "params": [
+        {
+          "name": "exchange",
+          "type": "string",
+          "location": "path",
+          "description": "Exchange code such as NSE or BSE",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "instruments_list",
+      "description": "Download the daily instrument master as CSV.",
+      "method": "GET",
+      "path": "/instruments",
+      "params": []
+    },
+    {
+      "name": "margins_get",
+      "description": "Get margin state for one segment. Required: segment. Returns the MarginSegment.",
+      "method": "GET",
+      "path": "/user/margins/{segment}",
+      "params": [
+        {
+          "name": "segment",
+          "type": "string",
+          "location": "path",
+          "description": "Margin segment",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "margins_list",
+      "description": "Get equity and commodity margin state. Returns the Margins.",
+      "method": "GET",
+      "path": "/user/margins",
+      "params": []
+    },
+    {
+      "name": "orders_get",
+      "description": "Get the status history for one order. Required: order_id. Returns array of Order.",
+      "method": "GET",
+      "path": "/orders/{order_id}",
+      "params": [
+        {
+          "name": "order_id",
+          "type": "string",
+          "location": "path",
+          "description": "Kite order identifier",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "orders_list",
+      "description": "List current-day orders. Returns array of Order.",
+      "method": "GET",
+      "path": "/orders",
+      "params": []
+    },
+    {
+      "name": "orders_trades",
+      "description": "List executions spawned by one order, including partial fills. Required: order_id. Returns array of Trade.",
+      "method": "GET",
+      "path": "/orders/{order_id}/trades",
+      "params": [
+        {
+          "name": "order_id",
+          "type": "string",
+          "location": "path",
+          "description": "Kite order identifier",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "positions_list",
+      "description": "Get current net and day positions. Returns the PositionBook.",
+      "method": "GET",
+      "path": "/portfolio/positions",
+      "params": []
+    },
+    {
+      "name": "trades_list",
+      "description": "List current-day trades and executions. Returns array of Trade.",
+      "method": "GET",
+      "path": "/trades",
+      "params": []
+    },
+    {
+      "name": "user_profile_get",
+      "description": "Get the authenticated Kite profile. Returns the Profile.",
+      "method": "GET",
+      "path": "/user/profile",
+      "params": []
+    }
+  ]
+}

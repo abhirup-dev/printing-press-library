@@ -1,0 +1,9 @@
+{
+  "dir": "\u003ccli-dir\u003e/kite-zerodha-pp-cli",
+  "research_dir": "\u003ccli-dir\u003e/20260922-045904-7f2be92b",
+  "verdict": "pass",
+  "actors": null,
+  "issues": [
+    "no Apify actor references found, skipping"
+  ]
+}

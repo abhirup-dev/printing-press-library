@@ -1,0 +1,8 @@
+# Root-anchored so cmd/<binary>/ source stays tracked.
+/kite-zerodha-pp-cli
+/kite-zerodha-pp-cli.exe
+/kite-zerodha-pp-mcp
+/kite-zerodha-pp-mcp.exe
+/bin/
+/build/
+/dist/

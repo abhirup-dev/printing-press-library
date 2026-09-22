@@ -1,0 +1,39 @@
+{
+  "manifest_version": "0.3",
+  "name": "kite-zerodha-pp-mcp",
+  "display_name": "Kite by Zerodha",
+  "version": "0.1.0",
+  "description": "Live broker truth for read-only portfolio and execution analytics, with historical Console coverage kept honest.",
+  "author": {
+    "name": "CLI Printing Press"
+  },
+  "license": "Apache-2.0",
+  "server": {
+    "type": "binary",
+    "entry_point": "bin/kite-zerodha-pp-mcp",
+    "mcp_config": {
+      "command": "${__dirname}/bin/kite-zerodha-pp-mcp",
+      "args": [],
+      "env": {
+        "KITE_CONNECT_TOKEN": "${user_config.kite_connect_token}"
+      }
+    }
+  },
+  "user_config": {
+    "kite_connect_token": {
+      "type": "string",
+      "title": "KITE_CONNECT_TOKEN",
+      "description": "Sets KITE_CONNECT_TOKEN for the Kite by Zerodha MCP server.",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=1.0.0",
+    "platforms": [
+      "darwin",
+      "linux",
+      "win32"
+    ]
+  }
+}

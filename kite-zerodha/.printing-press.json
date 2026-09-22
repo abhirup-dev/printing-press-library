@@ -1,0 +1,99 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-09-21T23:36:14.050197Z",
+  "printing_press_version": "4.32.2",
+  "api_name": "kite-zerodha",
+  "display_name": "Kite by Zerodha",
+  "cli_name": "kite-zerodha-pp-cli",
+  "creator": {
+    "handle": "dev-abhirup-sc",
+    "name": "dev-abhirup-sc"
+  },
+  "owner": "dev-abhirup-sc",
+  "printer": "dev-abhirup-sc",
+  "printer_name": "dev-abhirup-sc",
+  "spec_path": "spec.yaml",
+  "spec_format": "internal",
+  "spec_source": "official",
+  "spec_checksum": "sha256:a1ab79dd39efbc8043eec380b264d12207bb247b0b0276552d2da2482d084a75",
+  "run_id": "20260922-045904-7f2be92b",
+  "category": "other",
+  "description": "Live broker truth for read-only portfolio and execution analytics, with historical Console coverage kept honest.",
+  "mcp_binary": "kite-zerodha-pp-mcp",
+  "mcp_tool_count": 14,
+  "mcp_ready": "full",
+  "api_version": "0.1.0",
+  "auth_type": "bearer_token",
+  "auth_env_vars": [
+    "KITE_CONNECT_TOKEN"
+  ],
+  "novel_features": [
+    {
+      "name": "Portfolio summary",
+      "command": "portfolio summary",
+      "description": "Combine live holdings, positions, and margin state into one current portfolio view."
+    },
+    {
+      "name": "Buy and sell activity",
+      "command": "activity buys",
+      "description": "Summarize current-day buy executions with quantities, prices, and turnover."
+    },
+    {
+      "name": "Fill linkage",
+      "command": "activity fills",
+      "description": "Show each order with the executions and partial fills it spawned."
+    },
+    {
+      "name": "Live analytics overview",
+      "command": "analytics overview",
+      "description": "Compute current P\u0026L, concentration, turnover, and win/loss summaries from live rows."
+    },
+    {
+      "name": "Source capability status",
+      "command": "source status",
+      "description": "Report which broker and deferred Console capabilities are safe to use."
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "Portfolio summary",
+      "command": "portfolio summary",
+      "description": "Combine live holdings, positions, and margin state into one current portfolio view."
+    },
+    {
+      "name": "Buy and sell activity",
+      "command": "activity buys",
+      "description": "Summarize current-day buy executions with quantities, prices, and turnover."
+    },
+    {
+      "name": "Fill linkage",
+      "command": "activity fills",
+      "description": "Show each order with the executions and partial fills it spawned."
+    },
+    {
+      "name": "Live analytics overview",
+      "command": "analytics overview",
+      "description": "Compute current P\u0026L, concentration, turnover, and win/loss summaries from live rows."
+    },
+    {
+      "name": "Source capability status",
+      "command": "source status",
+      "description": "Report which broker and deferred Console capabilities are safe to use."
+    }
+  ],
+  "verify": {
+    "mode": "mock",
+    "pass_rate": 100,
+    "passed": 26,
+    "total": 26,
+    "data_pipeline": true,
+    "verdict": "PASS"
+  },
+  "scorecard": {
+    "steinberger": {
+      "percentage": 86,
+      "grade": "A",
+      "total": 86
+    }
+  }
+}

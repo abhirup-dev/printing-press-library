@@ -1,0 +1,379 @@
+name: kite-zerodha
+display_name: Kite by Zerodha
+description: Read-only Kite Connect broker state and activity analytics.
+version: 0.1.0
+base_url: https://api.kite.trade
+category: other
+spec_source: official
+cli_description: Live broker truth for holdings, positions, orders, executions, margins, and read-only analytics — with Zerodha Console history explicitly deferred until a replayable contract exists.
+health_check_path: /user/profile
+
+auth:
+  type: bearer_token
+  header: Authorization
+  format: "token {token}"
+  env_vars:
+    - KITE_CONNECT_TOKEN
+
+auth_warnings:
+  - "Kite Connect expects KITE_CONNECT_TOKEN to contain the composite api_key:access_token value; never print or log it."
+  - "The Console browser session is not a CLI credential and is not replayed."
+
+config:
+  format: toml
+  path: ~/.config/kite-zerodha/config.toml
+
+# learn no-entities escape: broker identifiers are open-ended and no finite alias seed set is safe to embed.
+learn: {}
+
+resources:
+  profile:
+    description: Authenticated Kite profile
+    endpoints:
+      get:
+        method: GET
+        path: /user/profile
+        description: Get the authenticated Kite profile
+        response:
+          type: object
+          item: Profile
+        response_path: data
+
+  margins:
+    description: Current account margin and funds state
+    endpoints:
+      list:
+        method: GET
+        path: /user/margins
+        description: Get equity and commodity margin state
+        response:
+          type: object
+          item: Margins
+        response_path: data
+      get:
+        method: GET
+        path: /user/margins/{segment}
+        description: Get margin state for one segment
+        params:
+          - name: segment
+            type: string
+            required: true
+            positional: true
+            description: Margin segment
+            enum: [equity, commodity]
+        response:
+          type: object
+          item: MarginSegment
+        response_path: data
+
+  holdings:
+    description: Current long-term holdings
+    endpoints:
+      list:
+        method: GET
+        path: /portfolio/holdings
+        description: List current long-term holdings
+        response:
+          type: array
+          item: Holding
+        response_path: data
+
+  positions:
+    description: Current net and day positions
+    endpoints:
+      list:
+        method: GET
+        path: /portfolio/positions
+        description: Get current net and day positions
+        response:
+          type: object
+          item: PositionBook
+        response_path: data
+
+  auctions:
+    description: Holdings-related auctions
+    endpoints:
+      list:
+        method: GET
+        path: /portfolio/holdings/auctions
+        description: List holdings auctions
+        response:
+          type: array
+          item: Auction
+        response_path: data
+
+  orders:
+    description: Current-day orders and order history
+    endpoints:
+      list:
+        method: GET
+        path: /orders
+        description: List current-day orders
+        response:
+          type: array
+          item: Order
+        response_path: data
+      get:
+        method: GET
+        path: /orders/{order_id}
+        description: Get the status history for one order
+        params:
+          - name: order_id
+            type: string
+            required: true
+            positional: true
+            description: Kite order identifier
+        response:
+          type: array
+          item: Order
+        response_path: data
+      trades:
+        method: GET
+        path: /orders/{order_id}/trades
+        description: List executions spawned by one order, including partial fills
+        params:
+          - name: order_id
+            type: string
+            required: true
+            positional: true
+            description: Kite order identifier
+        response:
+          type: array
+          item: Trade
+        response_path: data
+
+  trades:
+    description: Current-day executions
+    endpoints:
+      list:
+        method: GET
+        path: /trades
+        description: List current-day trades and executions
+        response:
+          type: array
+          item: Trade
+        response_path: data
+
+  gtt:
+    description: Read-only GTT triggers
+    endpoints:
+      list:
+        method: GET
+        path: /gtt/triggers
+        description: List active and recent GTT triggers
+        response:
+          type: array
+          item: GTTTrigger
+        response_path: data
+      get:
+        method: GET
+        path: /gtt/triggers/{trigger_id}
+        description: Get one GTT trigger
+        params:
+          - name: trigger_id
+            type: string
+            required: true
+            positional: true
+            description: GTT trigger identifier
+        response:
+          type: object
+          item: GTTTrigger
+        response_path: data
+
+  instruments:
+    description: Daily Kite instrument master
+    endpoints:
+      list:
+        method: GET
+        path: /instruments
+        description: Download the daily instrument master as CSV
+        response_format: csv
+      exchange:
+        method: GET
+        path: /instruments/{exchange}
+        description: Download one exchange instrument master as CSV
+        params:
+          - name: exchange
+            type: string
+            required: true
+            positional: true
+            description: Exchange code such as NSE or BSE
+        response_format: csv
+
+types:
+  Profile:
+    fields:
+      - name: user_id
+        type: string
+      - name: user_name
+        type: string
+      - name: email
+        type: string
+      - name: user_shortname
+        type: string
+      - name: broker
+        type: string
+      - name: products
+        type: string
+      - name: exchanges
+        type: string
+      - name: order_types
+        type: string
+
+  Margins:
+    fields:
+      - name: equity
+        type: object
+      - name: commodity
+        type: object
+
+  MarginSegment:
+    fields:
+      - name: enabled
+        type: bool
+      - name: net
+        type: float
+      - name: available
+        type: object
+      - name: utilised
+        type: object
+
+  Holding:
+    fields:
+      - name: tradingsymbol
+        type: string
+      - name: exchange
+        type: string
+      - name: isin
+        type: string
+      - name: product
+        type: string
+      - name: quantity
+        type: int
+      - name: t1_quantity
+        type: int
+      - name: average_price
+        type: float
+      - name: last_price
+        type: float
+      - name: close_price
+        type: float
+      - name: pnl
+        type: float
+      - name: day_change
+        type: float
+      - name: day_change_percentage
+        type: float
+
+  PositionBook:
+    fields:
+      - name: net
+        type: array
+      - name: day
+        type: array
+
+  Auction:
+    fields:
+      - name: auction_number
+        type: string
+      - name: exchange
+        type: string
+      - name: tradingsymbol
+        type: string
+      - name: quantity
+        type: int
+      - name: price
+        type: float
+
+  Order:
+    fields:
+      - name: order_id
+        type: string
+      - name: exchange_order_id
+        type: string
+      - name: parent_order_id
+        type: string
+      - name: status
+        type: string
+      - name: status_message
+        type: string
+      - name: order_timestamp
+        type: string
+      - name: exchange_update_timestamp
+        type: string
+      - name: exchange_timestamp
+        type: string
+      - name: variety
+        type: string
+      - name: modified
+        type: bool
+      - name: exchange
+        type: string
+      - name: tradingsymbol
+        type: string
+      - name: order_type
+        type: string
+      - name: transaction_type
+        type: string
+      - name: validity
+        type: string
+      - name: product
+        type: string
+      - name: quantity
+        type: int
+      - name: price
+        type: float
+      - name: trigger_price
+        type: float
+      - name: average_price
+        type: float
+      - name: filled_quantity
+        type: int
+      - name: pending_quantity
+        type: int
+      - name: cancelled_quantity
+        type: int
+      - name: tag
+        type: string
+
+  Trade:
+    fields:
+      - name: trade_id
+        type: string
+      - name: order_id
+        type: string
+      - name: exchange
+        type: string
+      - name: tradingsymbol
+        type: string
+      - name: instrument_token
+        type: string
+      - name: product
+        type: string
+      - name: average_price
+        type: float
+      - name: quantity
+        type: int
+      - name: exchange_order_id
+        type: string
+      - name: transaction_type
+        type: string
+      - name: fill_timestamp
+        type: string
+      - name: exchange_timestamp
+        type: string
+
+  GTTTrigger:
+    fields:
+      - name: id
+        type: string
+      - name: status
+        type: string
+      - name: type
+        type: string
+      - name: condition
+        type: object
+      - name: orders
+        type: array
+      - name: expires_at
+        type: string

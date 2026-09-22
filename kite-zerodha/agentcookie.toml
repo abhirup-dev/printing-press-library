@@ -1,0 +1,16 @@
+# agentcookie.toml: secrets-bus adoption manifest v2
+# See docs/spec-agentcookie-secrets-bus-v2-adoption.md
+schema_version = 2
+name = "kite-zerodha-pp-cli"
+display_name = "Kite by Zerodha"
+description = "Live broker truth for read-only portfolio and execution analytics, with historical Console coverage kept honest."
+project_kind = "cli"
+
+[secrets.file]
+path = "~/.config/kite-zerodha-pp-cli/config.toml"
+
+[sync]
+default = false
+
+[sync.keys]
+KITE_CONNECT_TOKEN = true

@@ -1,0 +1,174 @@
+{
+  "dir": "\u003ccli-dir\u003e/kite-zerodha-pp-cli",
+  "spec_path": "\u003ccli-dir\u003e/spec.yaml",
+  "spec_source": "bundled",
+  "verdict": "FAIL",
+  "path_check": {
+    "tested": 0,
+    "valid": 0,
+    "valid_pct": 0,
+    "skipped": true,
+    "detail": "internal-yaml spec: paths validated at parse time"
+  },
+  "auth_check": {
+    "spec_scheme": "bearer token format (expects \"token \" prefix)",
+    "generated_format": "token ",
+    "match": true,
+    "detail": "spec and generated client both use \"token\""
+  },
+  "browser_session_check": {
+    "required": false,
+    "pass": true,
+    "detail": "browser-session auth not required"
+  },
+  "oauth_scope_coverage_check": {
+    "checked": 0,
+    "covered": 0,
+    "skipped": true,
+    "detail": "no OAuth-scoped endpoints in spec"
+  },
+  "dead_flags": {
+    "total": 24,
+    "dead": 1,
+    "items": [
+      "noCache"
+    ]
+  },
+  "dead_functions": {
+    "total": 120,
+    "dead": 7,
+    "items": [
+      "configureDefaultDBScope",
+      "handleBinaryResponseDelivery",
+      "hasChangedLocalFlags",
+      "retainCLIQueryParams",
+      "retainExplicitQueryParams",
+      "setDefaultDBScopeCredential",
+      "successfulNoop"
+    ]
+  },
+  "pipeline_check": {
+    "sync_calls_domain": true,
+    "search_calls_domain": false,
+    "domain_tables": 4,
+    "sync_file_emitted": true,
+    "sync_resources_present": true,
+    "detail": "sync uses domain-specific Upsert methods; search uses generic Search only; 4 domain tables found"
+  },
+  "example_check": {
+    "tested": 10,
+    "with_examples": 9,
+    "valid_examples": 9,
+    "missing": [
+      "gtt get"
+    ],
+    "detail": "9/10 commands have examples"
+  },
+  "wiring_check": {
+    "command_tree": {
+      "defined": 81,
+      "registered": 81
+    },
+    "config_consistency": {
+      "write_fields": [
+        ", token, "
+      ],
+      "read_fields": [
+        "access_token_present"
+      ],
+      "mismatched": [
+        ", token, ",
+        "access_token_present"
+      ],
+      "consistent": false
+    },
+    "workflow_completeness": {
+      "skipped": true,
+      "total_steps": 0,
+      "mapped_steps": 0,
+      "detail": "no workflow_verify.yaml found"
+    }
+  },
+  "novel_features_check": {
+    "planned": 5,
+    "found": 5,
+    "depth_mismatches": [
+      {
+        "command": "source status",
+        "advertised": "source status",
+        "actual": "auth status, workflow status"
+      }
+    ]
+  },
+  "mcp_surface_parity": {
+    "state": "runtime_walking",
+    "pass": true,
+    "detail": "MCP surface mirrors the Cobra tree at runtime"
+  },
+  "reimplementation_check": {
+    "checked": 5,
+    "exempted_via_store": 5,
+    "missing_data_source_strategy": [
+      {
+        "command": "portfolio summary",
+        "file": "portfolio_summary.go",
+        "reason": "missing // pp:data-source \u003cauto|local|live|computed\u003e annotation"
+      },
+      {
+        "command": "activity buys",
+        "file": "activity_buys.go",
+        "reason": "missing // pp:data-source \u003cauto|local|live|computed\u003e annotation"
+      },
+      {
+        "command": "activity fills",
+        "file": "activity_fills.go",
+        "reason": "missing // pp:data-source \u003cauto|local|live|computed\u003e annotation"
+      },
+      {
+        "command": "analytics overview",
+        "file": "analytics_overview.go",
+        "reason": "missing // pp:data-source \u003cauto|local|live|computed\u003e annotation"
+      },
+      {
+        "command": "source status",
+        "file": "source_status.go",
+        "reason": "missing // pp:data-source \u003cauto|local|live|computed\u003e annotation"
+      }
+    ]
+  },
+  "description_drift_check": {
+    "expected": "Live broker truth for read-only portfolio and execution analytics, with historical Console coverage kept honest.",
+    "findings": [
+      {
+        "surface": "root.Short",
+        "file": "internal/cli/root.go",
+        "actual": "Live broker truth for holdings, positions, orders, executions, margins, and read-only analytics — with Zerodha Console history explicitly deferred until a replayable contract exists.",
+        "expected": "Live broker truth for read-only portfolio and execution analytics, with historical Console coverage kept honest."
+      }
+    ]
+  },
+  "source_client_check": {
+    "checked": 9
+  },
+  "print_json_filtered_check": {
+    "checked": 57
+  },
+  "test_presence": {
+    "checked": 2
+  },
+  "naming_check": {
+    "checked": 57
+  },
+  "sync_param_drop_check": {
+    "checked": 0,
+    "skipped": true
+  },
+  "issues": [
+    "1 dead flags found",
+    "7 dead helper functions found",
+    "config inconsistency: write fields [, token, ] vs read fields [access_token_present]",
+    "1 novel feature command-depth mismatches: source status advertised as source status but registered as auth status, workflow status",
+    "5/5 novel features missing data-source strategy: portfolio summary (portfolio_summary.go) — missing // pp:data-source \u003cauto|local|live|computed\u003e annotation; activity buys (activity_buys.go) — missing // pp:data-source \u003cauto|local|live|computed\u003e annotation; activity fills (activity_fills.go) — missing // pp:data-source \u003cauto|local|live|computed\u003e annotation; analytics overview (analytics_overview.go) — missing // pp:data-source \u003cauto|local|live|computed\u003e annotation; source status (source_status.go) — missing // pp:data-source \u003cauto|local|live|computed\u003e annotation",
+    "1 description surface(s) drifted from research.json narrative: root.Short in internal/cli/root.go is \"Live broker truth for holdings, positions, orders, executions, margins, and read-only analytics — with Zerodha Console history explicitly deferred until a replayable contract exists.\"; expected \"Live broker truth for read-only portfolio and execution analytics, with historical Console coverage kept honest.\""
+  ]
+}
