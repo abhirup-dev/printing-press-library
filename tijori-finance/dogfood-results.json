@@ -1,0 +1,131 @@
+{
+  "dir": "\u003ccli-dir\u003e/tijori-finance-pp-cli",
+  "spec_path": "\u003crunstate\u003e/tijori-finance.yaml",
+  "spec_source": "caller",
+  "verdict": "WARN",
+  "path_check": {
+    "tested": 0,
+    "valid": 0,
+    "valid_pct": 0,
+    "skipped": true,
+    "detail": "internal-yaml spec: paths validated at parse time"
+  },
+  "auth_check": {
+    "spec_scheme": "",
+    "generated_format": "unknown",
+    "match": true,
+    "detail": "no bot/bearer/basic scheme detected"
+  },
+  "browser_session_check": {
+    "required": false,
+    "pass": true,
+    "detail": "browser-session auth not required"
+  },
+  "oauth_scope_coverage_check": {
+    "checked": 0,
+    "covered": 0,
+    "skipped": true,
+    "detail": "no OAuth-scoped endpoints in spec"
+  },
+  "dead_flags": {
+    "total": 21,
+    "dead": 0
+  },
+  "dead_functions": {
+    "total": 95,
+    "dead": 0
+  },
+  "pipeline_check": {
+    "sync_calls_domain": false,
+    "search_calls_domain": false,
+    "domain_tables": 0,
+    "sync_file_emitted": false,
+    "sync_resources_present": false,
+    "detail": "sync Upsert calls not found; search methods not found"
+  },
+  "example_check": {
+    "tested": 10,
+    "with_examples": 6,
+    "valid_examples": 6,
+    "missing": [
+      "company market-share",
+      "company shareholding",
+      "portfolio company-summary",
+      "portfolio gainers-losers"
+    ],
+    "detail": "6/10 commands have examples"
+  },
+  "wiring_check": {
+    "command_tree": {
+      "defined": 74,
+      "registered": 74
+    },
+    "config_consistency": {
+      "consistent": true
+    },
+    "workflow_completeness": {
+      "skipped": true,
+      "total_steps": 0,
+      "mapped_steps": 0,
+      "detail": "no workflow_verify.yaml found"
+    }
+  },
+  "novel_features_check": {
+    "planned": 11,
+    "found": 11
+  },
+  "mcp_surface_parity": {
+    "state": "missing",
+    "pass": true,
+    "skipped": true,
+    "detail": "no internal/mcp/tools.go; CLI does not ship an MCP surface"
+  },
+  "reimplementation_check": {
+    "checked": 11,
+    "exempted_via_store": 0,
+    "suspicious": [
+      {
+        "command": "research review-queue",
+        "file": "research_review_queue.go",
+        "reason": "hand-rolled response: no API client call, no store access"
+      },
+      {
+        "command": "research result-pack",
+        "file": "research_result_pack.go",
+        "reason": "hand-rolled response: no API client call, no store access"
+      },
+      {
+        "command": "auth capabilities",
+        "file": "auth_capabilities.go",
+        "reason": "hand-rolled response: no API client call, no store access"
+      }
+    ]
+  },
+  "description_drift_check": {
+    "expected": "A source-linked terminal research notebook for Indian equities."
+  },
+  "source_client_check": {
+    "checked": 8
+  },
+  "print_json_filtered_check": {
+    "checked": 68
+  },
+  "test_presence": {
+    "checked": 1,
+    "missing_tests": [
+      "platform"
+    ]
+  },
+  "naming_check": {
+    "checked": 68
+  },
+  "sync_param_drop_check": {
+    "checked": 0,
+    "skipped": true
+  },
+  "issues": [
+    "sync uses generic Upsert only",
+    "3/11 novel features look reimplemented: research review-queue (research_review_queue.go) — hand-rolled response: no API client call, no store access; research result-pack (research_result_pack.go) — hand-rolled response: no API client call, no store access; auth capabilities (auth_capabilities.go) — hand-rolled response: no API client call, no store access",
+    "pure-logic packages with no tests: platform"
+  ]
+}

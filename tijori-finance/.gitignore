@@ -1,0 +1,8 @@
+# Root-anchored so cmd/<binary>/ source stays tracked.
+/tijori-finance-pp-cli
+/tijori-finance-pp-cli.exe
+/tijori-finance-pp-mcp
+/tijori-finance-pp-mcp.exe
+/bin/
+/build/
+/dist/

@@ -1,0 +1,9 @@
+{
+  "dir": "\u003ccli-dir\u003e/tijori-finance-pp-cli",
+  "research_dir": "\u003ccli-dir\u003e/20260922-042516-c0c25099",
+  "verdict": "pass",
+  "actors": null,
+  "issues": [
+    "no Apify actor references found, skipping"
+  ]
+}

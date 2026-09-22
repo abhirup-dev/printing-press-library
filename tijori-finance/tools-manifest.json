@@ -1,0 +1,588 @@
+{
+  "api_name": "tijori-finance",
+  "base_url": "https://www.tijorifinance.com",
+  "description": "A source-linked terminal research notebook for Indian equities.",
+  "mcp_ready": "full",
+  "http_transport": "standard",
+  "auth": {
+    "type": "none"
+  },
+  "required_headers": [],
+  "tools": [
+    {
+      "name": "alerts_list",
+      "description": "List active or historical alerts. Optional: filter (default: active), limit (default: 12), offset (default: 0) (plus 2 more). Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/alerts/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "filter",
+          "type": "string",
+          "location": "query",
+          "description": "Alert filter"
+        },
+        {
+          "name": "limit",
+          "type": "int",
+          "location": "query",
+          "description": "Page size"
+        },
+        {
+          "name": "offset",
+          "type": "int",
+          "location": "query",
+          "description": "Offset"
+        },
+        {
+          "name": "sort_by",
+          "type": "string",
+          "location": "query",
+          "description": "Sort field"
+        },
+        {
+          "name": "sort_order",
+          "type": "string",
+          "location": "query",
+          "description": "Sort order"
+        }
+      ]
+    },
+    {
+      "name": "company_financials",
+      "description": "Fetch annual and quarterly financial statement tables. Required: slug. Optional: period. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/company/{slug}/financials/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "slug",
+          "type": "string",
+          "location": "path",
+          "description": "Tijori company slug",
+          "required": true
+        },
+        {
+          "name": "period",
+          "type": "string",
+          "location": "query",
+          "description": "Optional annual/quarterly period selector"
+        }
+      ]
+    },
+    {
+      "name": "company_fund_flow",
+      "description": "Fetch fund-flow sources and uses. Required: company_id. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/v1/ind/fund_flow_analysis_data/{company_id}/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "company_id",
+          "type": "int",
+          "location": "path",
+          "description": "Numeric Tijori company ID",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_knowledge_base",
+      "description": "List company report and investor document links. Required: slug. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/company/{slug}/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "slug",
+          "type": "string",
+          "location": "path",
+          "description": "Tijori company slug",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_market_share",
+      "description": "Fetch company market-share cards. Required: slug. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/company/{slug}/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "slug",
+          "type": "string",
+          "location": "path",
+          "description": "Tijori company slug",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_operational_metrics",
+      "description": "Fetch one operational metric time series. Required: company_id, metric_id. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/v1/ind/company_op_metrics/{company_id}/{metric_id}/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "company_id",
+          "type": "int",
+          "location": "path",
+          "description": "Numeric Tijori company ID",
+          "required": true
+        },
+        {
+          "name": "metric_id",
+          "type": "int",
+          "location": "path",
+          "description": "Numeric Tijori metric ID",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_overview",
+      "description": "Fetch a company overview page. Required: slug. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/company/{slug}/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "slug",
+          "type": "string",
+          "location": "path",
+          "description": "Tijori company slug",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_revenue_mix",
+      "description": "Fetch revenue mix page data. Required: slug. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/company/{slug}/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "slug",
+          "type": "string",
+          "location": "path",
+          "description": "Tijori company slug",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_search",
+      "description": "Search companies by name. Required: q. Returns array of CompanySearchResult.",
+      "method": "GET",
+      "path": "/api/v1/ind/company_search/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "q",
+          "type": "string",
+          "location": "path",
+          "description": "Company search text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_shareholding",
+      "description": "Fetch historical shareholding tables. Required: slug. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/company/{slug}/shareholding/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "slug",
+          "type": "string",
+          "location": "path",
+          "description": "Tijori company slug",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "feed_company",
+      "description": "Fetch company-specific event data. Required: id. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/timeline/company/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "id",
+          "type": "int",
+          "location": "query",
+          "description": "Numeric company ID",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "feed_timeline",
+      "description": "Fetch a cursor page of self timeline events. Optional: timestamp, events, portfolios (plus 2 more). Returns the GenericObject.",
+      "method": "GET",
+      "path": "/in/timeline/self/more",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "timestamp",
+          "type": "string",
+          "location": "query",
+          "description": "Timestamp cursor"
+        },
+        {
+          "name": "events",
+          "type": "string",
+          "location": "query",
+          "description": "CSV event type IDs"
+        },
+        {
+          "name": "portfolios",
+          "type": "string",
+          "location": "query",
+          "description": "CSV portfolio IDs"
+        },
+        {
+          "name": "watchlists",
+          "type": "string",
+          "location": "query",
+          "description": "CSV watchlist IDs"
+        },
+        {
+          "name": "daterange",
+          "type": "string",
+          "location": "query",
+          "description": "Timeline date range"
+        }
+      ]
+    },
+    {
+      "name": "ideas_list",
+      "description": "Fetch ideas dashboard metadata and links. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/in/ideas-dashboard/",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "macro_indicators",
+      "description": "Fetch industry, demand, and GDP tables. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/in/macro",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "market_conglomerate_constituents",
+      "description": "Fetch conglomerate constituents. Required: tjiid. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/v1/groups/price/{tjiid}/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "tjiid",
+          "type": "int",
+          "location": "path",
+          "description": "Tijori group index ID",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "market_monitor",
+      "description": "Fetch market monitor tables. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/in/markets",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "market_sector_constituents",
+      "description": "Fetch niche sector constituents. Required: tjiid. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/v1/niche/price/{tjiid}/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "tjiid",
+          "type": "int",
+          "location": "path",
+          "description": "Tijori niche index ID",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "portfolio_company_summary",
+      "description": "Fetch one portfolio's company holdings. Required: portfolio_id. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/portfolio/{portfolio_id}/company_summary/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "portfolio_id",
+          "type": "int",
+          "location": "path",
+          "description": "Caller-provided portfolio ID",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "portfolio_family_company_summary",
+      "description": "Fetch family holdings by company. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/portfolio/family/company_summary/",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "portfolio_family_gainers_losers",
+      "description": "Fetch family portfolio gainers and losers. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/portfolio/family/gainers_losers/",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "portfolio_family_summary",
+      "description": "Fetch family portfolio summary. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/portfolio/family_summary/",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "portfolio_gainers_losers",
+      "description": "Fetch one portfolio's gainers and losers. Required: portfolio_id. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/portfolio/{portfolio_id}/gainers_losers/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "portfolio_id",
+          "type": "int",
+          "location": "path",
+          "description": "Caller-provided portfolio ID",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "portfolio_summary",
+      "description": "Fetch one portfolio summary. Required: portfolio_id. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/portfolio/{portfolio_id}/summary/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "portfolio_id",
+          "type": "int",
+          "location": "path",
+          "description": "Caller-provided portfolio ID",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "raw_materials_prices",
+      "description": "Fetch chemical, spread, and metal price tables. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/in/raw-materials",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "reports_concalls",
+      "description": "Fetch the concall monitor. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/results/concall-monitor/",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "reports_list",
+      "description": "List financial report cards. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/financials/",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "reports_quarterly_results",
+      "description": "Fetch quarterly results tables. Optional: scope, sector, sort. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/results/quarterly-results/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "scope",
+          "type": "string",
+          "location": "query",
+          "description": "Optional all or my-companies scope"
+        },
+        {
+          "name": "sector",
+          "type": "string",
+          "location": "query",
+          "description": "Optional sector filter"
+        },
+        {
+          "name": "sort",
+          "type": "string",
+          "location": "query",
+          "description": "Optional result sort key"
+        }
+      ]
+    },
+    {
+      "name": "reports_upcoming",
+      "description": "Fetch upcoming self-scoped result/AGM/dividend events. Optional: portfolios, watchlists. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/in/timeline/upcoming/self",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "portfolios",
+          "type": "string",
+          "location": "query",
+          "description": "Caller-provided portfolio selector"
+        },
+        {
+          "name": "watchlists",
+          "type": "string",
+          "location": "query",
+          "description": "Caller-provided watchlist selector"
+        }
+      ]
+    },
+    {
+      "name": "screener_advanced_search",
+      "description": "Run a native Tijori screener query. Optional: financial, alternate, is_checked (default: false) (plus 3 more). Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/filter_queries/advanced_search/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "financial",
+          "type": "string",
+          "location": "query",
+          "description": "Tijori financial fq query"
+        },
+        {
+          "name": "alternate",
+          "type": "string",
+          "location": "query",
+          "description": "Tijori business-data query"
+        },
+        {
+          "name": "is_checked",
+          "type": "bool",
+          "location": "query",
+          "description": "Latest-results-only switch"
+        },
+        {
+          "name": "whales",
+          "type": "bool",
+          "location": "query",
+          "description": "Superstar-investor switch"
+        },
+        {
+          "name": "is_sme",
+          "type": "bool",
+          "location": "query",
+          "description": "SME universe switch"
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "location": "query",
+          "description": "Query source"
+        }
+      ]
+    },
+    {
+      "name": "screener_fields",
+      "description": "Search the screener field catalog. Optional: q, query_type (default: financials). Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/filter_queries/filter_field_search/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "q",
+          "type": "string",
+          "location": "query",
+          "description": "Field search text"
+        },
+        {
+          "name": "query_type",
+          "type": "string",
+          "location": "query",
+          "description": "Field category"
+        }
+      ]
+    },
+    {
+      "name": "screener_popular",
+      "description": "List popular screener cards. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/filter/popular-queries/",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "screener_popular_results",
+      "description": "Run a saved popular screener query. Optional: query_id, financial, alternate. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/api/filter_queries/popular-query/results/",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "query_id",
+          "type": "string",
+          "location": "query",
+          "description": "Popular query ID"
+        },
+        {
+          "name": "financial",
+          "type": "string",
+          "location": "query",
+          "description": "Saved financial query"
+        },
+        {
+          "name": "alternate",
+          "type": "string",
+          "location": "query",
+          "description": "Saved alternate query"
+        }
+      ]
+    },
+    {
+      "name": "watchlist_data",
+      "description": "Fetch one watchlist data page. Required: watchlist_id, page. Returns the GenericObject.",
+      "method": "GET",
+      "path": "/in/watchlist/{watchlist_id}/data/{page}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "watchlist_id",
+          "type": "int",
+          "location": "path",
+          "description": "Caller-provided watchlist ID",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "int",
+          "location": "path",
+          "description": "Watchlist page number",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

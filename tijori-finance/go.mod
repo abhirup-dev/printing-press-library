@@ -1,0 +1,24 @@
+module tijori-finance-pp-cli
+
+go 1.26.6
+
+require (
+	github.com/pelletier/go-toml/v2 v2.2.4
+	github.com/spf13/cobra v1.9.1
+	github.com/spf13/pflag v1.0.6
+	golang.org/x/net v0.56.0
+)
+
+require (
+	github.com/inconshreveable/mousetrap v1.1.0 // indirect
+	golang.org/x/text v0.39.0 // indirect
+)
+
+// x/sys is a DIRECT dependency even without auth: filelock_windows.go
+// imports golang.org/x/sys/windows. Emitted as a direct require (no
+// // indirect) so a Windows cross-compile of a freshly generated bundle
+// succeeds without a manual `go mod tidy`. The version matches the
+// transitive floor. NOTE (go mod tidy GOOS caveat): the import is behind
+// `//go:build windows`, so tidy under GOOS=linux/darwin re-marks this
+// // indirect; under GOOS=windows it stays direct.
+require golang.org/x/sys v0.46.0

@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-09-22T01:30:00Z",
+  "printing_press_version": "4.32.2",
+  "api_name": "tijori-finance",
+  "display_name": "Tijori Finance",
+  "cli_name": "tijori-finance-pp-cli",
+  "creator": {
+    "handle": "dev-abhirup-sc",
+    "name": "dev-abhirup-sc"
+  },
+  "owner": "dev-abhirup-sc",
+  "printer": "dev-abhirup-sc",
+  "printer_name": "dev-abhirup-sc",
+  "spec_path": "tijori-finance.yaml",
+  "spec_format": "internal",
+  "spec_source": "browser-sniffed",
+  "spec_checksum": "sha256:df81d05a519b9b1f85008cab187ad7909416defb1a60089ebc1c2283b2d08943",
+  "run_id": "20260922-042516-c0c25099",
+  "category": "finance",
+  "description": "A source-linked terminal research notebook for Indian equities.",
+  "mcp_binary": "",
+  "mcp_ready": "none",
+  "api_version": "0.1.0",
+  "auth_type": "session_cookie",
+  "auth_preference": "Keychain or owner-only fallback",
+  "auth_env_vars": [
+    "TIJORI_FINANCE_SESSIONID",
+    "TIJORI_FINANCE_CSRFTOKEN"
+  ],
+  "novel_features": [
+    {
+      "name": "Peer evidence matrix",
+      "command": "research peers",
+      "description": "Compare live peer financial, ownership, and operating evidence in one unit-aware matrix."
+    },
+    {
+      "name": "Portfolio/watchlist review queue",
+      "command": "research review-queue",
+      "description": "Join current holdings or watchlist names with upcoming results, events, reports, and alerts."
+    },
+    {
+      "name": "Financial-period change report",
+      "command": "research changes",
+      "description": "Emit deterministic row-level changes between two server-returned financial periods."
+    },
+    {
+      "name": "Ownership-and-fundamentals cross-check",
+      "command": "research ownership-check",
+      "description": "Align same-period ownership movements with financial and cash-flow changes."
+    },
+    {
+      "name": "Results-to-document chain",
+      "command": "research result-pack",
+      "description": "Connect a result or event to report, concall, and validated source-document metadata."
+    },
+    {
+      "name": "Screener audit output",
+      "command": "screener run",
+      "description": "Return the exact native query, matched fields, result page, and request provenance (use --explain)."
+    },
+    {
+      "name": "Sector operating-context pack",
+      "command": "research context",
+      "description": "Bundle dated company, sector, macro, and raw-material observations without a synthetic verdict."
+    },
+    {
+      "name": "Portfolio concentration and quality table",
+      "command": "portfolio quality",
+      "description": "Join live portfolio weights with public company quality evidence and explicit unavailable states."
+    },
+    {
+      "name": "Timeline-to-source lookup",
+      "command": "feed inspect",
+      "description": "Resolve timeline items to normalized event, report, and document metadata while preserving cursors."
+    },
+    {
+      "name": "Authenticated capability probe",
+      "command": "auth capabilities",
+      "description": "Report public, authenticated, empty, blocked, expired, or changed-shape status per safe GET endpoint."
+    },
+    {
+      "name": "Raw-material sensitivity table",
+      "command": "research input-context",
+      "description": "Place current raw-material observations beside live operational and revenue-mix data."
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "Peer evidence matrix",
+      "command": "research peers",
+      "description": "Compare live peer financial, ownership, and operating evidence in one unit-aware matrix."
+    },
+    {
+      "name": "Portfolio/watchlist review queue",
+      "command": "research review-queue",
+      "description": "Join current holdings or watchlist names with upcoming results, events, reports, and alerts."
+    },
+    {
+      "name": "Financial-period change report",
+      "command": "research changes",
+      "description": "Emit deterministic row-level changes between two server-returned financial periods."
+    },
+    {
+      "name": "Ownership-and-fundamentals cross-check",
+      "command": "research ownership-check",
+      "description": "Align same-period ownership movements with financial and cash-flow changes."
+    },
+    {
+      "name": "Results-to-document chain",
+      "command": "research result-pack",
+      "description": "Connect a result or event to report, concall, and validated source-document metadata."
+    },
+    {
+      "name": "Screener audit output",
+      "command": "screener run",
+      "description": "Return the exact native query, matched fields, result page, and request provenance (use --explain)."
+    },
+    {
+      "name": "Sector operating-context pack",
+      "command": "research context",
+      "description": "Bundle dated company, sector, macro, and raw-material observations without a synthetic verdict."
+    },
+    {
+      "name": "Portfolio concentration and quality table",
+      "command": "portfolio quality",
+      "description": "Join live portfolio weights with public company quality evidence and explicit unavailable states."
+    },
+    {
+      "name": "Timeline-to-source lookup",
+      "command": "feed inspect",
+      "description": "Resolve timeline items to normalized event, report, and document metadata while preserving cursors."
+    },
+    {
+      "name": "Authenticated capability probe",
+      "command": "auth capabilities",
+      "description": "Report public, authenticated, empty, blocked, expired, or changed-shape status per safe GET endpoint."
+    },
+    {
+      "name": "Raw-material sensitivity table",
+      "command": "research input-context",
+      "description": "Place current raw-material observations beside live operational and revenue-mix data."
+    }
+  ],
+  "verify": {
+    "mode": "mock",
+    "pass_rate": 100,
+    "passed": 41,
+    "total": 41,
+    "data_pipeline": true,
+    "verdict": "PASS"
+  },
+  "scorecard": {
+    "steinberger": {
+      "percentage": 81,
+      "grade": "A",
+      "total": 81
+    }
+  }
+}

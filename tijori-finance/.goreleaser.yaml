@@ -1,0 +1,38 @@
+version: 2
+project_name: tijori-finance-pp-cli
+changelog:
+  disable: true
+builds:
+  - id: tijori-finance-pp-cli
+    main: ./cmd/tijori-finance-pp-cli
+    binary: tijori-finance-pp-cli
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w -X tijori-finance-pp-cli/internal/cli.version={{ .Version }}
+    targets:
+      - darwin_amd64
+      - darwin_arm64
+      - linux_amd64
+      - linux_arm64
+      - windows_amd64
+      - windows_arm64
+archives:
+  - formats: [tar.gz]
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+checksum:
+  name_template: checksums.txt
+brews:
+  - name: tijori-finance-pp-cli
+    repository:
+      owner: dev-abhirup-sc
+      name: homebrew-tap
+    homepage: "https://github.com/dev-abhirup-sc/tijori-finance-pp-cli"
+    description: "A source-linked terminal research notebook for Indian equities."
+    install: |
+      bin.install "tijori-finance-pp-cli"
