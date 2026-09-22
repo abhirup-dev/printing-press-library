@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-09-19T06:22:46.674533Z",
+  "printing_press_version": "4.32.2",
+  "api_name": "unitypredict",
+  "display_name": "Unitypredict",
+  "cli_name": "unitypredict-pp-cli",
+  "creator": {
+    "handle": "dev-abhirup-sc",
+    "name": "abhirup"
+  },
+  "owner": "dev-abhirup-sc",
+  "printer": "dev-abhirup-sc",
+  "printer_name": "abhirup",
+  "spec_path": "spec.yaml",
+  "spec_format": "internal",
+  "spec_source": "sniffed",
+  "spec_checksum": "sha256:c41dc432bfd7cb4d98e48485bf68a22fe598a50aa2f79df4d8113d6828d63a56",
+  "run_id": "20260919-084459-ddafe195",
+  "category": "ai",
+  "description": "The console-only parts of UnityPredict — model authoring, long descriptions, IO config, cross-env diffing — as CLI commands.",
+  "mcp_binary": "unitypredict-pp-mcp",
+  "mcp_tool_count": 25,
+  "mcp_ready": "full",
+  "api_version": "0.1.0",
+  "auth_type": "bearer_token",
+  "auth_env_vars": [
+    "DEV_UNITYPREDICT_TOKEN"
+  ],
+  "novel_features": [
+    {
+      "name": "All-logs fan-out for a request",
+      "command": "logs get",
+      "description": "One command fetches the per-request devLog, the runtime Log.txt, and the engine build log, in order."
+    },
+    {
+      "name": "One-command long-description upload",
+      "command": "models describe set",
+      "description": "Publish a model's long description from a Markdown file in one step, including the S3 upload dance."
+    },
+    {
+      "name": "Declarative inputs/outcomes",
+      "command": "models io set",
+      "description": "Define a model's input and outcome variables from a YAML file instead of the console's per-field editors."
+    },
+    {
+      "name": "Reverse lookup: models per engine",
+      "command": "engines models",
+      "description": "List every model built on a given engine."
+    },
+    {
+      "name": "Honest auth check",
+      "command": "auth check",
+      "description": "Validate credentials against the one endpoint that cannot lie about auth."
+    },
+    {
+      "name": "Engine concurrency view",
+      "command": "engines concurrency",
+      "description": "Show how many engine nodes ran in parallel over time, as a table."
+    },
+    {
+      "name": "Invoke, wait, download in one call",
+      "command": "predict run",
+      "description": "Invoke a model with text or file inputs, poll to completion, and pull File outcomes into a directory."
+    },
+    {
+      "name": "Cross-environment diff",
+      "command": "diff model",
+      "description": "Compare a model or engine record across dev and prod, field by field."
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "All-logs fan-out for a request",
+      "command": "logs get",
+      "description": "One command fetches the per-request devLog, the runtime Log.txt, and the engine build log, in order."
+    },
+    {
+      "name": "One-command long-description upload",
+      "command": "models describe set",
+      "description": "Publish a model's long description from a Markdown file in one step, including the S3 upload dance."
+    },
+    {
+      "name": "Declarative inputs/outcomes",
+      "command": "models io set",
+      "description": "Define a model's input and outcome variables from a YAML file instead of the console's per-field editors."
+    },
+    {
+      "name": "Reverse lookup: models per engine",
+      "command": "engines models",
+      "description": "List every model built on a given engine."
+    },
+    {
+      "name": "Honest auth check",
+      "command": "auth check",
+      "description": "Validate credentials against the one endpoint that cannot lie about auth."
+    },
+    {
+      "name": "Engine concurrency view",
+      "command": "engines concurrency",
+      "description": "Show how many engine nodes ran in parallel over time, as a table."
+    },
+    {
+      "name": "Invoke, wait, download in one call",
+      "command": "predict run",
+      "description": "Invoke a model with text or file inputs, poll to completion, and pull File outcomes into a directory."
+    },
+    {
+      "name": "Cross-environment diff",
+      "command": "diff model",
+      "description": "Compare a model or engine record across dev and prod, field by field."
+    }
+  ],
+  "verify": {
+    "mode": "mock",
+    "pass_rate": 100,
+    "passed": 66,
+    "total": 66,
+    "data_pipeline": true,
+    "verdict": "PASS"
+  },
+  "scorecard": {
+    "steinberger": {
+      "percentage": 90,
+      "grade": "A",
+      "total": 90
+    }
+  }
+}

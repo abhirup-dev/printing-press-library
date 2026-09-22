@@ -1,0 +1,2511 @@
+name: unitypredict
+description: Discovered API spec for dev-unitypredict
+version: 0.1.0
+base_url: https://api.dev.unitypredict.net
+spec_source: sniffed
+auth:
+  type: bearer_token
+  header: Authorization
+  format: Bearer APIKEY@{token}
+  env_vars:
+  - DEV_UNITYPREDICT_TOKEN
+  env_var_specs:
+  - name: DEV_UNITYPREDICT_TOKEN
+    kind: per_call
+    required: true
+    sensitive: true
+    inferred: true
+auth_warnings:
+- 'rejected auth candidate "author" from body: request body field'
+- 'rejected auth candidate "enginePlatformKey" from body: request body field'
+- 'rejected auth candidate "page" from query: search input'
+- 'rejected auth candidate "sort" from query: search input'
+config:
+  format: toml
+  path: ~/.config/unitypredict-pp-cli/config.toml
+resources:
+  auth_resource:
+    description: Operations on auth
+    endpoints:
+      list_auth:
+        method: GET
+        path: /api/auth
+        description: GET /api/auth
+        params:
+        - name: loadRD
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        body: []
+        response:
+          type: object
+          item: auth
+        pagination: null
+        observed_auth:
+        - authorization
+  clients:
+    description: Operations on Console
+    endpoints:
+      list_Console:
+        method: GET
+        path: /api/clients/Console
+        description: GET /api/clients/Console
+        params: []
+        body: []
+        response:
+          type: object
+          item: Console
+        pagination: null
+      list_router:
+        method: GET
+        path: /api/clients/router/
+        description: GET /api/clients/router/
+        params: []
+        body: []
+        response:
+          type: object
+          item: Router
+        pagination: null
+        observed_auth:
+        - authorization
+  engines:
+    description: Operations on userengines
+    endpoints:
+      create_engines:
+        method: POST
+        path: /api/engines
+        description: POST /api/engines
+        params: []
+        body:
+        - name: additionalDockerCommands
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: additionalDockerCommandsFlag
+          type: boolean
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: allowInterruptableInference
+          type: boolean
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: batchConfig
+          type: object
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields:
+          - name: batchMode
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: maxBatchSize
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+        - name: buildNumber
+          type: integer
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: createdDate
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+          format: date-time
+        - name: deployedBuildNumber
+          type: integer
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: enableChainedModels
+          type: boolean
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: engineId
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+          format: uuid
+        - name: engineName
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: enginePlatformKey
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: enginePlatformName
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: entityType
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: files
+          type: array
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields:
+          - name: fileName
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: fileType
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+        - name: gpuMemoryRequirement
+          type: integer
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: id
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: inferenceTimeStats
+          type: object
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields:
+          - name: count
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: max
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: mean
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: min
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: sum
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: sumSq
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: variance
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+        - name: lastBuildResults
+          type: object
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields:
+          - name: status
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+        - name: maximumRunTime
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: memoryRequirement
+          type: integer
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: modifiedDate
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+          format: date-time
+        - name: ownerSubscriptionType
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: packageDefinitionFileName
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: parentRepositoryId
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+          format: uuid
+        - name: permissions
+          type: array
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: platformInfo
+          type: object
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields:
+          - name: allowAdditionalDockerCommands
+            type: boolean
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: clusterId
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: computeCostPerSecond
+            type: number
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: containerBasedPlatform
+            type: boolean
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: description
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: friendlyName
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: maxAllowedGPUMemory
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: maxAllowedMemory
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: maxAllowedStorage
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: minAllowedGPUMemory
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: minAllowedMemory
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: minAllowedStorage
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: perGBGPUMemoryPricing
+            type: number
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: perGBMemoryPricing
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: perGBStoragePricing
+            type: number
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: platformKey
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: recommendedBaseImages
+            type: array
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+        - name: runOnDedicatedInstance
+          type: boolean
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: selectedBaseImage
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: stateInfo
+          type: object
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields:
+          - name: historicalNodeCountStats
+            type: object
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields:
+            - name: '2118092026'
+              type: object
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+          - name: numRunningInstances
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: runningNodes
+            type: array
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields:
+            - name: agentInstanceId
+              type: string
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+              format: uuid
+            - name: buildNumber
+              type: integer
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+            - name: engineLoadedTime
+              type: string
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+              format: date-time
+            - name: gpuMemory
+              type: integer
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+            - name: memory
+              type: integer
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+            - name: storage
+              type: integer
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+        - name: status
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: storageRequirement
+          type: integer
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        request_content_type: application/json
+        response:
+          type: object
+          item: engines
+        pagination: null
+        observed_auth:
+        - authorization
+      get_SourceFile:
+        method: GET
+        path: /api/engines/download/{download_id}/SourceFile
+        description: GET /api/engines/download/{download_id}/SourceFile
+        params:
+        - name: download_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The download_id path segment
+          fields: []
+        - name: fileName
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        body: []
+        response:
+          type: object
+          item: SourceFile
+        pagination: null
+        observed_auth:
+        - authorization
+      get_buildlogs:
+        method: GET
+        path: /api/engines/buildlogs/{buildlog_id}
+        description: GET /api/engines/buildlogs/{buildlog_id}
+        params:
+        - name: buildlog_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The buildlog_id path segment
+          fields: []
+        body: []
+        response:
+          type: object
+          item: Buildlog
+        pagination: null
+        observed_auth:
+        - authorization
+      get_engines:
+        method: GET
+        path: /api/engines/{engine_id}
+        description: GET /api/engines/{engine_id}
+        params:
+        - name: engine_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The engine_id path segment
+          fields: []
+        - name: loadRD
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: modeledit
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        body: []
+        response:
+          type: array
+          item: EngineFile
+        pagination: null
+        response_path: files
+        observed_auth:
+        - authorization
+      list_supportedengines:
+        method: GET
+        path: /api/engines/supportedengines
+        description: GET /api/engines/supportedengines
+        params: []
+        body: []
+        response:
+          type: array
+          item: Supportedengine
+        pagination: null
+        observed_auth:
+        - authorization
+      list_userengines:
+        method: GET
+        path: /api/engines/userengines
+        description: GET /api/engines/userengines
+        params:
+        - name: page
+          type: integer
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: pagecount
+          type: integer
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: repository
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        body: []
+        response:
+          type: array
+          item: UserengineResult
+        pagination: null
+        response_path: results
+        observed_auth:
+        - authorization
+  fast:
+    description: Operations on THUMBNAIL.png
+    endpoints:
+      get_THUMBNAIL.png:
+        method: GET
+        path: /api/fast/models/{model_id}/files/THUMBNAIL.png
+        base_url: https://fast.prod.unitypredict.com
+        description: GET /api/fast/models/{model_id}/files/THUMBNAIL.png
+        params:
+        - name: model_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The model_id path segment
+          fields: []
+        body: []
+        response:
+          type: object
+          item: THUMBNAIL.png
+        pagination: null
+  models:
+    description: Operations on search
+    endpoints:
+      create_models:
+        method: POST
+        path: /api/models
+        description: POST /api/models
+        params: []
+        body:
+        - name: active
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: aiEngineConfig
+          type: object
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields:
+          - name: inferenceOptions
+            type: object
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: inputs
+            type: array
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields:
+            - name: defaultValue
+              type: string
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+            - name: inputDescription
+              type: string
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+            - name: inputType
+              type: string
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+            - name: name
+              type: string
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+            - name: options
+              type: array
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+          - name: outcomes
+            type: array
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields:
+            - name: defaultValue
+              type: string
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+            - name: name
+              type: string
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+            - name: options
+              type: array
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+            - name: outcomeDescription
+              type: string
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+            - name: outcomeType
+              type: string
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+          - name: predictEngineType
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+        - name: allowPublicComponentAccess
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: appEngineId
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+          format: uuid
+        - name: author
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: computeType
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: engineCostPerSecond
+          type: integer
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: engineStatus
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: entityType
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: id
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: interfaceDisplayOptions
+          type: object
+          required: false
+          positional: false
+          default: null
+          description: Free-form map keyed by variable name. Pass as JSON.
+          fields: []
+        - name: interfaceType
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: isPublic
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: longRunningInference
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: modelAlias
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: modelData
+          type: object
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields:
+          - name: filePaths
+            type: object
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields:
+            - name: MODELDESCRIPTION
+              type: string
+              required: true
+              positional: false
+              default: null
+              description: ''
+              fields: []
+        - name: modelDescription
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: modelId
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+          format: uuid
+        - name: modelLongDescription
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+          format: url
+        - name: modelName
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: modelType
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: needsContext
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: ownerSubscriptionType
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: parentRepositoryId
+          type: string
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+          format: uuid
+        - name: performanceScore
+          type: integer
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: performanceStats
+          type: object
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields:
+          - name: accuracy
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: auc
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: bleuScore
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: dunnIndex
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: f1Score
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: metrics
+            type: object
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: precision
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: r2
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: recall
+            type: integer
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+        - name: permissions
+          type: array
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: pricingInfo
+          type: object
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields:
+          - name: enableMonetization
+            type: boolean
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: modelOwnerPaysComputeCost
+            type: boolean
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: noChargeOnInferenceWithError
+            type: boolean
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: servicePricingInfo
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+          - name: skipUsageChargeInSameCtx
+            type: boolean
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+        - name: supportedInterfaces
+          type: array
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: supportingLinks
+          type: array
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: tags
+          type: array
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: totalCost
+          type: integer
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: totalInferences
+          type: integer
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: totalViews
+          type: integer
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: variableDisplayOptions
+          type: object
+          required: false
+          positional: false
+          default: null
+          description: Free-form map keyed by variable name. Pass as JSON.
+          fields: []
+        - name: visibility
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        request_content_type: application/json
+        response:
+          type: object
+          item: models
+        pagination: null
+        observed_auth:
+        - authorization
+      get_MODELDESCRIPTION:
+        method: GET
+        path: /api/models/{model_id}/filekey/MODELDESCRIPTION
+        description: GET /api/models/{model_id}/filekey/MODELDESCRIPTION
+        params:
+        - name: model_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The model_id path segment
+          fields: []
+        body: []
+        response:
+          type: object
+          item: MODELDESCRIPTION
+        pagination: null
+        observed_auth:
+        - authorization
+      get_MODELDESCRIPTION_2:
+        method: GET
+        path: /api/models/upload/{upload_id}/MODELDESCRIPTION
+        description: GET /api/models/upload/{upload_id}/MODELDESCRIPTION
+        params:
+        - name: fileName
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: upload_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The upload_id path segment
+          fields: []
+        body: []
+        response:
+          type: object
+          item: MODELDESCRIPTION
+        pagination: null
+        observed_auth:
+        - authorization
+      get_THUMBNAIL:
+        method: GET
+        path: /api/models/{model_id}/filekey/THUMBNAIL
+        description: GET /api/models/{model_id}/filekey/THUMBNAIL
+        params:
+        - name: model_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The model_id path segment
+          fields: []
+        body: []
+        response:
+          type: object
+          item: THUMBNAIL
+        pagination: null
+        observed_auth:
+        - authorization
+      get_models:
+        method: GET
+        path: /api/models/{model_id}
+        description: GET /api/models/{model_id}
+        params:
+        - name: model_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The model_id path segment
+          fields: []
+        - name: modeledit
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: modelview
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        body: []
+        response:
+          type: object
+          item: Model
+        pagination: null
+        observed_auth:
+        - authorization
+      list_search:
+        method: GET
+        path: /api/models/search
+        description: GET /api/models/search
+        params:
+        - name: aisearch
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: modelType
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: page
+          type: integer
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: pageCount
+          type: integer
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: sort
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        body: []
+        response:
+          type: array
+          item: SearchResult
+        pagination: null
+        response_path: results
+        observed_auth:
+        - authorization
+      list_usermodels:
+        method: GET
+        path: /api/models/usermodels
+        description: GET /api/models/usermodels
+        params:
+        - name: modelType
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: page
+          type: integer
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: pagecount
+          type: integer
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: searchterm
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        body: []
+        response:
+          type: array
+          item: UsermodelResult
+        pagination: null
+        response_path: results
+        observed_auth:
+        - authorization
+  payments:
+    description: Operations on accounts
+    endpoints:
+      list_accounts:
+        method: GET
+        path: /api/payments/accounts
+        description: GET /api/payments/accounts
+        params:
+        - name: need
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        body: []
+        response:
+          type: array
+          item: Account
+        pagination: null
+        observed_auth:
+        - authorization
+  predict:
+    description: Operations on predict
+    endpoints:
+      create_predict:
+        method: POST
+        path: /api/predict/{predict_id}
+        description: POST /api/predict/{predict_id}
+        params:
+        - name: dev
+          type: boolean
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: predict_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The predict_id path segment
+          fields: []
+        body:
+        - name: DesiredOutcomes
+          type: array
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        - name: InputValues
+          type: object
+          required: true
+          positional: false
+          default: null
+          description: ''
+          fields:
+          - name: InputMessage
+            type: string
+            required: true
+            positional: false
+            default: null
+            description: ''
+            fields: []
+        request_content_type: application/json
+        response:
+          type: object
+          item: predict
+        pagination: null
+        observed_auth:
+        - authorization
+      get_logs:
+        method: GET
+        path: /api/predict/status/{statu_id}/logs
+        description: GET /api/predict/status/{statu_id}/logs
+        params:
+        - name: statu_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The statu_id path segment
+          fields: []
+        body: []
+        response:
+          type: object
+          item: logs
+        pagination: null
+        observed_auth:
+        - authorization
+      get_status:
+        method: GET
+        path: /api/predict/status/{statu_id}
+        description: GET /api/predict/status/{statu_id}
+        params:
+        - name: statu_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The statu_id path segment
+          fields: []
+        body: []
+        response:
+          type: object
+          item: status
+        pagination: null
+        observed_auth:
+        - authorization
+  repository:
+    description: Operations on search
+    endpoints:
+      list_search:
+        method: GET
+        path: /api/repository/search
+        description: GET /api/repository/search
+        params: []
+        body: []
+        response:
+          type: array
+          item: Search
+        pagination: null
+        observed_auth:
+        - authorization
+  social:
+    description: Operations on review
+    endpoints:
+      get_review:
+        method: GET
+        path: /api/social/model/review/{review_id}
+        description: GET /api/social/model/review/{review_id}
+        params:
+        - name: review_id
+          type: string
+          required: true
+          positional: true
+          default: null
+          description: The review_id path segment
+          fields: []
+        body: []
+        response:
+          type: array
+          item: review
+        pagination: null
+        observed_auth:
+        - authorization
+  tools:
+    description: Operations on analytics
+    endpoints:
+      list_analytics:
+        method: GET
+        path: /api/tools/analytics
+        description: GET /api/tools/analytics
+        params:
+        - name: accountId
+          type: string
+          required: false
+          positional: false
+          default: null
+          description: ''
+          fields: []
+        body: []
+        response:
+          type: object
+          item: Analytic
+        pagination: null
+        observed_auth:
+        - authorization
+      list_dev.abhirupdas_8C0AF724114435:
+        method: GET
+        path: /api/tools/public/dev.abhirupdas_8C0AF724114435
+        description: GET /api/tools/public/dev.abhirupdas_8C0AF724114435
+        params: []
+        body: []
+        response:
+          type: object
+          item: DevAbhirupdas8C0AF724114435
+        pagination: null
+        observed_auth:
+        - authorization
+types:
+  Account:
+    fields:
+    - name: accountId
+      type: string
+    - name: accountName
+      type: string
+    - name: currentAccountValue
+      type: number
+    - name: permissions
+      type: array
+  AiEngineConfig:
+    fields:
+    - name: inferenceOptions
+      type: object
+    - name: inputs
+      type: '[]ref:Input'
+    - name: outcomes
+      type: '[]ref:Outcome'
+    - name: predictEngineType
+      type: string
+  Analytic:
+    fields:
+    - name: accountValue
+      type: number
+    - name: currentMonthData
+      type: ref:CurrentMonthData
+    - name: monthlyData
+      type: ref:MonthlyData
+  BatchConfig:
+    fields:
+    - name: batchMode
+      type: string
+    - name: maxBatchSize
+      type: integer
+  Buildlog:
+    fields:
+    - name: publicLogsUrl
+      type: string
+      format: url
+  Console:
+    fields:
+    - name: auth0ClientId
+      type: string
+    - name: auth0DomainName
+      type: string
+    - name: clientType
+      type: string
+    - name: fastAPIBaseUrl
+      type: string
+      format: url
+    - name: payPalClientId
+      type: string
+  CurrentMonthData:
+    fields:
+    - name: moneyEarned
+      type: ref:MoneyEarned
+    - name: moneyEarnedByModel
+      type: object
+    - name: moneySpent
+      type: ref:MoneySpent
+    - name: moneySpentByModel
+      type: ref:MoneySpentByModel
+    - name: usageEarned
+      type: ref:UsageEarned
+    - name: usageEarnedByModel
+      type: object
+    - name: usageSpent
+      type: ref:UsageSpent
+    - name: usageSpentByModel
+      type: ref:UsageSpentByModel
+  DevAbhirupdas8C0AF724114435:
+    fields:
+    - name: aboutMe
+      type: string
+    - name: displayName
+      type: string
+    - name: firstName
+      type: string
+    - name: lastName
+      type: string
+    - name: numberOfPublicModels
+      type: integer
+    - name: publicName
+      type: string
+    - name: socialInfo
+      type: object
+    - name: totalNumberOfModels
+      type: integer
+  EngineFile:
+    fields:
+    - name: fileName
+      type: string
+    - name: fileType
+      type: string
+  File:
+    fields:
+    - name: fileName
+      type: string
+    - name: fileType
+      type: string
+  FilePaths:
+    fields:
+    - name: MODELDESCRIPTION
+      type: string
+  InferenceTimeStats:
+    fields:
+    - name: count
+      type: integer
+    - name: max
+      type: string
+    - name: mean
+      type: string
+    - name: min
+      type: string
+    - name: sum
+      type: integer
+    - name: sumSq
+      type: integer
+    - name: variance
+      type: string
+  Input:
+    fields:
+    - name: defaultValue
+      type: string
+    - name: inputDescription
+      type: string
+    - name: inputType
+      type: string
+    - name: name
+      type: string
+    - name: options
+      type: array
+  InputmessageInputcon:
+    fields:
+    - name: enableMultiLineText
+      type: bool
+    - name: enablePictureViewer
+      type: bool
+    - name: enableValidation
+      type: bool
+    - name: hiddenVariable
+      type: bool
+    - name: useChatbotInterface
+      type: bool
+  InterfaceDisplayOptions:
+    fields:
+    - name: chatbotCustomCSS
+      type: string
+    - name: chatbotStartMessage
+      type: string
+  LastBuildResults:
+    fields:
+    - name: status
+      type: string
+  MODELDESCRIPTION:
+    fields:
+    - name: destinationPath
+      type: string
+    - name: fileKey
+      type: string
+    - name: fileName
+      type: string
+    - name: publicUploadLink
+      type: string
+      format: url
+  Model:
+    fields:
+    - name: active
+      type: bool
+    - name: aiEngineConfig
+      type: ref:AiEngineConfig
+    - name: allowPublicComponentAccess
+      type: bool
+    - name: appEngineId
+      type: string
+      format: uuid
+    - name: author
+      type: string
+    - name: computeType
+      type: string
+    - name: engineCostPerSecond
+      type: integer
+    - name: engineStatus
+      type: string
+    - name: entityType
+      type: string
+    - name: id
+      type: string
+    - name: interfaceDisplayOptions
+      type: ref:InterfaceDisplayOptions
+    - name: interfaceType
+      type: string
+    - name: isPublic
+      type: bool
+    - name: longRunningInference
+      type: bool
+    - name: modelAlias
+      type: string
+    - name: modelData
+      type: ref:ModelData
+    - name: modelDescription
+      type: string
+    - name: modelId
+      type: string
+      format: uuid
+    - name: modelLongDescription
+      type: string
+      format: url
+    - name: modelName
+      type: string
+    - name: modelType
+      type: string
+    - name: needsContext
+      type: bool
+    - name: ownerSubscriptionType
+      type: string
+      omit_empty: true
+    - name: parentRepositoryId
+      type: string
+      format: uuid
+    - name: performanceScore
+      type: integer
+    - name: performanceStats
+      type: ref:PerformanceStats
+    - name: permissions
+      type: array
+    - name: pricingInfo
+      type: ref:PricingInfo
+    - name: socialStatus
+      type: ref:SocialStatus2
+      omit_empty: true
+    - name: supportedInterfaces
+      type: array
+    - name: supportingLinks
+      type: array
+    - name: tags
+      type: array
+    - name: totalCost
+      type: integer
+    - name: totalInferences
+      type: integer
+    - name: totalViews
+      type: integer
+    - name: variableDisplayOptions
+      type: ref:VariableDisplayOptions
+    - name: visibility
+      type: string
+  ModelData:
+    fields:
+    - name: filePaths
+      type: ref:FilePaths
+  MoneyEarned:
+    fields:
+    - name: 01/09/2026
+      type: integer
+    - name: 02/09/2026
+      type: integer
+    - name: 03/09/2026
+      type: integer
+    - name: 04/09/2026
+      type: integer
+    - name: 05/09/2026
+      type: integer
+    - name: 06/09/2026
+      type: integer
+    - name: 07/09/2026
+      type: integer
+    - name: 08/09/2026
+      type: integer
+    - name: 09/09/2026
+      type: integer
+    - name: 10/09/2026
+      type: integer
+    - name: 11/09/2026
+      type: integer
+    - name: 12/09/2026
+      type: integer
+    - name: 13/09/2026
+      type: integer
+    - name: 14/09/2026
+      type: integer
+    - name: 15/09/2026
+      type: integer
+    - name: 16/09/2026
+      type: integer
+    - name: 17/09/2026
+      type: integer
+    - name: 18/09/2026
+      type: integer
+    - name: 19/09/2026
+      type: integer
+  MoneyEarned2:
+    fields:
+    - name: 01/2026
+      type: integer
+    - name: 02/2026
+      type: integer
+    - name: 03/2026
+      type: integer
+    - name: 04/2026
+      type: integer
+    - name: 05/2026
+      type: integer
+    - name: 06/2026
+      type: integer
+    - name: 07/2026
+      type: integer
+    - name: 08/2026
+      type: integer
+    - name: 09/2026
+      type: integer
+    - name: 10/2025
+      type: integer
+    - name: 11/2025
+      type: integer
+    - name: 12/2025
+      type: integer
+  MoneySpent:
+    fields:
+    - name: 01/09/2026
+      type: integer
+    - name: 02/09/2026
+      type: integer
+    - name: 03/09/2026
+      type: integer
+    - name: 04/09/2026
+      type: integer
+    - name: 05/09/2026
+      type: number
+    - name: 06/09/2026
+      type: integer
+    - name: 07/09/2026
+      type: integer
+    - name: 08/09/2026
+      type: integer
+    - name: 09/09/2026
+      type: integer
+    - name: 10/09/2026
+      type: integer
+    - name: 11/09/2026
+      type: integer
+    - name: 12/09/2026
+      type: integer
+    - name: 13/09/2026
+      type: integer
+    - name: 14/09/2026
+      type: integer
+    - name: 15/09/2026
+      type: integer
+    - name: 16/09/2026
+      type: integer
+    - name: 17/09/2026
+      type: integer
+    - name: 18/09/2026
+      type: integer
+    - name: 19/09/2026
+      type: integer
+  MoneySpent2:
+    fields:
+    - name: 01/2026
+      type: integer
+    - name: 02/2026
+      type: integer
+    - name: 03/2026
+      type: integer
+    - name: 04/2026
+      type: integer
+    - name: 05/2026
+      type: integer
+    - name: 06/2026
+      type: integer
+    - name: 07/2026
+      type: integer
+    - name: 08/2026
+      type: integer
+    - name: 09/2026
+      type: number
+    - name: 10/2025
+      type: integer
+    - name: 11/2025
+      type: integer
+    - name: 12/2025
+      type: integer
+  MoneySpentByModel:
+    fields:
+    - name: CoinGrading - VLLM - OpenGVLab_InternVL3-8B
+      type: integer
+    - name: LlamaCppTest
+      type: integer
+    - name: Qwen Omni Coin
+      type: integer
+    - name: WAN-T2V
+      type: integer
+    - name: WhisperX - Speaker Diarization
+      type: number
+  MoneySpentByModel2:
+    fields:
+    - name: CoinGrading - VLLM - OpenGVLab_InternVL3-14B
+      type: number
+    - name: CoinGrading - VLLM - Qwen2.5-VL-Instruct-7B
+      type: number
+    - name: Mistral VLLM Official
+      type: number
+    - name: Mistral VLLM SelfHost
+      type: number
+    - name: Other
+      type: number
+    - name: WAN-T2V
+      type: number
+  MonthlyData:
+    fields:
+    - name: moneyEarned
+      type: ref:MoneyEarned2
+    - name: moneyEarnedByModel
+      type: object
+    - name: moneySpent
+      type: ref:MoneySpent2
+    - name: moneySpentByModel
+      type: ref:MoneySpentByModel2
+    - name: usageEarned
+      type: ref:UsageEarned2
+    - name: usageEarnedByModel
+      type: object
+    - name: usageSpent
+      type: ref:UsageSpent2
+    - name: usageSpentByModel
+      type: ref:UsageSpentByModel2
+  NewInputInputcon:
+    fields:
+    - name: enableMultiLineText
+      type: bool
+    - name: enablePictureViewer
+      type: bool
+    - name: enableValidation
+      type: bool
+    - name: hiddenVariable
+      type: bool
+    - name: useChatbotInterface
+      type: bool
+  Outcome:
+    fields:
+    - name: defaultValue
+      type: string
+    - name: name
+      type: string
+    - name: options
+      type: array
+    - name: outcomeDescription
+      type: string
+    - name: outcomeType
+      type: string
+  OutputmessageOutputcon:
+    fields:
+    - name: enableMultiLineText
+      type: bool
+    - name: enablePictureViewer
+      type: bool
+    - name: enableValidation
+      type: bool
+    - name: hiddenVariable
+      type: bool
+    - name: useChatbotInterface
+      type: bool
+  PerformanceStats:
+    fields:
+    - name: accuracy
+      type: integer
+    - name: auc
+      type: integer
+    - name: bleuScore
+      type: integer
+    - name: dunnIndex
+      type: integer
+    - name: f1Score
+      type: integer
+    - name: metrics
+      type: object
+    - name: precision
+      type: integer
+    - name: r2
+      type: integer
+    - name: recall
+      type: integer
+  PlatformInfo:
+    fields:
+    - name: allowAdditionalDockerCommands
+      type: bool
+    - name: computeCostPerSecond
+      type: number
+    - name: containerBasedPlatform
+      type: bool
+    - name: description
+      type: string
+    - name: friendlyName
+      type: string
+    - name: maxAllowedGPUMemory
+      type: integer
+    - name: maxAllowedMemory
+      type: integer
+    - name: maxAllowedStorage
+      type: integer
+    - name: minAllowedGPUMemory
+      type: integer
+    - name: minAllowedMemory
+      type: integer
+    - name: minAllowedStorage
+      type: integer
+    - name: perGBGPUMemoryPricing
+      type: string
+    - name: perGBMemoryPricing
+      type: number
+    - name: perGBStoragePricing
+      type: number
+    - name: platformKey
+      type: string
+    - name: recommendedBaseImages
+      type: array
+  PricingInfo:
+    fields:
+    - name: enableMonetization
+      type: bool
+    - name: modelOwnerPaysComputeCost
+      type: bool
+    - name: noChargeOnInferenceWithError
+      type: bool
+    - name: servicePricingInfo
+      type: string
+    - name: skipUsageChargeInSameCtx
+      type: bool
+  ReconresultOutputcon:
+    fields:
+    - name: enableMultiLineText
+      type: bool
+    - name: enablePictureViewer
+      type: bool
+    - name: enableValidation
+      type: bool
+    - name: hiddenVariable
+      type: bool
+    - name: useChatbotInterface
+      type: bool
+  Router:
+    fields:
+    - name: clientType
+      type: string
+    - name: fastAPIBaseUrl
+      type: string
+      format: url
+    - name: payPalClientId
+      type: string
+  Search:
+    fields:
+    - name: entityType
+      type: string
+    - name: id
+      type: string
+    - name: ownerId
+      type: string
+    - name: permissions
+      type: array
+    - name: repositoryAccessRights
+      type: array
+    - name: repositoryDescription
+      type: string
+    - name: repositoryId
+      type: string
+      format: uuid
+    - name: repositoryName
+      type: string
+  SearchResult:
+    fields:
+    - name: entityType
+      type: string
+    - name: favIconUrl
+      type: string
+    - name: isPublic
+      type: bool
+    - name: modelAlias
+      type: string
+    - name: modelCategory
+      type: string
+    - name: modelDescription
+      type: string
+    - name: modelId
+      type: string
+      format: uuid
+    - name: modelName
+      type: string
+    - name: modelTitle
+      type: string
+    - name: modelType
+      type: string
+    - name: performanceScore
+      type: integer
+    - name: socialStatus
+      type: ref:SocialStatus
+    - name: thumbnailUrl
+      type: string
+      format: url
+    - name: visibility
+      type: string
+  SocialStatus:
+    fields:
+    - name: averageStarRating
+      type: integer
+    - name: inferenceCount
+      type: integer
+    - name: ratingCount
+      type: integer
+    - name: viewCount
+      type: integer
+  SocialStatus2:
+    fields:
+    - name: averageStarRating
+      type: integer
+    - name: inferenceCount
+      type: integer
+    - name: ratingCount
+      type: integer
+    - name: viewCount
+      type: integer
+  SourceFile:
+    fields:
+    - name: publicDownloadLink
+      type: string
+      format: url
+  StateInfo:
+    fields:
+    - name: historicalNodeCountStats
+      type: object
+    - name: numRunningInstances
+      type: integer
+    - name: runningNodes
+      type: array
+  Supportedengine:
+    fields:
+    - name: allowAdditionalDockerCommands
+      type: bool
+    - name: computeCostPerSecond
+      type: number
+    - name: containerBasedPlatform
+      type: bool
+    - name: description
+      type: string
+    - name: entryPointTemplateUrl
+      type: string
+      format: url
+    - name: friendlyName
+      type: string
+    - name: maxAllowedGPUMemory
+      type: integer
+    - name: maxAllowedMemory
+      type: integer
+    - name: maxAllowedStorage
+      type: integer
+    - name: minAllowedGPUMemory
+      type: integer
+    - name: minAllowedMemory
+      type: integer
+    - name: minAllowedStorage
+      type: integer
+    - name: perGBGPUMemoryPricing
+      type: string
+    - name: perGBMemoryPricing
+      type: number
+    - name: perGBStoragePricing
+      type: number
+    - name: platformKey
+      type: string
+    - name: platformTemplateUrl
+      type: string
+      format: url
+    - name: recommendedBaseImages
+      type: array
+  UsageEarned:
+    fields:
+    - name: 01/09/2026
+      type: integer
+    - name: 02/09/2026
+      type: integer
+    - name: 03/09/2026
+      type: integer
+    - name: 04/09/2026
+      type: integer
+    - name: 05/09/2026
+      type: integer
+    - name: 06/09/2026
+      type: integer
+    - name: 07/09/2026
+      type: integer
+    - name: 08/09/2026
+      type: integer
+    - name: 09/09/2026
+      type: integer
+    - name: 10/09/2026
+      type: integer
+    - name: 11/09/2026
+      type: integer
+    - name: 12/09/2026
+      type: integer
+    - name: 13/09/2026
+      type: integer
+    - name: 14/09/2026
+      type: integer
+    - name: 15/09/2026
+      type: integer
+    - name: 16/09/2026
+      type: integer
+    - name: 17/09/2026
+      type: integer
+    - name: 18/09/2026
+      type: integer
+    - name: 19/09/2026
+      type: integer
+  UsageEarned2:
+    fields:
+    - name: 01/2026
+      type: integer
+    - name: 02/2026
+      type: integer
+    - name: 03/2026
+      type: integer
+    - name: 04/2026
+      type: integer
+    - name: 05/2026
+      type: integer
+    - name: 06/2026
+      type: integer
+    - name: 07/2026
+      type: integer
+    - name: 08/2026
+      type: integer
+    - name: 09/2026
+      type: integer
+    - name: 10/2025
+      type: integer
+    - name: 11/2025
+      type: integer
+    - name: 12/2025
+      type: integer
+  UsageSpent:
+    fields:
+    - name: 01/09/2026
+      type: integer
+    - name: 02/09/2026
+      type: integer
+    - name: 03/09/2026
+      type: integer
+    - name: 04/09/2026
+      type: integer
+    - name: 05/09/2026
+      type: integer
+    - name: 06/09/2026
+      type: integer
+    - name: 07/09/2026
+      type: integer
+    - name: 08/09/2026
+      type: integer
+    - name: 09/09/2026
+      type: integer
+    - name: 10/09/2026
+      type: integer
+    - name: 11/09/2026
+      type: integer
+    - name: 12/09/2026
+      type: integer
+    - name: 13/09/2026
+      type: integer
+    - name: 14/09/2026
+      type: integer
+    - name: 15/09/2026
+      type: integer
+    - name: 16/09/2026
+      type: integer
+    - name: 17/09/2026
+      type: integer
+    - name: 18/09/2026
+      type: integer
+    - name: 19/09/2026
+      type: integer
+  UsageSpent2:
+    fields:
+    - name: 01/2026
+      type: integer
+    - name: 02/2026
+      type: integer
+    - name: 03/2026
+      type: integer
+    - name: 04/2026
+      type: integer
+    - name: 05/2026
+      type: integer
+    - name: 06/2026
+      type: integer
+    - name: 07/2026
+      type: integer
+    - name: 08/2026
+      type: integer
+    - name: 09/2026
+      type: integer
+    - name: 10/2025
+      type: integer
+    - name: 11/2025
+      type: integer
+    - name: 12/2025
+      type: integer
+  UsageSpentByModel:
+    fields:
+    - name: LlamaCppTest
+      type: integer
+    - name: PP Recon Scratch
+      type: integer
+    - name: Qwen Omni Coin
+      type: integer
+    - name: WAN-T2V
+      type: integer
+    - name: WhisperX - Speaker Diarization
+      type: integer
+  UsageSpentByModel2:
+    fields:
+    - name: CoinGrading - VLLM - Qwen2.5-VL-Instruct-7B
+      type: integer
+    - name: Mistral VLLM SelfHost
+      type: integer
+    - name: Other
+      type: integer
+    - name: Subtitle Translation LLM
+      type: integer
+    - name: WAN-T2V
+      type: integer
+    - name: vllm-test
+      type: integer
+  UserengineResult:
+    fields:
+    - name: allowInterruptableInference
+      type: bool
+    - name: batchConfig
+      type: ref:BatchConfig
+    - name: buildNumber
+      type: integer
+    - name: createdDate
+      type: string
+      format: date-time
+    - name: deployedBuildNumber
+      type: integer
+    - name: enableChainedModels
+      type: bool
+    - name: engineDescription
+      type: string
+    - name: engineId
+      type: string
+      format: uuid
+    - name: engineName
+      type: string
+    - name: enginePlatformKey
+      type: string
+    - name: enginePlatformName
+      type: string
+    - name: entityType
+      type: string
+    - name: files
+      type: '[]ref:File'
+    - name: gpuMemoryRequirement
+      type: integer
+    - name: id
+      type: string
+    - name: inferenceTimeStats
+      type: ref:InferenceTimeStats
+    - name: lastBuildResults
+      type: ref:LastBuildResults
+    - name: maximumRunTime
+      type: string
+    - name: memoryRequirement
+      type: integer
+    - name: modifiedDate
+      type: string
+      format: date-time
+    - name: packageDefinitionFileName
+      type: string
+    - name: parentRepositoryId
+      type: string
+      format: uuid
+    - name: parentRepositoryName
+      type: string
+    - name: permissions
+      type: array
+    - name: platformInfo
+      type: ref:PlatformInfo
+    - name: runOnDedicatedInstance
+      type: bool
+    - name: selectedBaseImage
+      type: string
+    - name: stateInfo
+      type: ref:StateInfo
+    - name: status
+      type: string
+    - name: storageRequirement
+      type: integer
+  UsermodelResult:
+    fields:
+    - name: entityType
+      type: string
+    - name: isPublic
+      type: bool
+    - name: modelAlias
+      type: string
+    - name: modelId
+      type: string
+      format: uuid
+    - name: modelName
+      type: string
+    - name: modelType
+      type: string
+    - name: parentRepositoryName
+      type: string
+    - name: performanceScore
+      type: integer
+    - name: visibility
+      type: string
+  VariableDisplayOptions:
+    fields:
+    - name: inputmessage_inputcon
+      type: ref:InputmessageInputcon
+    - name: new_input_inputcon
+      type: ref:NewInputInputcon
+    - name: outputmessage_outputcon
+      type: ref:OutputmessageOutputcon
+    - name: reconresult_outputcon
+      type: ref:ReconresultOutputcon

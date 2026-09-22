@@ -1,0 +1,39 @@
+{
+  "manifest_version": "0.3",
+  "name": "unitypredict-pp-mcp",
+  "display_name": "Unitypredict",
+  "version": "0.1.0",
+  "description": "Discovered API spec for dev-unitypredict",
+  "author": {
+    "name": "CLI Printing Press"
+  },
+  "license": "Apache-2.0",
+  "server": {
+    "type": "binary",
+    "entry_point": "bin/unitypredict-pp-mcp",
+    "mcp_config": {
+      "command": "${__dirname}/bin/unitypredict-pp-mcp",
+      "args": [],
+      "env": {
+        "DEV_UNITYPREDICT_TOKEN": "${user_config.dev_unitypredict_token}"
+      }
+    }
+  },
+  "user_config": {
+    "dev_unitypredict_token": {
+      "type": "string",
+      "title": "DEV_UNITYPREDICT_TOKEN",
+      "description": "Sets DEV_UNITYPREDICT_TOKEN for the Unitypredict MCP server.",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=1.0.0",
+    "platforms": [
+      "darwin",
+      "linux",
+      "win32"
+    ]
+  }
+}

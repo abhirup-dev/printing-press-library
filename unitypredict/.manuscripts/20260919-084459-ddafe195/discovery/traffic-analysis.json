@@ -1,0 +1,3875 @@
+{
+  "version": "1",
+  "summary": {
+    "target_url": "https://api.dev.unitypredict.net/api/clients/Console",
+    "entry_count": 43,
+    "api_entry_count": 43,
+    "noise_entry_count": 0,
+    "host_distribution": {
+      "api.dev.unitypredict.net": 31,
+      "api.prod.unitypredict.com": 7,
+      "fast.dev.unitypredict.net": 2,
+      "fast.prod.unitypredict.com": 3
+    },
+    "http_version_distribution": {
+      "http/1.1": 43
+    },
+    "time_start": "2026-09-18T21:35:51.392364Z",
+    "time_end": "2026-09-18T22:00:58.727915Z"
+  },
+  "secondary_hosts": [
+    {
+      "host": "api.prod.unitypredict.com",
+      "count": 7,
+      "reason": "non-primary host"
+    },
+    {
+      "host": "fast.dev.unitypredict.net",
+      "count": 2,
+      "reason": "non-primary host"
+    },
+    {
+      "host": "fast.prod.unitypredict.com",
+      "count": 3,
+      "reason": "non-primary host"
+    }
+  ],
+  "reachability": {
+    "mode": "standard_http",
+    "confidence": 0.65,
+    "reasons": [
+      "no browser-only reachability signals observed"
+    ]
+  },
+  "protocols": [
+    {
+      "label": "rest_json",
+      "confidence": 0.75,
+      "evidence": [
+        {
+          "entry_index": 0,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/clients/Console",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 1,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/auth",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 2,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 3,
+          "method": "GET",
+          "host": "fast.dev.unitypredict.net",
+          "path": "/api/fast/models/08c2ce28-c8a7-4633-a83c-75758bc58256/files/THUMBNAIL.png",
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 4,
+          "method": "GET",
+          "host": "fast.dev.unitypredict.net",
+          "path": "/api/fast/models/eead5cfc-8d39-4eb6-83b5-334e0cba2a0c/files/THUMBNAIL.png",
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 5,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/eead5cfc-8d39-4eb6-83b5-334e0cba2a0c/filekey/THUMBNAIL",
+          "status": 302,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 6,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/08c2ce28-c8a7-4633-a83c-75758bc58256/filekey/THUMBNAIL",
+          "status": 302,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 7,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/repository/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 8,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 9,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 10,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 11,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 12,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 13,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f/filekey/MODELDESCRIPTION",
+          "status": 400,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 14,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/clients/router/",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 15,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 16,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/upload/c6985b70-15e0-4ba9-8cb1-128200595a8f/MODELDESCRIPTION",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 17,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 18,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/social/model/review/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 19,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 20,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/status/b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8/logs",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 21,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/status/b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 22,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 23,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/b5132be0-a373-4f74-bedf-fabb17dc0342",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 24,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/b5132be0-a373-4f74-bedf-fabb17dc0342",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 25,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/supportedengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 26,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/download/b5132be0-a373-4f74-bedf-fabb17dc0342/SourceFile",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 27,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/buildlogs/b5132be0-a373-4f74-bedf-fabb17dc0342",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 28,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 29,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/payments/accounts",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 30,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/tools/analytics",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 31,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/tools/public/dev.abhirupdas_8C0AF724114435",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 32,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/payments/accounts",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 33,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/clients/Console",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 34,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/auth",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 35,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 36,
+          "method": "GET",
+          "host": "fast.prod.unitypredict.com",
+          "path": "/api/fast/models/084ccf2b-232d-4f62-ae05-954208989a7c/files/THUMBNAIL.png",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 37,
+          "method": "GET",
+          "host": "fast.prod.unitypredict.com",
+          "path": "/api/fast/models/126361b1-2fc5-4eaa-9884-9da59bcdb261/files/THUMBNAIL.png",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 38,
+          "method": "GET",
+          "host": "fast.prod.unitypredict.com",
+          "path": "/api/fast/models/70cd317b-0b83-450d-ba1f-f3dff7272446/files/THUMBNAIL.png",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 39,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/repository/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 40,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 41,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/ba375bf0-f794-4cbc-9b1a-2ec1a6967d67",
+          "status": 404,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 42,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "candidates": [
+      {
+        "type": "bearer_token",
+        "confidence": 0.9,
+        "header_names": [
+          "Authorization"
+        ],
+        "evidence": [
+          {
+            "entry_index": 1,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/auth",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 2,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/models/search",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 5,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/models/eead5cfc-8d39-4eb6-83b5-334e0cba2a0c/filekey/THUMBNAIL",
+            "status": 302,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 6,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/models/08c2ce28-c8a7-4633-a83c-75758bc58256/filekey/THUMBNAIL",
+            "status": 302,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 7,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/repository/search",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 8,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/models/usermodels",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 9,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/models/usermodels",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 10,
+            "method": "POST",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/models",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 11,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 12,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/engines/userengines",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 13,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f/filekey/MODELDESCRIPTION",
+            "status": 400,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 14,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/clients/router/",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 15,
+            "method": "POST",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/models",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 16,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/models/upload/c6985b70-15e0-4ba9-8cb1-128200595a8f/MODELDESCRIPTION",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 17,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 18,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/social/model/review/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 19,
+            "method": "POST",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/predict/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 20,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/predict/status/b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8/logs",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 21,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/predict/status/b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 22,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/engines/userengines",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 23,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/engines/b5132be0-a373-4f74-bedf-fabb17dc0342",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 24,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/engines/b5132be0-a373-4f74-bedf-fabb17dc0342",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 25,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/engines/supportedengines",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 26,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/engines/download/b5132be0-a373-4f74-bedf-fabb17dc0342/SourceFile",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 27,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/engines/buildlogs/b5132be0-a373-4f74-bedf-fabb17dc0342",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 28,
+            "method": "POST",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/engines",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 29,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/payments/accounts",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 30,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/tools/analytics",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 31,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/tools/public/dev.abhirupdas_8C0AF724114435",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 32,
+            "method": "GET",
+            "host": "api.dev.unitypredict.net",
+            "path": "/api/payments/accounts",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 34,
+            "method": "GET",
+            "host": "api.prod.unitypredict.com",
+            "path": "/api/auth",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 35,
+            "method": "GET",
+            "host": "api.prod.unitypredict.com",
+            "path": "/api/models/search",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 39,
+            "method": "GET",
+            "host": "api.prod.unitypredict.com",
+            "path": "/api/repository/search",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 40,
+            "method": "GET",
+            "host": "api.prod.unitypredict.com",
+            "path": "/api/models/usermodels",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 41,
+            "method": "GET",
+            "host": "api.prod.unitypredict.com",
+            "path": "/api/models/ba375bf0-f794-4cbc-9b1a-2ec1a6967d67",
+            "status": 404,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          },
+          {
+            "entry_index": 42,
+            "method": "GET",
+            "host": "api.prod.unitypredict.com",
+            "path": "/api/engines/userengines",
+            "status": 200,
+            "content_type": "application/json",
+            "reason": "bearer authorization header"
+          }
+        ]
+      }
+    ]
+  },
+  "endpoint_clusters": [
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/auth",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 1,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/auth",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/clients/Console",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "auth0ClientId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "auth0DomainName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "clientType",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "fastAPIBaseUrl",
+            "type": "string",
+            "required": true,
+            "format": "url"
+          },
+          {
+            "name": "payPalClientId",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 0,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/clients/Console",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/clients/router/",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "clientType",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "fastAPIBaseUrl",
+            "type": "string",
+            "required": true,
+            "format": "url"
+          },
+          {
+            "name": "payPalClientId",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 14,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/clients/router/",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "POST",
+      "path": "/api/engines",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "additionalDockerCommands",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "additionalDockerCommandsFlag",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "allowInterruptableInference",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "batchConfig",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "buildNumber",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "createdDate",
+            "type": "string",
+            "required": true,
+            "format": "date-time"
+          },
+          {
+            "name": "deployedBuildNumber",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "enableChainedModels",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "engineId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "engineName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "enginePlatformKey",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "enginePlatformName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "entityType",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "files",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "gpuMemoryRequirement",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "inferenceTimeStats",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "lastBuildResults",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "maximumRunTime",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "memoryRequirement",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "modifiedDate",
+            "type": "string",
+            "required": true,
+            "format": "date-time"
+          },
+          {
+            "name": "ownerSubscriptionType",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "packageDefinitionFileName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "parentRepositoryId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "permissions",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "platformInfo",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "runOnDedicatedInstance",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "selectedBaseImage",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "stateInfo",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "storageRequirement",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      },
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 28,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/engines/buildlogs/{buildlog_id}",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "publicLogsUrl",
+            "type": "string",
+            "required": true,
+            "format": "url"
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 27,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/buildlogs/b5132be0-a373-4f74-bedf-fabb17dc0342",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/engines/download/{download_id}/SourceFile",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "publicDownloadLink",
+            "type": "string",
+            "required": true,
+            "format": "url"
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 26,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/download/b5132be0-a373-4f74-bedf-fabb17dc0342/SourceFile",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/engines/supportedengines",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "array",
+        "fields": [
+          {
+            "name": "allowAdditionalDockerCommands",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "computeCostPerSecond",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "containerBasedPlatform",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "entryPointTemplateUrl",
+            "type": "string",
+            "required": true,
+            "format": "url"
+          },
+          {
+            "name": "friendlyName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "maxAllowedGPUMemory",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "maxAllowedMemory",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "maxAllowedStorage",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "minAllowedGPUMemory",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "minAllowedMemory",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "minAllowedStorage",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "perGBGPUMemoryPricing",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "perGBMemoryPricing",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "perGBStoragePricing",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "platformKey",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "platformTemplateUrl",
+            "type": "string",
+            "required": true,
+            "format": "url"
+          },
+          {
+            "name": "recommendedBaseImages",
+            "type": "array",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 25,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/supportedengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/engines/userengines",
+      "count": 2,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "large",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "paginationId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "results",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "totalCount",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 12,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 22,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/engines/{engine_id}",
+      "count": 2,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "additionalDockerCommands",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "allowInterruptableInference",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "batchConfig",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "buildNumber",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "createdDate",
+            "type": "string",
+            "required": true,
+            "format": "date-time"
+          },
+          {
+            "name": "deployedBuildNumber",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "enableChainedModels",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "engineId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "engineName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "enginePlatformKey",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "enginePlatformName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "entityType",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "files",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "gpuMemoryRequirement",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "inferenceTimeStats",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "lastBuildResults",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "maximumRunTime",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "memoryRequirement",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "modifiedDate",
+            "type": "string",
+            "required": true,
+            "format": "date-time"
+          },
+          {
+            "name": "ownerSubscriptionType",
+            "type": "string"
+          },
+          {
+            "name": "packageDefinitionFileName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "parentRepositoryId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "permissions",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "platformInfo",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "runOnDedicatedInstance",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "selectedBaseImage",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "stateInfo",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "storageRequirement",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 23,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/b5132be0-a373-4f74-bedf-fabb17dc0342",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 24,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/b5132be0-a373-4f74-bedf-fabb17dc0342",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "POST",
+      "path": "/api/models",
+      "count": 2,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "aiEngineConfig",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "appEngineId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "modelName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "parentRepositoryId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "pricingInfo",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "supportedInterfaces",
+            "type": "array",
+            "required": true
+          }
+        ]
+      },
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 10,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 15,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/models/search",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "paginationId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "results",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "totalCount",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 2,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/models/upload/{upload_id}/MODELDESCRIPTION",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "destinationPath",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "fileKey",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "fileName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "publicUploadLink",
+            "type": "string",
+            "required": true,
+            "format": "url"
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 16,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/upload/c6985b70-15e0-4ba9-8cb1-128200595a8f/MODELDESCRIPTION",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/models/usermodels",
+      "count": 2,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "results",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "totalCount",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 8,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 9,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/models/{model_id}",
+      "count": 2,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "active",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "aiEngineConfig",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "allowPublicComponentAccess",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "appEngineId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "author",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "computeType",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "engineCostPerSecond",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "engineStatus",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "entityType",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "interfaceDisplayOptions",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "interfaceType",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "isPublic",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "longRunningInference",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "modelAlias",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "modelData",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "modelDescription",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "modelId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "modelLongDescription",
+            "type": "string",
+            "required": true,
+            "format": "url"
+          },
+          {
+            "name": "modelName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "modelType",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "needsContext",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "ownerSubscriptionType",
+            "type": "string"
+          },
+          {
+            "name": "parentRepositoryId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "performanceScore",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "performanceStats",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "permissions",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "pricingInfo",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "socialStatus",
+            "type": "object"
+          },
+          {
+            "name": "supportedInterfaces",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "supportingLinks",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "tags",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "totalCost",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "totalInferences",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "totalViews",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "variableDisplayOptions",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "visibility",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 11,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 17,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/models/{model_id}/filekey/MODELDESCRIPTION",
+      "count": 1,
+      "statuses": [
+        400
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "unknown"
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 13,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f/filekey/MODELDESCRIPTION",
+          "status": 400,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/models/{model_id}/filekey/THUMBNAIL",
+      "count": 2,
+      "statuses": [
+        302
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "unknown"
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 5,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/eead5cfc-8d39-4eb6-83b5-334e0cba2a0c/filekey/THUMBNAIL",
+          "status": 302,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 6,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/08c2ce28-c8a7-4633-a83c-75758bc58256/filekey/THUMBNAIL",
+          "status": 302,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/payments/accounts",
+      "count": 2,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "array",
+        "fields": [
+          {
+            "name": "accountId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "accountName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "currentAccountValue",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "permissions",
+            "type": "array",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 29,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/payments/accounts",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 32,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/payments/accounts",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/predict/status/{statu_id}",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 21,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/status/b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/predict/status/{statu_id}/logs",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 20,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/status/b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8/logs",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "POST",
+      "path": "/api/predict/{predict_id}",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "DesiredOutcomes",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "InputValues",
+            "type": "object",
+            "required": true
+          }
+        ]
+      },
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 19,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/repository/search",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "array",
+        "fields": [
+          {
+            "name": "entityType",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "ownerId",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "permissions",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "repositoryAccessRights",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "repositoryDescription",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "repositoryId",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "repositoryName",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 7,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/repository/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/social/model/review/{review_id}",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "unknown"
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 18,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/social/model/review/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/tools/analytics",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "accountValue",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "currentMonthData",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "monthlyData",
+            "type": "object",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 30,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/tools/analytics",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/tools/public/dev.abhirupdas_8C0AF724114435",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "aboutMe",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "displayName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "firstName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "lastName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "numberOfPublicModels",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "publicName",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "socialInfo",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "totalNumberOfModels",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 31,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/tools/public/dev.abhirupdas_8C0AF724114435",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.prod.unitypredict.com",
+      "method": "GET",
+      "path": "/api/auth",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 34,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/auth",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.prod.unitypredict.com",
+      "method": "GET",
+      "path": "/api/clients/Console",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 33,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/clients/Console",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.prod.unitypredict.com",
+      "method": "GET",
+      "path": "/api/engines/userengines",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 42,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.prod.unitypredict.com",
+      "method": "GET",
+      "path": "/api/models/search",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 35,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.prod.unitypredict.com",
+      "method": "GET",
+      "path": "/api/models/usermodels",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 40,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.prod.unitypredict.com",
+      "method": "GET",
+      "path": "/api/models/{model_id}",
+      "count": 1,
+      "statuses": [
+        404
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 41,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/ba375bf0-f794-4cbc-9b1a-2ec1a6967d67",
+          "status": 404,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "api.prod.unitypredict.com",
+      "method": "GET",
+      "path": "/api/repository/search",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 39,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/repository/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "fast.dev.unitypredict.net",
+      "method": "GET",
+      "path": "/api/fast/models/{model_id}/files/THUMBNAIL.png",
+      "count": 2,
+      "statuses": [
+        0
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "normalization_flags": [
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 3,
+          "method": "GET",
+          "host": "fast.dev.unitypredict.net",
+          "path": "/api/fast/models/08c2ce28-c8a7-4633-a83c-75758bc58256/files/THUMBNAIL.png",
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 4,
+          "method": "GET",
+          "host": "fast.dev.unitypredict.net",
+          "path": "/api/fast/models/eead5cfc-8d39-4eb6-83b5-334e0cba2a0c/files/THUMBNAIL.png",
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "fast.prod.unitypredict.com",
+      "method": "GET",
+      "path": "/api/fast/models/{model_id}/files/THUMBNAIL.png",
+      "count": 3,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "empty",
+      "request_shape": {},
+      "response_shape": {},
+      "normalization_flags": [
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 36,
+          "method": "GET",
+          "host": "fast.prod.unitypredict.com",
+          "path": "/api/fast/models/084ccf2b-232d-4f62-ae05-954208989a7c/files/THUMBNAIL.png",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 37,
+          "method": "GET",
+          "host": "fast.prod.unitypredict.com",
+          "path": "/api/fast/models/126361b1-2fc5-4eaa-9884-9da59bcdb261/files/THUMBNAIL.png",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 38,
+          "method": "GET",
+          "host": "fast.prod.unitypredict.com",
+          "path": "/api/fast/models/70cd317b-0b83-450d-ba1f-f3dff7272446/files/THUMBNAIL.png",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    }
+  ],
+  "request_sequences": [
+    {
+      "label": "observed_api_flow",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 0,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/clients/Console",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 1,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/auth",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 2,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 3,
+          "method": "GET",
+          "host": "fast.dev.unitypredict.net",
+          "path": "/api/fast/models/08c2ce28-c8a7-4633-a83c-75758bc58256/files/THUMBNAIL.png",
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 4,
+          "method": "GET",
+          "host": "fast.dev.unitypredict.net",
+          "path": "/api/fast/models/eead5cfc-8d39-4eb6-83b5-334e0cba2a0c/files/THUMBNAIL.png",
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 5,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/eead5cfc-8d39-4eb6-83b5-334e0cba2a0c/filekey/THUMBNAIL",
+          "status": 302,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 6,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/08c2ce28-c8a7-4633-a83c-75758bc58256/filekey/THUMBNAIL",
+          "status": 302,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 7,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/repository/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        }
+      ],
+      "notes": [
+        "HAR timing available for at least one request."
+      ]
+    }
+  ],
+  "pagination": [
+    {
+      "location": "query",
+      "name": "page",
+      "confidence": 0.75,
+      "evidence": [
+        {
+          "entry_index": 2,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        },
+        {
+          "entry_index": 8,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        },
+        {
+          "entry_index": 9,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        },
+        {
+          "entry_index": 12,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        },
+        {
+          "entry_index": 22,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        },
+        {
+          "entry_index": 35,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        },
+        {
+          "entry_index": 40,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        },
+        {
+          "entry_index": 42,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        }
+      ]
+    }
+  ],
+  "candidate_commands": [
+    {
+      "name": "create_engines",
+      "resource": "engines",
+      "confidence": 0.55,
+      "rationale": "Derived from observed POST /api/engines traffic.",
+      "evidence": [
+        {
+          "entry_index": 28,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "create_models",
+      "resource": "models",
+      "confidence": 0.55,
+      "rationale": "Derived from observed POST /api/models traffic.",
+      "evidence": [
+        {
+          "entry_index": 10,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 15,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "create_predict",
+      "resource": "predict",
+      "confidence": 0.55,
+      "rationale": "Derived from observed POST /api/predict/{predict_id} traffic.",
+      "evidence": [
+        {
+          "entry_index": 19,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "get_MODELDESCRIPTION",
+      "resource": "MODELDESCRIPTION",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/models/upload/{upload_id}/MODELDESCRIPTION traffic.",
+      "evidence": [
+        {
+          "entry_index": 16,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/upload/c6985b70-15e0-4ba9-8cb1-128200595a8f/MODELDESCRIPTION",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "get_SourceFile",
+      "resource": "SourceFile",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/engines/download/{download_id}/SourceFile traffic.",
+      "evidence": [
+        {
+          "entry_index": 26,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/download/b5132be0-a373-4f74-bedf-fabb17dc0342/SourceFile",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "get_THUMBNAIL",
+      "resource": "THUMBNAIL",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/models/{model_id}/filekey/THUMBNAIL traffic.",
+      "evidence": [
+        {
+          "entry_index": 5,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/eead5cfc-8d39-4eb6-83b5-334e0cba2a0c/filekey/THUMBNAIL",
+          "status": 302,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 6,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/08c2ce28-c8a7-4633-a83c-75758bc58256/filekey/THUMBNAIL",
+          "status": 302,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "get_THUMBNAIL.png",
+      "resource": "THUMBNAIL.png",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/fast/models/{model_id}/files/THUMBNAIL.png traffic.",
+      "evidence": [
+        {
+          "entry_index": 3,
+          "method": "GET",
+          "host": "fast.dev.unitypredict.net",
+          "path": "/api/fast/models/08c2ce28-c8a7-4633-a83c-75758bc58256/files/THUMBNAIL.png",
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 4,
+          "method": "GET",
+          "host": "fast.dev.unitypredict.net",
+          "path": "/api/fast/models/eead5cfc-8d39-4eb6-83b5-334e0cba2a0c/files/THUMBNAIL.png",
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "get_buildlogs",
+      "resource": "buildlogs",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/engines/buildlogs/{buildlog_id} traffic.",
+      "evidence": [
+        {
+          "entry_index": 27,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/buildlogs/b5132be0-a373-4f74-bedf-fabb17dc0342",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "get_engines",
+      "resource": "engines",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/engines/{engine_id} traffic.",
+      "evidence": [
+        {
+          "entry_index": 23,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/b5132be0-a373-4f74-bedf-fabb17dc0342",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 24,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/b5132be0-a373-4f74-bedf-fabb17dc0342",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "get_logs",
+      "resource": "logs",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/predict/status/{statu_id}/logs traffic.",
+      "evidence": [
+        {
+          "entry_index": 20,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/status/b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8/logs",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "get_models",
+      "resource": "models",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/models/{model_id} traffic.",
+      "evidence": [
+        {
+          "entry_index": 11,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 17,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "get_review",
+      "resource": "review",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/social/model/review/{review_id} traffic.",
+      "evidence": [
+        {
+          "entry_index": 18,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/social/model/review/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "get_status",
+      "resource": "status",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/predict/status/{statu_id} traffic.",
+      "evidence": [
+        {
+          "entry_index": 21,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/status/b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_Console",
+      "resource": "Console",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/clients/Console traffic.",
+      "evidence": [
+        {
+          "entry_index": 0,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/clients/Console",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_accounts",
+      "resource": "accounts",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/payments/accounts traffic.",
+      "evidence": [
+        {
+          "entry_index": 29,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/payments/accounts",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 32,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/payments/accounts",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_analytics",
+      "resource": "analytics",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/tools/analytics traffic.",
+      "evidence": [
+        {
+          "entry_index": 30,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/tools/analytics",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_auth",
+      "resource": "auth",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/auth traffic.",
+      "evidence": [
+        {
+          "entry_index": 1,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/auth",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_dev.abhirupdas_8C0AF724114435",
+      "resource": "dev.abhirupdas_8C0AF724114435",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/tools/public/dev.abhirupdas_8C0AF724114435 traffic.",
+      "evidence": [
+        {
+          "entry_index": 31,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/tools/public/dev.abhirupdas_8C0AF724114435",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_router",
+      "resource": "router",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/clients/router/ traffic.",
+      "evidence": [
+        {
+          "entry_index": 14,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/clients/router/",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_search",
+      "resource": "search",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/models/search traffic.",
+      "evidence": [
+        {
+          "entry_index": 2,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_supportedengines",
+      "resource": "supportedengines",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/engines/supportedengines traffic.",
+      "evidence": [
+        {
+          "entry_index": 25,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/supportedengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_userengines",
+      "resource": "userengines",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/engines/userengines traffic.",
+      "evidence": [
+        {
+          "entry_index": 12,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 22,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_usermodels",
+      "resource": "usermodels",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/models/usermodels traffic.",
+      "evidence": [
+        {
+          "entry_index": 8,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        },
+        {
+          "entry_index": 9,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 10,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 15,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 19,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/c6985b70-15e0-4ba9-8cb1-128200595a8f",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 1,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/auth",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 20,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/status/b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8/logs",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 21,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/predict/status/b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 28,
+          "method": "POST",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/engines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 33,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/clients/Console",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 34,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/auth",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 35,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 36,
+          "method": "GET",
+          "host": "fast.prod.unitypredict.com",
+          "path": "/api/fast/models/084ccf2b-232d-4f62-ae05-954208989a7c/files/THUMBNAIL.png",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 37,
+          "method": "GET",
+          "host": "fast.prod.unitypredict.com",
+          "path": "/api/fast/models/126361b1-2fc5-4eaa-9884-9da59bcdb261/files/THUMBNAIL.png",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 38,
+          "method": "GET",
+          "host": "fast.prod.unitypredict.com",
+          "path": "/api/fast/models/70cd317b-0b83-450d-ba1f-f3dff7272446/files/THUMBNAIL.png",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 39,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/repository/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 3,
+          "method": "GET",
+          "host": "fast.dev.unitypredict.net",
+          "path": "/api/fast/models/08c2ce28-c8a7-4633-a83c-75758bc58256/files/THUMBNAIL.png",
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 40,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/usermodels",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 41,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/ba375bf0-f794-4cbc-9b1a-2ec1a6967d67",
+          "status": 404,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 42,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/engines/userengines",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "empty_payload",
+      "message": "API-looking request returned an empty or null payload; schema confidence is weak.",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 4,
+          "method": "GET",
+          "host": "fast.dev.unitypredict.net",
+          "path": "/api/fast/models/eead5cfc-8d39-4eb6-83b5-334e0cba2a0c/files/THUMBNAIL.png",
+          "content_type": "application/json",
+          "reason": "empty/null payload"
+        }
+      ]
+    },
+    {
+      "type": "error_status_cluster",
+      "message": "Endpoint cluster only observed error HTTP statuses.",
+      "confidence": 0.7,
+      "evidence": [
+        {
+          "entry_index": 13,
+          "method": "GET",
+          "host": "api.dev.unitypredict.net",
+          "path": "/api/models/c6985b70-15e0-4ba9-8cb1-128200595a8f/filekey/MODELDESCRIPTION",
+          "status": 400,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "type": "error_status_cluster",
+      "message": "Endpoint cluster only observed error HTTP statuses.",
+      "confidence": 0.7,
+      "evidence": [
+        {
+          "entry_index": 41,
+          "method": "GET",
+          "host": "api.prod.unitypredict.com",
+          "path": "/api/models/ba375bf0-f794-4cbc-9b1a-2ec1a6967d67",
+          "status": 404,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "type": "reserved_resource_name",
+      "message": "resource name \"auth\" may conflict with a reserved Printing Press command or template; consider renaming it to a domain-specific command name",
+      "confidence": 1
+    }
+  ]
+}

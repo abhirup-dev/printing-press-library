@@ -1,0 +1,228 @@
+{
+  "api_name": "unitypredict",
+  "novelty_score": 0,
+  "alternatives": [],
+  "gaps": [],
+  "patterns": [],
+  "recommendation": "proceed",
+  "researched_at": "2026-09-19T04:33:00Z",
+  "novel_features": [
+    {
+      "name": "All-logs fan-out for a request",
+      "command": "logs get",
+      "description": "One command fetches the per-request devLog, the runtime Log.txt, and the engine build log, in order.",
+      "rationale": "The three logs live on two different presigned-S3 hops that 302 away from the API host; nothing today fetches them together.",
+      "example": "unitypredict-pp-cli logs get b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8 --all",
+      "why_it_matters": "When a predict fails you want every log granularity at once, not three manual URL dances that break if you send the auth header to S3.",
+      "group": "Diagnostics"
+    },
+    {
+      "name": "One-command long-description upload",
+      "command": "models describe set",
+      "description": "Publish a model's long description from a Markdown file in one step, including the S3 upload dance.",
+      "rationale": "The console hides a presign -\u003e PUT -\u003e upsert chain behind its rich-text editor; no CLI or SDK exposes it.",
+      "example": "unitypredict-pp-cli models describe set c6985b70-15e0-4ba9-8cb1-128200595a8f --file README.md",
+      "why_it_matters": "The long description is a hosted file, not a text field — writing prose into the upsert body is silently ignored, so automation needs the exact 3-step chain.",
+      "group": "Model authoring"
+    },
+    {
+      "name": "Declarative inputs/outcomes",
+      "command": "models io set",
+      "description": "Define a model's input and outcome variables from a YAML file instead of the console's per-field editors.",
+      "rationale": "aiEngineConfig plus variableDisplayOptions is the most error-prone payload on the platform; a partial upsert silently clobbers it.",
+      "example": "unitypredict-pp-cli models io set c6985b70-15e0-4ba9-8cb1-128200595a8f --from io.yaml",
+      "why_it_matters": "The GET-mutate-POST full-record discipline and the hidden-variable display map are only automatable if one command owns the whole round-trip.",
+      "group": "Model authoring"
+    },
+    {
+      "name": "Reverse lookup: models per engine",
+      "command": "engines models",
+      "description": "List every model built on a given engine.",
+      "rationale": "The engineId= query param on list routes is silently ignored, so this is unanswerable without the dedicated route.",
+      "example": "unitypredict-pp-cli engines models b5132be0-a373-4f74-bedf-fabb17dc0342",
+      "why_it_matters": "Before redeploying or deleting an engine you must know its blast radius; the console buries this.",
+      "group": "Engine lifecycle"
+    },
+    {
+      "name": "Honest auth check",
+      "command": "auth check",
+      "description": "Validate credentials against the one endpoint that cannot lie about auth.",
+      "rationale": "List endpoints return 200 for a garbage bearer; only GET /api/engines/{bare-uuid} separates bad key (401) from unknown id (404).",
+      "example": "unitypredict-pp-cli auth check --env prod",
+      "why_it_matters": "Prevents shipping on a wrong-env or malformed key that appeared to work because a list route answered 200.",
+      "group": "Auth and safety"
+    },
+    {
+      "name": "Engine concurrency view",
+      "command": "engines concurrency",
+      "description": "Show how many engine nodes ran in parallel over time, as a table.",
+      "rationale": "The stats live inside stateInfo.historicalNodeCountStats on the engine record; only the console Stats page renders them today.",
+      "example": "unitypredict-pp-cli engines concurrency b5132be0-a373-4f74-bedf-fabb17dc0342",
+      "why_it_matters": "Answers capacity questions (did we actually run 4 in parallel?) without the console.",
+      "group": "Engine lifecycle"
+    },
+    {
+      "name": "Invoke, wait, download in one call",
+      "command": "predict run",
+      "description": "Invoke a model with text or file inputs, poll to completion, and pull File outcomes into a directory.",
+      "rationale": "The invoke-\u003epoll-\u003epresigned-download chain spans 6 routes and two no-auth S3 hops; the SDK needs a script to do it.",
+      "example": "unitypredict-pp-cli predict run ba375bf0-f794-4cbc-9b1a-2ec1a6967d67 --input TargetLanguage=Hindi --wait",
+      "why_it_matters": "Cold-started GPU models take minutes; a single wait-and-fetch command is the difference between a script and a one-liner.",
+      "group": "Invocation"
+    },
+    {
+      "name": "Cross-environment diff",
+      "command": "diff model",
+      "description": "Compare a model or engine record across dev and prod, field by field.",
+      "rationale": "Two Auth0 tenants with separate keys; no existing tool can query both in one step.",
+      "example": "unitypredict-pp-cli diff model c6985b70-15e0-4ba9-8cb1-128200595a8f",
+      "why_it_matters": "Before promoting, you want to know exactly which fields drifted between dev and prod.",
+      "group": "Promotion"
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "All-logs fan-out for a request",
+      "command": "logs get",
+      "description": "One command fetches the per-request devLog, the runtime Log.txt, and the engine build log, in order.",
+      "rationale": "The three logs live on two different presigned-S3 hops that 302 away from the API host; nothing today fetches them together.",
+      "example": "unitypredict-pp-cli logs get b5a43cbf-dac1-45a9-a27b-6bbb0e4098f8 --all",
+      "why_it_matters": "When a predict fails you want every log granularity at once, not three manual URL dances that break if you send the auth header to S3.",
+      "group": "Diagnostics"
+    },
+    {
+      "name": "One-command long-description upload",
+      "command": "models describe set",
+      "description": "Publish a model's long description from a Markdown file in one step, including the S3 upload dance.",
+      "rationale": "The console hides a presign -\u003e PUT -\u003e upsert chain behind its rich-text editor; no CLI or SDK exposes it.",
+      "example": "unitypredict-pp-cli models describe set c6985b70-15e0-4ba9-8cb1-128200595a8f --file README.md",
+      "why_it_matters": "The long description is a hosted file, not a text field — writing prose into the upsert body is silently ignored, so automation needs the exact 3-step chain.",
+      "group": "Model authoring"
+    },
+    {
+      "name": "Declarative inputs/outcomes",
+      "command": "models io set",
+      "description": "Define a model's input and outcome variables from a YAML file instead of the console's per-field editors.",
+      "rationale": "aiEngineConfig plus variableDisplayOptions is the most error-prone payload on the platform; a partial upsert silently clobbers it.",
+      "example": "unitypredict-pp-cli models io set c6985b70-15e0-4ba9-8cb1-128200595a8f --from io.yaml",
+      "why_it_matters": "The GET-mutate-POST full-record discipline and the hidden-variable display map are only automatable if one command owns the whole round-trip.",
+      "group": "Model authoring"
+    },
+    {
+      "name": "Reverse lookup: models per engine",
+      "command": "engines models",
+      "description": "List every model built on a given engine.",
+      "rationale": "The engineId= query param on list routes is silently ignored, so this is unanswerable without the dedicated route.",
+      "example": "unitypredict-pp-cli engines models b5132be0-a373-4f74-bedf-fabb17dc0342",
+      "why_it_matters": "Before redeploying or deleting an engine you must know its blast radius; the console buries this.",
+      "group": "Engine lifecycle"
+    },
+    {
+      "name": "Honest auth check",
+      "command": "auth check",
+      "description": "Validate credentials against the one endpoint that cannot lie about auth.",
+      "rationale": "List endpoints return 200 for a garbage bearer; only GET /api/engines/{bare-uuid} separates bad key (401) from unknown id (404).",
+      "example": "unitypredict-pp-cli auth check --env prod",
+      "why_it_matters": "Prevents shipping on a wrong-env or malformed key that appeared to work because a list route answered 200.",
+      "group": "Auth and safety"
+    },
+    {
+      "name": "Engine concurrency view",
+      "command": "engines concurrency",
+      "description": "Show how many engine nodes ran in parallel over time, as a table.",
+      "rationale": "The stats live inside stateInfo.historicalNodeCountStats on the engine record; only the console Stats page renders them today.",
+      "example": "unitypredict-pp-cli engines concurrency b5132be0-a373-4f74-bedf-fabb17dc0342",
+      "why_it_matters": "Answers capacity questions (did we actually run 4 in parallel?) without the console.",
+      "group": "Engine lifecycle"
+    },
+    {
+      "name": "Invoke, wait, download in one call",
+      "command": "predict run",
+      "description": "Invoke a model with text or file inputs, poll to completion, and pull File outcomes into a directory.",
+      "rationale": "The invoke-\u003epoll-\u003epresigned-download chain spans 6 routes and two no-auth S3 hops; the SDK needs a script to do it.",
+      "example": "unitypredict-pp-cli predict run ba375bf0-f794-4cbc-9b1a-2ec1a6967d67 --input TargetLanguage=Hindi --wait",
+      "why_it_matters": "Cold-started GPU models take minutes; a single wait-and-fetch command is the difference between a script and a one-liner.",
+      "group": "Invocation"
+    },
+    {
+      "name": "Cross-environment diff",
+      "command": "diff model",
+      "description": "Compare a model or engine record across dev and prod, field by field.",
+      "rationale": "Two Auth0 tenants with separate keys; no existing tool can query both in one step.",
+      "example": "unitypredict-pp-cli diff model c6985b70-15e0-4ba9-8cb1-128200595a8f",
+      "why_it_matters": "Before promoting, you want to know exactly which fields drifted between dev and prod.",
+      "group": "Promotion"
+    }
+  ],
+  "auth": {
+    "canonical_env_var": "DEV_UNITYPREDICT_TOKEN"
+  },
+  "narrative": {
+    "display_name": "UnityPredict",
+    "headline": "The console-only parts of UnityPredict — model authoring, long descriptions, IO config, cross-env diffing — as CLI commands.",
+    "value_prop": "UnityPredict's engine lifecycle has a Python SDK, but creating models, editing metadata, uploading long descriptions, and configuring inputs/outcomes are console-only. This CLI wraps the full sniffed API surface, including the presigned-S3 flows that break when auth rides along, and adds a dev/prod-aware safety guard.",
+    "auth_narrative": "Durable API keys live in ~/.unitypredict/credentials keyed dev/prod; the header needs the literal APIKEY@ prefix (plain keys 401 on strict routes). --env dev|prod selects the tenant; prod mutations refuse without --i-know.",
+    "quickstart": [
+      {
+        "command": "unitypredict-pp-cli auth check",
+        "comment": "Prove the key works against the one endpoint that cannot lie"
+      },
+      {
+        "command": "unitypredict-pp-cli models list-usermodels",
+        "comment": "See your models and grab a MODEL id"
+      },
+      {
+        "command": "unitypredict-pp-cli engines models \u003cengineId\u003e",
+        "comment": "Reverse lookup: which models use this engine"
+      }
+    ],
+    "troubleshoots": [
+      {
+        "symptom": "401 \"You cannot use this model without logging in!\"",
+        "fix": "Auth header missing the literal APIKEY@ prefix — the CLI adds it; check the key in ~/.unitypredict/credentials"
+      },
+      {
+        "symptom": "404 empty body on predict",
+        "fix": "You used an ENGINE id; predict needs the MODEL id (console /models/\u003cid\u003e/view)"
+      },
+      {
+        "symptom": "400 from an S3 log/upload URL",
+        "fix": "Presigned URLs must be fetched with no Authorization header — the CLI drops it on cross-host redirects"
+      },
+      {
+        "symptom": "Empty result list on prod",
+        "fix": "Wrong-env key returns empty results, not an error; run auth check --env prod"
+      }
+    ],
+    "when_to_use": "Deploying, configuring, or invoking UnityPredict models; editing model metadata or IO contracts; diagnosing failed predicts via logs; comparing dev vs prod before promotion.",
+    "anti_triggers": [
+      "Deploying engine images (use the first-party unitypredict SDK CLI)",
+      "Account/API-key management (POST /api/auth is excluded — it clobbers the account record on partial bodies)"
+    ],
+    "recipes": [
+      {
+        "title": "Full request autopsy",
+        "command": "unitypredict-pp-cli logs get \u003crequestId\u003e --all",
+        "explanation": "Fans out devLog, runtime Log.txt, and engine build log for a failed predict."
+      },
+      {
+        "title": "Author a model end to end",
+        "command": "unitypredict-pp-cli models io set \u003cmodelId\u003e --from io.yaml",
+        "explanation": "Declarative inputs/outcomes with the full-record upsert handled for you."
+      },
+      {
+        "title": "Promotion check",
+        "command": "unitypredict-pp-cli diff model \u003cmodelId\u003e",
+        "explanation": "Field-by-field drift between dev and prod tenants."
+      }
+    ],
+    "trigger_phrases": [
+      "invoke the unitypredict model",
+      "which models use this engine",
+      "fetch the devlog",
+      "edit model metadata",
+      "diff dev and prod model",
+      "unitypredict concurrency"
+    ]
+  }
+}

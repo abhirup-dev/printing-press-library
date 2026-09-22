@@ -1,0 +1,8 @@
+{
+  "descriptions": {
+    "auth_resource_list_auth": "Fetch the authenticated account's own record (GET /api/auth): identity, engine and model counts, plan and credit state, and tenant info. Optional: loadRD to include engine runtime details. This is the same record the console's account page shows. Note: the POST form of /api/auth is deliberately not exposed (full-record upsert).",
+    "clients_list__console": "List clients registered through the UnityPredict console (GET /api/clients/Console): client ids, names, and registration metadata. Read-only.",
+    "clients_list_router": "List clients registered through the router (GET /api/clients/router/): client ids, names, and registration metadata. Read-only.",
+    "repository_list_search": "Browse engine-source repositories available for import (GET /api/repository/search): repository names and the engines/models they expose. Read-only."
+  }
+}

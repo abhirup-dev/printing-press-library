@@ -1,0 +1,8 @@
+# Root-anchored so cmd/<binary>/ source stays tracked.
+/unitypredict-pp-cli
+/unitypredict-pp-cli.exe
+/unitypredict-pp-mcp
+/unitypredict-pp-mcp.exe
+/bin/
+/build/
+/dist/

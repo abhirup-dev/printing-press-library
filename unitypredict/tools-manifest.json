@@ -1,0 +1,1136 @@
+{
+  "api_name": "unitypredict",
+  "base_url": "https://api.dev.unitypredict.net",
+  "description": "The console-only parts of UnityPredict — model authoring, long descriptions, IO config, cross-env diffing — as CLI commands.",
+  "mcp_ready": "full",
+  "http_transport": "browser-chrome-h2",
+  "auth": {
+    "type": "bearer_token",
+    "header": "Authorization",
+    "format": "Bearer APIKEY@{DEV_UNITYPREDICT_TOKEN}",
+    "env_vars": [
+      "DEV_UNITYPREDICT_TOKEN"
+    ],
+    "env_var_specs": [
+      {
+        "name": "DEV_UNITYPREDICT_TOKEN",
+        "kind": "per_call",
+        "required": true,
+        "sensitive": true,
+        "inferred": true
+      }
+    ]
+  },
+  "required_headers": [],
+  "tools": [
+    {
+      "name": "auth_resource_list_auth",
+      "description": "GET /api/auth. Optional: loadRD. Returns the auth.",
+      "method": "GET",
+      "path": "/api/auth",
+      "params": [
+        {
+          "name": "loadRD",
+          "type": "boolean",
+          "location": "query"
+        }
+      ]
+    },
+    {
+      "name": "clients_list__console",
+      "description": "GET /api/clients/Console. Returns the Console.",
+      "method": "GET",
+      "path": "/api/clients/Console",
+      "params": []
+    },
+    {
+      "name": "clients_list_router",
+      "description": "GET /api/clients/router/. Returns the Router.",
+      "method": "GET",
+      "path": "/api/clients/router/",
+      "params": []
+    },
+    {
+      "name": "engines_create_engines",
+      "description": "POST /api/engines. Required: additionalDockerCommands, additionalDockerCommandsFlag, allowInterruptableInference, batchConfig, buildNumber, createdDate, deployedBuildNumber, enableChainedModels, engineId, engineName, enginePlatformKey, enginePlatformName, entityType, files, gpuMemoryRequirement, id, inferenceTimeStats, lastBuildResults, maximumRunTime, memoryRequirement, modifiedDate, ownerSubscriptionType, packageDefinitionFileName, parentRepositoryId, permissions, platformInfo, runOnDedicatedInstance, selectedBaseImage, stateInfo, status, storageRequirement. Returns the new engines.",
+      "method": "POST",
+      "path": "/api/engines",
+      "params": [
+        {
+          "name": "additionalDockerCommands",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "additionalDockerCommandsFlag",
+          "type": "boolean",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "allowInterruptableInference",
+          "type": "boolean",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "batch-config-batch-mode",
+          "wire_name": "batchConfig.batchMode",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "batch-config-max-batch-size",
+          "wire_name": "batchConfig.maxBatchSize",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "buildNumber",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "createdDate",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "deployedBuildNumber",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "enableChainedModels",
+          "type": "boolean",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "engineId",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "engineName",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "enginePlatformKey",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "enginePlatformName",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "entityType",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "files",
+          "type": "array",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "gpuMemoryRequirement",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "inference-time-stats-count",
+          "wire_name": "inferenceTimeStats.count",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "inference-time-stats-max",
+          "wire_name": "inferenceTimeStats.max",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "inference-time-stats-mean",
+          "wire_name": "inferenceTimeStats.mean",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "inference-time-stats-min",
+          "wire_name": "inferenceTimeStats.min",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "inference-time-stats-sum",
+          "wire_name": "inferenceTimeStats.sum",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "inference-time-stats-sum-sq",
+          "wire_name": "inferenceTimeStats.sumSq",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "inference-time-stats-variance",
+          "wire_name": "inferenceTimeStats.variance",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "last-build-results-status",
+          "wire_name": "lastBuildResults.status",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "maximumRunTime",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "memoryRequirement",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "modifiedDate",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "ownerSubscriptionType",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "packageDefinitionFileName",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "parentRepositoryId",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "permissions",
+          "type": "array",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-allow-additional-docker-commands",
+          "wire_name": "platformInfo.allowAdditionalDockerCommands",
+          "type": "boolean",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-cluster-id",
+          "wire_name": "platformInfo.clusterId",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-compute-cost-per-second",
+          "wire_name": "platformInfo.computeCostPerSecond",
+          "type": "number",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-container-based-platform",
+          "wire_name": "platformInfo.containerBasedPlatform",
+          "type": "boolean",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-description",
+          "wire_name": "platformInfo.description",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-friendly-name",
+          "wire_name": "platformInfo.friendlyName",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-max-allowed-gpu-memory",
+          "wire_name": "platformInfo.maxAllowedGPUMemory",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-max-allowed-memory",
+          "wire_name": "platformInfo.maxAllowedMemory",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-max-allowed-storage",
+          "wire_name": "platformInfo.maxAllowedStorage",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-min-allowed-gpu-memory",
+          "wire_name": "platformInfo.minAllowedGPUMemory",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-min-allowed-memory",
+          "wire_name": "platformInfo.minAllowedMemory",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-min-allowed-storage",
+          "wire_name": "platformInfo.minAllowedStorage",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-per-gbgpu-memory-pricing",
+          "wire_name": "platformInfo.perGBGPUMemoryPricing",
+          "type": "number",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-per-gb-memory-pricing",
+          "wire_name": "platformInfo.perGBMemoryPricing",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-per-gb-storage-pricing",
+          "wire_name": "platformInfo.perGBStoragePricing",
+          "type": "number",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-platform-key",
+          "wire_name": "platformInfo.platformKey",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "platform-info-recommended-base-images",
+          "wire_name": "platformInfo.recommendedBaseImages",
+          "type": "array",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "runOnDedicatedInstance",
+          "type": "boolean",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "selectedBaseImage",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "state-info-historical-node-count-stats-2118092026",
+          "wire_name": "stateInfo.historicalNodeCountStats.2118092026",
+          "type": "object",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "state-info-num-running-instances",
+          "wire_name": "stateInfo.numRunningInstances",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "state-info-running-nodes",
+          "wire_name": "stateInfo.runningNodes",
+          "type": "array",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "storageRequirement",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "engines_get__source_file",
+      "description": "GET /api/engines/download/{download_id}/SourceFile. Required: download_id. Optional: fileName. Returns the SourceFile.",
+      "method": "GET",
+      "path": "/api/engines/download/{download_id}/SourceFile",
+      "params": [
+        {
+          "name": "download_id",
+          "type": "string",
+          "location": "path",
+          "description": "The download_id path segment",
+          "required": true
+        },
+        {
+          "name": "fileName",
+          "type": "string",
+          "location": "query"
+        }
+      ]
+    },
+    {
+      "name": "engines_get_buildlogs",
+      "description": "GET /api/engines/buildlogs/{buildlog_id}. Required: buildlog_id. Returns the Buildlog.",
+      "method": "GET",
+      "path": "/api/engines/buildlogs/{buildlog_id}",
+      "params": [
+        {
+          "name": "buildlog_id",
+          "type": "string",
+          "location": "path",
+          "description": "The buildlog_id path segment",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "engines_get_engines",
+      "description": "GET /api/engines/{engine_id}. Required: engine_id. Optional: loadRD, modeledit. Returns array of EngineFile.",
+      "method": "GET",
+      "path": "/api/engines/{engine_id}",
+      "params": [
+        {
+          "name": "engine_id",
+          "type": "string",
+          "location": "path",
+          "description": "The engine_id path segment",
+          "required": true
+        },
+        {
+          "name": "loadRD",
+          "type": "boolean",
+          "location": "query"
+        },
+        {
+          "name": "modeledit",
+          "type": "boolean",
+          "location": "query"
+        }
+      ]
+    },
+    {
+      "name": "engines_list_supportedengines",
+      "description": "GET /api/engines/supportedengines. Returns array of Supportedengine.",
+      "method": "GET",
+      "path": "/api/engines/supportedengines",
+      "params": []
+    },
+    {
+      "name": "engines_list_userengines",
+      "description": "GET /api/engines/userengines. Optional: page, pagecount, repository. Returns array of UserengineResult.",
+      "method": "GET",
+      "path": "/api/engines/userengines",
+      "params": [
+        {
+          "name": "page",
+          "type": "integer",
+          "location": "query"
+        },
+        {
+          "name": "pagecount",
+          "type": "integer",
+          "location": "query"
+        },
+        {
+          "name": "repository",
+          "type": "string",
+          "location": "query"
+        }
+      ]
+    },
+    {
+      "name": "fast_get__t_h_u_m_b_n_a_i_l.png",
+      "description": "GET /api/fast/models/{model_id}/files/THUMBNAIL.png. Required: model_id. Returns the THUMBNAIL.png.",
+      "method": "GET",
+      "path": "/api/fast/models/{model_id}/files/THUMBNAIL.png",
+      "params": [
+        {
+          "name": "model_id",
+          "type": "string",
+          "location": "path",
+          "description": "The model_id path segment",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "models_create_models",
+      "description": "POST /api/models. Required: aiEngineConfig, appEngineId, modelName, parentRepositoryId, pricingInfo, supportedInterfaces. Optional: active, allowPublicComponentAccess, author (plus 27 more). Returns the new models.",
+      "method": "POST",
+      "path": "/api/models",
+      "params": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "location": "body"
+        },
+        {
+          "name": "ai-engine-config-inference-options",
+          "wire_name": "aiEngineConfig.inferenceOptions",
+          "type": "object",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "ai-engine-config-inputs",
+          "wire_name": "aiEngineConfig.inputs",
+          "type": "array",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "ai-engine-config-outcomes",
+          "wire_name": "aiEngineConfig.outcomes",
+          "type": "array",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "ai-engine-config-predict-engine-type",
+          "wire_name": "aiEngineConfig.predictEngineType",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "allowPublicComponentAccess",
+          "type": "boolean",
+          "location": "body"
+        },
+        {
+          "name": "appEngineId",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "author",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "computeType",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "engineCostPerSecond",
+          "type": "integer",
+          "location": "body"
+        },
+        {
+          "name": "engineStatus",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "entityType",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "interfaceDisplayOptions",
+          "type": "object",
+          "location": "body",
+          "description": "Free-form map keyed by variable name. Pass as JSON."
+        },
+        {
+          "name": "interfaceType",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "isPublic",
+          "type": "boolean",
+          "location": "body"
+        },
+        {
+          "name": "longRunningInference",
+          "type": "boolean",
+          "location": "body"
+        },
+        {
+          "name": "modelAlias",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "model-data-file-paths-modeldescription",
+          "wire_name": "modelData.filePaths.MODELDESCRIPTION",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "modelDescription",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "modelId",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "modelLongDescription",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "modelName",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "modelType",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "needsContext",
+          "type": "boolean",
+          "location": "body"
+        },
+        {
+          "name": "ownerSubscriptionType",
+          "type": "string",
+          "location": "body"
+        },
+        {
+          "name": "parentRepositoryId",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "performanceScore",
+          "type": "integer",
+          "location": "body"
+        },
+        {
+          "name": "performance-stats-accuracy",
+          "wire_name": "performanceStats.accuracy",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "performance-stats-auc",
+          "wire_name": "performanceStats.auc",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "performance-stats-bleu-score",
+          "wire_name": "performanceStats.bleuScore",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "performance-stats-dunn-index",
+          "wire_name": "performanceStats.dunnIndex",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "performance-stats-f1-score",
+          "wire_name": "performanceStats.f1Score",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "performance-stats-metrics",
+          "wire_name": "performanceStats.metrics",
+          "type": "object",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "performance-stats-precision",
+          "wire_name": "performanceStats.precision",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "performance-stats-r2",
+          "wire_name": "performanceStats.r2",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "performance-stats-recall",
+          "wire_name": "performanceStats.recall",
+          "type": "integer",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "permissions",
+          "type": "array",
+          "location": "body"
+        },
+        {
+          "name": "pricing-info-enable-monetization",
+          "wire_name": "pricingInfo.enableMonetization",
+          "type": "boolean",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "pricing-info-model-owner-pays-compute-cost",
+          "wire_name": "pricingInfo.modelOwnerPaysComputeCost",
+          "type": "boolean",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "pricing-info-no-charge-on-inference-with-error",
+          "wire_name": "pricingInfo.noChargeOnInferenceWithError",
+          "type": "boolean",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "pricing-info-service-pricing-info",
+          "wire_name": "pricingInfo.servicePricingInfo",
+          "type": "string",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "pricing-info-skip-usage-charge-in-same-ctx",
+          "wire_name": "pricingInfo.skipUsageChargeInSameCtx",
+          "type": "boolean",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "supportedInterfaces",
+          "type": "array",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "supportingLinks",
+          "type": "array",
+          "location": "body"
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "location": "body"
+        },
+        {
+          "name": "totalCost",
+          "type": "integer",
+          "location": "body"
+        },
+        {
+          "name": "totalInferences",
+          "type": "integer",
+          "location": "body"
+        },
+        {
+          "name": "totalViews",
+          "type": "integer",
+          "location": "body"
+        },
+        {
+          "name": "variableDisplayOptions",
+          "type": "object",
+          "location": "body",
+          "description": "Free-form map keyed by variable name. Pass as JSON."
+        },
+        {
+          "name": "visibility",
+          "type": "string",
+          "location": "body"
+        }
+      ]
+    },
+    {
+      "name": "models_get__m_o_d_e_l_d_e_s_c_r_i_p_t_i_o_n",
+      "description": "GET /api/models/{model_id}/filekey/MODELDESCRIPTION. Required: model_id. Returns the MODELDESCRIPTION.",
+      "method": "GET",
+      "path": "/api/models/{model_id}/filekey/MODELDESCRIPTION",
+      "params": [
+        {
+          "name": "model_id",
+          "type": "string",
+          "location": "path",
+          "description": "The model_id path segment",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "models_get__m_o_d_e_l_d_e_s_c_r_i_p_t_i_o_n_2",
+      "description": "GET /api/models/upload/{upload_id}/MODELDESCRIPTION. Required: upload_id. Optional: fileName. Returns the MODELDESCRIPTION.",
+      "method": "GET",
+      "path": "/api/models/upload/{upload_id}/MODELDESCRIPTION",
+      "params": [
+        {
+          "name": "fileName",
+          "type": "string",
+          "location": "query"
+        },
+        {
+          "name": "upload_id",
+          "type": "string",
+          "location": "path",
+          "description": "The upload_id path segment",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "models_get__t_h_u_m_b_n_a_i_l",
+      "description": "GET /api/models/{model_id}/filekey/THUMBNAIL. Required: model_id. Returns the THUMBNAIL.",
+      "method": "GET",
+      "path": "/api/models/{model_id}/filekey/THUMBNAIL",
+      "params": [
+        {
+          "name": "model_id",
+          "type": "string",
+          "location": "path",
+          "description": "The model_id path segment",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "models_get_models",
+      "description": "GET /api/models/{model_id}. Required: model_id. Optional: modeledit, modelview. Returns the Model.",
+      "method": "GET",
+      "path": "/api/models/{model_id}",
+      "params": [
+        {
+          "name": "model_id",
+          "type": "string",
+          "location": "path",
+          "description": "The model_id path segment",
+          "required": true
+        },
+        {
+          "name": "modeledit",
+          "type": "boolean",
+          "location": "query"
+        },
+        {
+          "name": "modelview",
+          "type": "boolean",
+          "location": "query"
+        }
+      ]
+    },
+    {
+      "name": "models_list_search",
+      "description": "GET /api/models/search. Optional: aisearch, modelType, page (plus 2 more). Returns array of SearchResult.",
+      "method": "GET",
+      "path": "/api/models/search",
+      "params": [
+        {
+          "name": "aisearch",
+          "type": "boolean",
+          "location": "query"
+        },
+        {
+          "name": "modelType",
+          "type": "string",
+          "location": "query"
+        },
+        {
+          "name": "page",
+          "type": "integer",
+          "location": "query"
+        },
+        {
+          "name": "pageCount",
+          "type": "integer",
+          "location": "query"
+        },
+        {
+          "name": "sort",
+          "type": "string",
+          "location": "query"
+        }
+      ]
+    },
+    {
+      "name": "models_list_usermodels",
+      "description": "GET /api/models/usermodels. Optional: modelType, page, pagecount (plus 1 more). Returns array of UsermodelResult.",
+      "method": "GET",
+      "path": "/api/models/usermodels",
+      "params": [
+        {
+          "name": "modelType",
+          "type": "string",
+          "location": "query"
+        },
+        {
+          "name": "page",
+          "type": "integer",
+          "location": "query"
+        },
+        {
+          "name": "pagecount",
+          "type": "integer",
+          "location": "query"
+        },
+        {
+          "name": "searchterm",
+          "type": "string",
+          "location": "query"
+        }
+      ]
+    },
+    {
+      "name": "payments_list_accounts",
+      "description": "GET /api/payments/accounts. Optional: need. Returns array of Account.",
+      "method": "GET",
+      "path": "/api/payments/accounts",
+      "params": [
+        {
+          "name": "need",
+          "type": "string",
+          "location": "query"
+        }
+      ]
+    },
+    {
+      "name": "predict_create_predict",
+      "description": "POST /api/predict/{predict_id}. Required: predict_id, DesiredOutcomes, InputValues. Optional: dev. Returns the new predict.",
+      "method": "POST",
+      "path": "/api/predict/{predict_id}",
+      "params": [
+        {
+          "name": "dev",
+          "type": "boolean",
+          "location": "query"
+        },
+        {
+          "name": "predict_id",
+          "type": "string",
+          "location": "path",
+          "description": "The predict_id path segment",
+          "required": true
+        },
+        {
+          "name": "DesiredOutcomes",
+          "type": "array",
+          "location": "body",
+          "required": true
+        },
+        {
+          "name": "input-values-input-message",
+          "wire_name": "InputValues.InputMessage",
+          "type": "string",
+          "location": "body",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "predict_get_logs",
+      "description": "GET /api/predict/status/{statu_id}/logs. Required: statu_id. Returns the logs.",
+      "method": "GET",
+      "path": "/api/predict/status/{statu_id}/logs",
+      "params": [
+        {
+          "name": "statu_id",
+          "type": "string",
+          "location": "path",
+          "description": "The statu_id path segment",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "predict_get_status",
+      "description": "GET /api/predict/status/{statu_id}. Required: statu_id. Returns the status.",
+      "method": "GET",
+      "path": "/api/predict/status/{statu_id}",
+      "params": [
+        {
+          "name": "statu_id",
+          "type": "string",
+          "location": "path",
+          "description": "The statu_id path segment",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "repository_list_search",
+      "description": "GET /api/repository/search. Returns array of Search.",
+      "method": "GET",
+      "path": "/api/repository/search",
+      "params": []
+    },
+    {
+      "name": "social_get_review",
+      "description": "GET /api/social/model/review/{review_id}. Required: review_id. Returns array of review.",
+      "method": "GET",
+      "path": "/api/social/model/review/{review_id}",
+      "params": [
+        {
+          "name": "review_id",
+          "type": "string",
+          "location": "path",
+          "description": "The review_id path segment",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "tools_list_analytics",
+      "description": "GET /api/tools/analytics. Optional: accountId. Returns the Analytic.",
+      "method": "GET",
+      "path": "/api/tools/analytics",
+      "params": [
+        {
+          "name": "accountId",
+          "type": "string",
+          "location": "query"
+        }
+      ]
+    },
+    {
+      "name": "tools_list_dev.abhirupdas_8_c0_a_f724114435",
+      "description": "GET /api/tools/public/dev.abhirupdas_8C0AF724114435. Returns the DevAbhirupdas8C0AF724114435.",
+      "method": "GET",
+      "path": "/api/tools/public/dev.abhirupdas_8C0AF724114435",
+      "params": []
+    }
+  ],
+  "novel_features": [
+    {
+      "name": "All-logs fan-out for a request",
+      "command": "logs get",
+      "description": "One command fetches the per-request devLog, the runtime Log.txt, and the engine build log, in order."
+    },
+    {
+      "name": "One-command long-description upload",
+      "command": "models describe set",
+      "description": "Publish a model's long description from a Markdown file in one step, including the S3 upload dance."
+    },
+    {
+      "name": "Declarative inputs/outcomes",
+      "command": "models io set",
+      "description": "Define a model's input and outcome variables from a YAML file instead of the console's per-field editors."
+    },
+    {
+      "name": "Reverse lookup: models per engine",
+      "command": "engines models",
+      "description": "List every model built on a given engine."
+    },
+    {
+      "name": "Honest auth check",
+      "command": "auth check",
+      "description": "Validate credentials against the one endpoint that cannot lie about auth."
+    },
+    {
+      "name": "Engine concurrency view",
+      "command": "engines concurrency",
+      "description": "Show how many engine nodes ran in parallel over time, as a table."
+    },
+    {
+      "name": "Invoke, wait, download in one call",
+      "command": "predict run",
+      "description": "Invoke a model with text or file inputs, poll to completion, and pull File outcomes into a directory."
+    },
+    {
+      "name": "Cross-environment diff",
+      "command": "diff model",
+      "description": "Compare a model or engine record across dev and prod, field by field."
+    }
+  ]
+}
