@@ -1,0 +1,9 @@
+{
+  "dir": "\u003ccli-dir\u003e/chatgpt-pp-cli",
+  "research_dir": "\u003ccli-dir\u003e/20260920-212014-33d4a132",
+  "verdict": "pass",
+  "actors": null,
+  "issues": [
+    "no Apify actor references found, skipping"
+  ]
+}

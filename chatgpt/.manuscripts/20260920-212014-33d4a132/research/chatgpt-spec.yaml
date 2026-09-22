@@ -1,0 +1,620 @@
+name: chatgpt
+display_name: ChatGPT
+description: ChatGPT web conversation API — inventory, verified extraction, outlines, search, and experimental sends against the authenticated chatgpt.com session surface.
+version: 0.1.0
+base_url: https://chatgpt.com
+category: ai
+spec_source: browser-sniffed
+cli_description: Your ChatGPT history as a queryable local archive — verified-complete extraction, outlines, and search no other tool has.
+http_transport: browser-chrome
+
+auth:
+  type: bearer_token
+  header: Authorization
+  format: "Bearer {token}"
+  env_vars:
+    - CHATGPT_TOKEN
+
+health_check_path: /api/auth/session
+
+cache:
+  enabled: true
+  stale_after: 168h
+
+resources:
+  session:
+    description: Authenticated session state — the bearer mint source
+    endpoints:
+      get:
+        method: GET
+        path: /api/auth/session
+        description: Current session, account, and freshly minted access token (values are credential material — never logged)
+        params: []
+        body: []
+        response:
+          type: object
+          item: Session
+        pagination: null
+  conversations:
+    description: Conversation inventory and full extraction
+    syncable: true
+    endpoints:
+      list:
+        method: GET
+        path: /backend-api/conversations
+        description: Chronological conversation list — offset/limit pagination; total is a min(realTotal, offset+limit+1) hint, walk pages until a short page
+        params:
+          - name: offset
+            type: integer
+            required: false
+            positional: false
+            default: "0"
+            description: Pagination offset
+          - name: limit
+            type: integer
+            required: false
+            positional: false
+            default: "28"
+            description: Page size (max 100; 999 rejected as 422)
+          - name: order
+            type: string
+            required: false
+            positional: false
+            default: updated
+            description: Sort key (updated accepted; created returns 500 — sort client-side)
+          - name: is_archived
+            type: boolean
+            required: false
+            positional: false
+            description: Filter archived conversations
+          - name: is_starred
+            type: boolean
+            required: false
+            positional: false
+            description: Filter starred conversations
+        body: []
+        response:
+          type: object
+          item: ConversationList
+        pagination:
+          type: offset
+          offset_param: offset
+          limit_param: limit
+      get:
+        method: GET
+        path: /backend-api/conversations/{conversation_id}
+        description: Full conversation as the webapp consumes it — messages array plus Relay page_info; has_next_page can be false on truncated windows, verify against current_node
+        params:
+          - name: conversation_id
+            type: string
+            required: true
+            positional: true
+            description: Conversation UUID
+          - name: num_turns
+            type: integer
+            required: false
+            positional: false
+            description: Turn-window limit (response may still claim has_next_page=false)
+          - name: include_has_versions
+            type: boolean
+            required: false
+            positional: false
+            description: Include version flags
+        body: []
+        response:
+          type: object
+          item: Conversation
+        pagination: null
+      get_tree:
+        method: GET
+        path: /backend-api/conversation/{conversation_id}
+        description: Legacy compat read — singular endpoint returns the parent/children mapping tree (visible roles only; no hidden system/thoughts nodes)
+        params:
+          - name: conversation_id
+            type: string
+            required: true
+            positional: true
+            description: Conversation UUID
+        body: []
+        response:
+          type: object
+          item: ConversationTree
+        pagination: null
+      list_messages:
+        method: GET
+        path: /backend-api/conversations/{conversation_id}/messages
+        description: Message window with forward cursor — after=<message_id> returns everything after that id (cursor/limit/end_cursor params are ignored here)
+        params:
+          - name: conversation_id
+            type: string
+            required: true
+            positional: true
+            description: Conversation UUID
+          - name: after
+            type: string
+            required: false
+            positional: false
+            description: Return messages after this message id
+        body: []
+        response:
+          type: object
+          item: MessagesPage
+        pagination: null
+      search:
+        method: GET
+        path: /backend-api/conversations/search
+        description: Legacy search — query param is literally 'query' (not q); returns message-level hits with snippets
+        params:
+          - name: query
+            type: string
+            required: true
+            positional: true
+            description: Search text
+          - name: offset
+            type: integer
+            required: false
+            positional: false
+            description: Result offset
+          - name: limit
+            type: integer
+            required: false
+            positional: false
+            description: Result limit
+        body: []
+        response:
+          type: object
+          item: SearchResults
+        pagination: null
+      stream_status:
+        method: GET
+        path: /backend-api/conversations/{conversation_id}/stream_status
+        description: Streaming state for an active send (404 when idle) — used by status/wait
+        params:
+          - name: conversation_id
+            type: string
+            required: true
+            positional: true
+            description: Conversation UUID
+        body: []
+        response:
+          type: object
+          item: StreamStatus
+        pagination: null
+  search:
+    description: Global search (the Ctrl+K surface)
+    syncable: true
+    endpoints:
+      global:
+        method: POST
+        path: /backend-api/global/search
+        description: Federated message-content search across conversations and projects — strict body schema (extra fields 422); cursor pagination
+        params: []
+        body:
+          - name: query
+            type: string
+            required: true
+            positional: false
+            description: Search text
+          - name: limit
+            type: integer
+            required: false
+            positional: false
+            description: Page size
+          - name: cursor
+            type: string
+            required: false
+            positional: false
+            description: Opaque cursor from the previous response
+        request_content_type: application/json
+        response:
+          type: object
+          item: GlobalSearchResults
+        pagination: null
+  models:
+    description: Available ChatGPT models
+    syncable: true
+    endpoints:
+      list:
+        method: GET
+        path: /backend-api/models
+        description: Model picker inventory — slugs, reasoning types, thinking efforts, default badge
+        params:
+          - name: history_view_enabled
+            type: boolean
+            required: false
+            positional: false
+            description: Include history-view models
+        body: []
+        response:
+          type: object
+          item: ModelsResponse
+        pagination: null
+  chat:
+    description: Experimental send surface — browser-gated, no Turnstile solver
+    endpoints:
+      requirements:
+        method: POST
+        path: /backend-api/sentinel/chat-requirements
+        description: Sentinel gate — returns requirements token, PoW seed/difficulty, turnstile requirement (token values are credential material)
+        params: []
+        body:
+          - name: p
+            flag_name: proof
+            aliases: [p]
+            type: string
+            required: false
+            positional: false
+            description: Base64 fingerprint/proof payload (empty for the first mint)
+        request_content_type: application/json
+        response:
+          type: object
+          item: ChatRequirements
+        pagination: null
+      prepare:
+        method: POST
+        path: /backend-api/f/conversation/prepare
+        description: Conduit prepare — mints the short-lived (60s) conduit token required by the send call
+        params: []
+        body: []
+        request_content_type: application/json
+        response:
+          type: object
+          item: ConduitPrepare
+        pagination: null
+      send:
+        method: POST
+        path: /backend-api/f/conversation
+        description: "Send a message — SSE response with typed events; message_stream_complete is the semantic terminal; resume_conversation_token enables reconnection. EXPERIMENTAL: turnstile-gated; fails clearly without legitimately issued authorization."
+        params: []
+        body:
+          - name: action
+            type: string
+            required: true
+            positional: false
+            description: Always "next"
+          - name: messages
+            type: array
+            required: true
+            positional: false
+            description: Message array (id + author role user + content object with content_type text and parts list)
+          - name: conversation_id
+            type: string
+            required: false
+            positional: false
+            description: Conversation UUID — omit to start a new chat
+          - name: parent_message_id
+            type: string
+            required: true
+            positional: false
+            description: Parent node — current_node for a follow-up
+          - name: model
+            type: string
+            required: true
+            positional: false
+            description: Model slug (see models list)
+          - name: timezone_offset_min
+            type: integer
+            required: false
+            positional: false
+            description: Timezone offset in minutes
+          - name: thinking_effort
+            type: string
+            required: false
+            positional: false
+            description: Thinking effort (low|standard|high)
+        request_content_type: application/json
+        response:
+          type: string
+          item: ""
+        pagination: null
+
+# learn: seeds carry the finite model vocabulary agents will alias, and the
+# UUID ticker pattern for conversation/message ids pasted into free-text queries.
+learn:
+  entity_lookup_seeds:
+    model:
+      - canonical: gpt-5-6
+        aliases: [5.6, sol, 56]
+      - canonical: gpt-5-6-thinking
+        aliases: [thinking, 5.6 thinking, 56 thinking]
+      - canonical: gpt-5-6-instant
+        aliases: [instant, 5.6 instant]
+      - canonical: gpt-5-5
+        aliases: [5.5]
+      - canonical: gpt-5-5-thinking
+        aliases: [5.5 thinking]
+      - canonical: gpt-5-5-instant
+        aliases: [5.5 instant]
+      - canonical: gpt-5-6-mini
+        aliases: [mini, 5.6 mini]
+      - canonical: gpt-5-6-pro
+        aliases: [pro, 5.6 pro]
+      - canonical: gpt-6-pro
+        aliases: [6 pro]
+      - canonical: research
+        aliases: [deep research, deepresearch]
+  ticker_patterns:
+    - "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+  synonyms:
+    chat: conversation
+    thread: conversation
+
+types:
+  Session:
+    fields:
+      - name: user
+        type: object
+      - name: expires
+        type: string
+      - name: accessToken
+        type: string
+      - name: authProvider
+        type: string
+  ConversationListItem:
+    fields:
+      - name: id
+        type: string
+      - name: title
+        type: string
+      - name: create_time
+        type: string
+      - name: update_time
+        type: string
+      - name: latest_assistant_turn_created_at
+        type: string
+      - name: pinned_time
+        type: string
+      - name: is_archived
+        type: boolean
+      - name: is_starred
+        type: boolean
+      - name: is_temporary_chat
+        type: boolean
+      - name: is_do_not_remember
+        type: boolean
+      - name: memory_scope
+        type: string
+      - name: workspace_id
+        type: string
+      - name: snippet
+        type: string
+      - name: summary_metadata
+        type: object
+      - name: conversation_origin
+        type: string
+  ConversationList:
+    fields:
+      - name: items
+        type: "array:ConversationListItem"
+      - name: total
+        type: integer
+      - name: limit
+        type: integer
+      - name: offset
+        type: integer
+  Author:
+    fields:
+      - name: role
+        type: string
+      - name: name
+        type: string
+      - name: metadata
+        type: object
+  Content:
+    fields:
+      - name: content_type
+        type: string
+      - name: parts
+        type: "array:string"
+  MessageMetadata:
+    fields:
+      - name: request_id
+        type: string
+      - name: turn_id
+        type: string
+      - name: turn_exchange_id
+        type: string
+      - name: model_slug
+        type: string
+      - name: message_type
+        type: string
+      - name: is_visually_hidden_from_conversation
+        type: boolean
+  Message:
+    fields:
+      - name: id
+        type: string
+      - name: author
+        type: "ref:Author"
+      - name: create_time
+        type: number
+      - name: update_time
+        type: number
+      - name: content
+        type: "ref:Content"
+      - name: status
+        type: string
+      - name: end_turn
+        type: boolean
+      - name: weight
+        type: integer
+      - name: recipient
+        type: string
+      - name: metadata
+        type: "ref:MessageMetadata"
+  PageInfo:
+    fields:
+      - name: start_cursor
+        type: string
+      - name: end_cursor
+        type: string
+      - name: has_previous_page
+        type: boolean
+      - name: has_next_page
+        type: boolean
+  Conversation:
+    fields:
+      - name: title
+        type: string
+      - name: create_time
+        type: number
+      - name: update_time
+        type: number
+      - name: conversation_id
+        type: string
+      - name: default_model_slug
+        type: string
+      - name: is_archived
+        type: boolean
+      - name: is_starred
+        type: boolean
+      - name: memory_scope
+        type: string
+      - name: messages
+        type: "array:Message"
+      - name: current_node
+        type: string
+      - name: page_info
+        type: "ref:PageInfo"
+      - name: safe_urls
+        type: "array:string"
+  MappingNode:
+    fields:
+      - name: id
+        type: string
+      - name: message
+        type: "ref:Message"
+      - name: parent
+        type: string
+      - name: children
+        type: "array:string"
+  ConversationTree:
+    fields:
+      - name: title
+        type: string
+      - name: create_time
+        type: number
+      - name: update_time
+        type: number
+      - name: mapping
+        type: "array:MappingNode"
+      - name: current_node
+        type: string
+      - name: default_model_slug
+        type: string
+  MessagesPage:
+    fields:
+      - name: messages
+        type: "array:Message"
+      - name: safe_urls
+        type: "array:string"
+      - name: blocked_urls
+        type: "array:string"
+      - name: page_info
+        type: "ref:PageInfo"
+  SearchHit:
+    fields:
+      - name: conversation_id
+        type: string
+      - name: current_node_id
+        type: string
+      - name: title
+        type: string
+      - name: is_archived
+        type: boolean
+      - name: update_time
+        type: number
+      - name: payload
+        type: object
+  SearchResults:
+    fields:
+      - name: items
+        type: "array:SearchHit"
+      - name: cursor
+        type: string
+  GlobalSearchItem:
+    fields:
+      - name: id
+        type: string
+      - name: source_type
+        type: string
+      - name: title
+        type: string
+      - name: snippet
+        type: string
+      - name: update_time
+        type: number
+      - name: match_kind
+        type: string
+      - name: payload
+        type: object
+  SourceStatus:
+    fields:
+      - name: source_type
+        type: string
+      - name: status
+        type: string
+      - name: has_more
+        type: boolean
+      - name: duration_ms
+        type: number
+      - name: error_code
+        type: string
+  GlobalSearchResults:
+    fields:
+      - name: items
+        type: "array:GlobalSearchItem"
+      - name: cursor
+        type: string
+      - name: partial_results
+        type: boolean
+      - name: source_statuses
+        type: "array:SourceStatus"
+  ModelInfo:
+    fields:
+      - name: slug
+        type: string
+      - name: title
+        type: string
+      - name: description
+        type: string
+      - name: tags
+        type: "array:string"
+      - name: max_tokens
+        type: integer
+      - name: reasoning_type
+        type: string
+      - name: configurable_thinking_effort
+        type: boolean
+      - name: thinking_efforts
+        type: "array:string"
+  ModelsResponse:
+    fields:
+      - name: default_model_slug
+        type: string
+      - name: model_picker_version
+        type: integer
+      - name: models
+        type: "array:ModelInfo"
+  ChatRequirements:
+    fields:
+      - name: persona
+        type: string
+      - name: token
+        type: string
+      - name: expire_after
+        type: integer
+      - name: proofofwork
+        type: object
+      - name: turnstile
+        type: object
+  ConduitPrepare:
+    fields:
+      - name: status
+        type: string
+      - name: conduit_token
+        type: string
+  StreamStatus:
+    fields:
+      - name: status
+        type: string

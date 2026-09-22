@@ -1,0 +1,99 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-09-20T17:33:30.192295Z",
+  "printing_press_version": "4.32.2",
+  "api_name": "chatgpt",
+  "display_name": "ChatGPT",
+  "cli_name": "chatgpt-pp-cli",
+  "creator": {
+    "handle": "dev-abhirup-sc",
+    "name": "dev-abhirup-sc"
+  },
+  "owner": "dev-abhirup-sc",
+  "printer": "dev-abhirup-sc",
+  "printer_name": "dev-abhirup-sc",
+  "spec_path": "chatgpt-spec.yaml",
+  "spec_format": "internal",
+  "spec_source": "browser-sniffed",
+  "spec_checksum": "sha256:93bfb3616b2b6dd1665166107ac6b1a0282b4e2acc220993fc6ad932d5d0aef2",
+  "run_id": "20260920-212014-33d4a132",
+  "category": "ai",
+  "description": "Your ChatGPT history as a queryable local archive — verified-complete extraction, outlines, and search no other tool has.",
+  "mcp_binary": "chatgpt-pp-mcp",
+  "mcp_ready": "full",
+  "api_version": "0.1.0",
+  "auth_type": "bearer_token",
+  "auth_preference": "HTTPBearer",
+  "auth_env_vars": [
+    "CHATGPT_TOKEN"
+  ],
+  "novel_features": [
+    {
+      "name": "Hydrated chronological inventory",
+      "command": "list",
+      "description": "See every chat in chronological order with turn counts, time span, and freshness — not just titles."
+    },
+    {
+      "name": "Verified-complete extraction",
+      "command": "transcript",
+      "description": "Extract an entire conversation with a completeness proof against the live tree state."
+    },
+    {
+      "name": "Long-thread outline",
+      "command": "outline",
+      "description": "Map a long thread into titled sections at each of your prompts, with timestamps and anchors."
+    },
+    {
+      "name": "Section-sliced extraction",
+      "command": "transcript",
+      "description": "Extract just part of a long conversation by section number or message anchors."
+    },
+    {
+      "name": "Dual-mode search",
+      "command": "find",
+      "description": "Search message content server-side by default, or offline over your synced archive."
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "Hydrated chronological inventory",
+      "command": "list",
+      "description": "See every chat in chronological order with turn counts, time span, and freshness — not just titles."
+    },
+    {
+      "name": "Verified-complete extraction",
+      "command": "transcript",
+      "description": "Extract an entire conversation with a completeness proof against the live tree state."
+    },
+    {
+      "name": "Long-thread outline",
+      "command": "outline",
+      "description": "Map a long thread into titled sections at each of your prompts, with timestamps and anchors."
+    },
+    {
+      "name": "Section-sliced extraction",
+      "command": "transcript",
+      "description": "Extract just part of a long conversation by section number or message anchors."
+    },
+    {
+      "name": "Dual-mode search",
+      "command": "find",
+      "description": "Search message content server-side by default, or offline over your synced archive."
+    }
+  ],
+  "verify": {
+    "mode": "mock",
+    "pass_rate": 100,
+    "passed": 47,
+    "total": 47,
+    "data_pipeline": true,
+    "verdict": "PASS"
+  },
+  "scorecard": {
+    "steinberger": {
+      "percentage": 95,
+      "grade": "A",
+      "total": 95
+    }
+  }
+}

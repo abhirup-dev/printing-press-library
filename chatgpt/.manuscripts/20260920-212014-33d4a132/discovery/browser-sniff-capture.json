@@ -1,0 +1,97 @@
+{
+  "target_url": "https://chatgpt.com/",
+  "captured_at": "2026-09-20T16:20:00Z",
+  "interaction_rounds": 22,
+  "auth": { "type": "browser_session_page_fetch", "site": "chatgpt.com", "notes": "bearer minted in-page from /api/auth/session; cookie+token values never stored in this capture" },
+  "entries": [
+    {
+      "method": "GET", "url": "https://chatgpt.com/api/auth/session",
+      "request_headers": { "Accept": "application/json" }, "response_headers": { "Content-Type": "application/json; charset=utf-8" },
+      "request_body": "", "response_status": 200, "response_content_type": "application/json",
+      "response_body": "{\"user\":{\"id\":\"REDACTED\",\"name\":\"REDACTED\",\"email\":\"REDACTED\"},\"expires\":\"2026-12-19T15:54:46.014Z\",\"accessToken\":\"REDACTED-JWT-2017chars-TTL-10-days\",\"authProvider\":\"auth0\",\"sessionToken\":\"REDACTED\",\"account\":{\"account_id\":\"REDACTED\",\"plan_type\":\"chatgpt_paid\"}}",
+      "classification": "", "is_noise": false
+    },
+    {
+      "method": "GET", "url": "https://chatgpt.com/backend-api/conversations?offset=0&limit=28&order=updated&is_archived=false&is_starred=false",
+      "request_headers": { "Authorization": "Bearer REDACTED" }, "response_headers": { "Content-Type": "application/json" },
+      "request_body": "", "response_status": 200, "response_content_type": "application/json",
+      "response_body": "{\"items\":[{\"id\":\"6aaa52c7-daec-83ee-9c8a-e1635dbf397e\",\"title\":\"Compare Vivo Oppo Phones\",\"create_time\":\"2026-09-16T08:26:49.075010Z\",\"update_time\":\"2026-09-20T15:48:19.147166Z\",\"latest_assistant_turn_created_at\":null,\"pinned_time\":null,\"mapping\":null,\"current_node\":null,\"conversation_template_id\":null,\"gizmo_id\":null,\"is_archived\":false,\"is_starred\":null,\"is_temporary_chat\":false,\"is_do_not_remember\":false,\"memory_scope\":\"global_enabled\",\"context_scopes\":null,\"context_scopes_v2\":{\"context_scopes\":[]},\"workspace_id\":null,\"async_status\":null,\"safe_urls\":[],\"blocked_urls\":[],\"conversation_origin\":null,\"trial_conversation_type\":null,\"is_automation_conversation\":false,\"snippet\":null,\"summary_metadata\":null,\"sugar_item_id\":null,\"sugar_item_visible\":false}],\"total\":4,\"limit\":28,\"offset\":0}",
+      "classification": "", "is_noise": false
+    },
+    {
+      "method": "GET", "url": "https://chatgpt.com/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e",
+      "request_headers": { "Authorization": "Bearer REDACTED" }, "response_headers": { "Content-Type": "application/json" },
+      "request_body": "", "response_status": 200, "response_content_type": "application/json",
+      "response_body": "{\"title\":\"Compare Vivo Oppo Phones\",\"create_time\":1789547209.07501,\"update_time\":1789919299.377669,\"moderation_results\":[],\"conversation_id\":\"6aaa52c7-daec-83ee-9c8a-e1635dbf397e\",\"is_archived\":false,\"is_starred\":null,\"safe_urls\":[\"https://example.com/x\"],\"blocked_urls\":[],\"default_model_slug\":\"gpt-5-6-thinking\",\"disabled_tool_ids\":[],\"is_temporary_chat\":false,\"is_do_not_remember\":false,\"memory_scope\":\"global_enabled\",\"messages\":[{\"id\":\"b47d9761-41c8-4af0-ad8b-db3e9f9bf947\",\"author\":{\"role\":\"system\",\"name\":null,\"metadata\":{}},\"create_time\":1789547209.132705,\"content\":{\"content_type\":\"text\",\"parts\":[\"\"]},\"status\":\"finished_successfully\",\"weight\":0,\"metadata\":{\"request_id\":\"REDACTED\",\"is_visually_hidden_from_conversation\":true},\"recipient\":\"all\"},{\"id\":\"bbb2162c-284d-466b-8d92-589502386f13\",\"author\":{\"role\":\"user\",\"name\":null,\"metadata\":{}},\"create_time\":1789547209.13,\"content\":{\"content_type\":\"text\",\"parts\":[\"USER_PROMPT_TEXT_REDACTED\"]},\"status\":\"finished_successfully\",\"weight\":1,\"metadata\":{\"request_id\":\"REDACTED\",\"turn_id\":\"c044ffa2-0000-0000-0000-000000000000\"},\"recipient\":\"all\"},{\"id\":\"8c1eee20-34d9-4362-8566-92b05a043c70\",\"author\":{\"role\":\"assistant\",\"name\":null,\"metadata\":{}},\"create_time\":1789548370.41,\"content\":{\"content_type\":\"text\",\"parts\":[\"ASSISTANT_TEXT_REDACTED\"]},\"status\":\"finished_successfully\",\"end_turn\":true,\"weight\":1,\"metadata\":{\"request_id\":\"REDACTED\",\"model_slug\":\"gpt-5-6-thinking\",\"message_type\":null,\"finish_details\":{\"type\":\"stop\"},\"citations\":[{\"start_ix\":0,\"end_ix\":10,\"url\":\"https://example.com/src\",\"metadata\":{\"title\":\"Source\"}}]},\"recipient\":\"all\"},{\"id\":\"ccd28d73-0000-0000-0000-000000000000\",\"author\":{\"role\":\"assistant\",\"name\":null,\"metadata\":{}},\"create_time\":1789547209.5,\"content\":{\"content_type\":\"thoughts\",\"parts\":[\"REASONING_SUMMARY_REDACTED\"]},\"status\":\"finished_successfully\",\"end_turn\":false,\"weight\":1,\"metadata\":{},\"recipient\":\"all\"}],\"current_node\":\"8c1eee20-34d9-4362-8566-92b05a043c70\",\"page_info\":{\"start_cursor\":\"b47d9761-41c8-4af0-ad8b-db3e9f9bf947\",\"end_cursor\":\"8c1eee20-34d9-4362-8566-92b05a043c70\",\"has_previous_page\":false,\"has_next_page\":false}}",
+      "classification": "", "is_noise": false
+    },
+    {
+      "method": "GET", "url": "https://chatgpt.com/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e/messages?after=b47d9761-41c8-4af0-ad8b-db3e9f9bf947",
+      "request_headers": { "Authorization": "Bearer REDACTED" }, "response_headers": { "Content-Type": "application/json" },
+      "request_body": "", "response_status": 200, "response_content_type": "application/json",
+      "response_body": "{\"messages\":[{\"id\":\"faf37e20-0000-0000-0000-000000000000\",\"author\":{\"role\":\"assistant\",\"name\":null,\"metadata\":{}},\"create_time\":1789547351.9,\"content\":{\"content_type\":\"text\",\"parts\":[\"TEXT_REDACTED\"]},\"status\":\"finished_successfully\",\"end_turn\":true,\"weight\":1,\"metadata\":{\"request_id\":\"REDACTED\"},\"recipient\":\"all\"}],\"safe_urls\":[],\"blocked_urls\":[],\"page_info\":{\"start_cursor\":\"b47d9761-41c8-4af0-ad8b-db3e9f9bf947\",\"end_cursor\":\"8c1eee20-34d9-4362-8566-92b05a043c70\",\"has_previous_page\":false,\"has_next_page\":false}}",
+      "classification": "", "is_noise": false
+    },
+    {
+      "method": "GET", "url": "https://chatgpt.com/backend-api/conversations/search?query=phone&offset=0&limit=3",
+      "request_headers": { "Authorization": "Bearer REDACTED" }, "response_headers": { "Content-Type": "application/json" },
+      "request_body": "", "response_status": 200, "response_content_type": "application/json",
+      "response_body": "{\"items\":[{\"conversation_id\":\"6aaa52c7-daec-83ee-9c8a-e1635dbf397e\",\"current_node_id\":\"8c1eee20-34d9-4362-8566-92b05a043c70\",\"title\":\"Compare Vivo Oppo Phones\",\"is_archived\":false,\"is_starred\":null,\"update_time\":1789919299.377669,\"conversation_origin\":null,\"payload\":{\"kind\":\"message\",\"message_id\":\"8c1eee20-34d9-4362-8566-92b05a043c70\",\"snippet\":\"SNIPPET_TEXT_REDACTED\"}}],\"cursor\":\"0o\"}",
+      "classification": "", "is_noise": false
+    },
+    {
+      "method": "POST", "url": "https://chatgpt.com/backend-api/global/search",
+      "request_headers": { "Authorization": "Bearer REDACTED", "Content-Type": "application/json" }, "response_headers": { "Content-Type": "application/json" },
+      "request_body": "{\"query\":\"camera\",\"limit\":5}",
+      "response_status": 200, "response_content_type": "application/json",
+      "response_body": "{\"items\":[{\"id\":\"conversation:6aaa52c7-daec-83ee-9c8a-e1635dbf397e:message:8c1eee20-34d9-4362-8566-92b05a043c70\",\"source_type\":\"conversation\",\"source_key\":\"conversation\",\"title\":\"Compare Vivo Oppo Phones\",\"snippet\":\"SNIPPET_REDACTED\",\"update_time\":1789919299.377669,\"match_kind\":\"content\",\"payload\":{\"kind\":\"conversation\",\"conversation_id\":\"6aaa52c7-daec-83ee-9c8a-e1635dbf397e\",\"message_id\":\"8c1eee20-34d9-4362-8566-92b05a043c70\",\"is_archived\":false,\"is_starred\":null}}],\"cursor\":\"BASE64CURSOR\",\"partial_results\":false,\"source_statuses\":[{\"source_type\":\"conversation\",\"source_key\":\"conversation\",\"status\":\"ok\",\"has_more\":true,\"duration_ms\":1170.87,\"error_code\":null},{\"source_type\":\"project\",\"source_key\":\"project\",\"status\":\"ok\",\"has_more\":false,\"duration_ms\":1100.0,\"error_code\":null}]}",
+      "classification": "", "is_noise": false
+    },
+    {
+      "method": "GET", "url": "https://chatgpt.com/backend-api/models?history_view_enabled=false",
+      "request_headers": { "Authorization": "Bearer REDACTED" }, "response_headers": { "Content-Type": "application/json" },
+      "request_body": "", "response_status": 200, "response_content_type": "application/json",
+      "response_body": "{\"title\":\"Model picker\",\"default_model_slug\":\"gpt-5-6\",\"model_picker_version\":2,\"models\":[{\"slug\":\"gpt-5-6\",\"title\":\"GPT-5.6 Sol\",\"description\":\"Our latest and most advanced model\",\"tags\":[\"history_off_approved\"],\"max_tokens\":137000,\"capabilities\":{},\"product_features\":{},\"enable_infer\":true,\"enable_infer_opt_out\":false,\"reasoning_type\":\"adaptive\",\"configurable_thinking_effort\":true,\"thinking_efforts\":[\"low\",\"standard\",\"high\"],\"is_work_mode_model\":false,\"enabled_tools\":[]},{\"slug\":\"gpt-5-6-thinking\",\"title\":\"GPT-5.6 Sol\",\"description\":\"Our latest and most advanced model\",\"tags\":[\"history_off_approved\"],\"max_tokens\":262144,\"capabilities\":{},\"product_features\":{},\"enable_infer\":true,\"reasoning_type\":\"deliberate\",\"configurable_thinking_effort\":true,\"thinking_efforts\":[\"low\",\"standard\",\"high\"],\"enabled_tools\":[]}],\"categories\":[{\"category\":\"gpt_5_6_reasoning\",\"models\":[],\"priority\":100}],\"internal_groups\":[]}",
+      "classification": "", "is_noise": false
+    },
+    {
+      "method": "POST", "url": "https://chatgpt.com/backend-api/sentinel/chat-requirements",
+      "request_headers": { "Authorization": "Bearer REDACTED", "Content-Type": "application/json" }, "response_headers": { "Content-Type": "application/json" },
+      "request_body": "{\"p\":\"BASE64_FINGERPRINT\"}",
+      "response_status": 200, "response_content_type": "application/json",
+      "response_body": "{\"persona\":\"chatgpt-paid\",\"token\":\"REDACTED-GTOKEN\",\"expire_after\":540,\"expire_at\":1790000000.0,\"turnstile\":{\"required\":true,\"difficulty\":\"\",\"dx\":null},\"proofofwork\":{\"required\":true,\"seed\":\"EPHEMERAL_SEED\",\"difficulty\":\"07a120\"},\"so\":{\"a\":1}}",
+      "classification": "", "is_noise": false
+    },
+    {
+      "method": "POST", "url": "https://chatgpt.com/backend-api/f/conversation/prepare",
+      "request_headers": { "Authorization": "Bearer REDACTED", "Content-Type": "application/json" }, "response_headers": { "Content-Type": "application/json" },
+      "request_body": "",
+      "response_status": 200, "response_content_type": "application/json",
+      "response_body": "{\"status\":\"ok\",\"conduit_token\":\"REDACTED-ES256-JWT-60s-TTL\"}",
+      "classification": "", "is_noise": false
+    },
+    {
+      "method": "POST", "url": "https://chatgpt.com/backend-api/f/conversation",
+      "request_headers": { "Authorization": "Bearer REDACTED", "Content-Type": "application/json", "Accept": "text/event-stream", "x-conduit-token": "REDACTED", "OpenAI-Sentinel-Chat-Requirements-Token": "REDACTED", "OpenAI-Sentinel-Proof-Token": "REDACTED", "OpenAI-Sentinel-Turnstile-Token": "REDACTED", "OAI-Device-Id": "REDACTED-UUID", "OAI-Session-Id": "REDACTED-UUID" }, "response_headers": { "Content-Type": "text/event-stream" },
+      "request_body": "{\"action\":\"next\",\"messages\":[{\"id\":\"8f1ba9df-0000-0000-0000-000000000000\",\"author\":{\"role\":\"user\"},\"content\":{\"content_type\":\"text\",\"parts\":[\"MESSAGE_TEXT\"]},\"metadata\":{\"serialization_metadata\":{},\"submission_mode\":\"\"}}],\"conversation_id\":\"6ab00407-f62c-83e8-bf9f-1db869ba9374\",\"parent_message_id\":\"d4f60918-d093-4fc1-b71e-f6a0c6bd237d\",\"model\":\"gpt-5-6-thinking\",\"timezone_offset_min\":-330,\"timezone\":\"Asia/Calcutta\",\"conversation_mode\":{\"kind\":\"primary_assistant\"},\"system_hints\":[],\"supports_buffering\":true,\"supported_encodings\":[\"gzip\"],\"client_prepare_state\":\"success\",\"thinking_effort\":\"standard\"}",
+      "response_status": 200, "response_content_type": "text/event-stream",
+      "response_body": "event: delta_encoding\ndata: \"v1\"\n\ndata: {\"type\":\"resume_conversation_token\",\"kind\":\"topic\",\"token\":\"REDACTED-JWT\"}\n\ndata: {\"type\":\"input_message\",\"message\":{\"id\":\"8f1ba9df-0000-0000-0000-000000000000\",\"author\":{\"role\":\"user\"},\"content\":{\"content_type\":\"text\",\"parts\":[\"MESSAGE_TEXT\"]}}}\n\ndata: {\"type\":\"message_marker\"}\n\ndata: {\"type\":\"server_ste_metadata\"}\n\ndata: {\"type\":\"message_stream_complete\"}\n\ndata: [DONE]\n",
+      "classification": "", "is_noise": false
+    },
+    {
+      "method": "GET", "url": "https://chatgpt.com/backend-api/conversations/6ab00407-f62c-83e8-bf9f-1db869ba9374/stream_status",
+      "request_headers": { "Authorization": "Bearer REDACTED" }, "response_headers": { "Content-Type": "application/json" },
+      "request_body": "", "response_status": 404, "response_content_type": "application/json",
+      "response_body": "{\"detail\":\"Not Found\"}",
+      "classification": "", "is_noise": false
+    },
+    {
+      "method": "POST", "url": "https://chatgpt.com/backend-api/conversation",
+      "request_headers": { "Authorization": "Bearer REDACTED", "Content-Type": "application/json", "Accept": "text/event-stream", "OpenAI-Sentinel-Chat-Requirements-Token": "REDACTED" }, "response_headers": { "Content-Type": "application/json" },
+      "request_body": "{\"action\":\"next\",\"messages\":[],\"model\":\"gpt-5-6\"}",
+      "response_status": 403, "response_content_type": "application/json",
+      "response_body": "{\"detail\":\"Unusual activity has been detected from your device. Try again later. (trace-id)\"}",
+      "classification": "", "is_noise": false
+    }
+  ]
+}

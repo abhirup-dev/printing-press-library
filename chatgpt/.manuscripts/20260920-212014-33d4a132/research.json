@@ -1,0 +1,233 @@
+{
+  "api_name": "chatgpt",
+  "novelty_score": 0,
+  "alternatives": [
+    {
+      "name": "pi-gpt",
+      "url": "https://github.com/anthropics/pi-gpt-npm",
+      "language": "TypeScript",
+      "install_method": "",
+      "stars": 0,
+      "last_updated": "",
+      "command_count": 6,
+      "has_json_output": false,
+      "has_auth_support": false
+    },
+    {
+      "name": "codex-chats-mcp",
+      "url": "https://github.com/shoyu-ramen/codex-chats-mcp",
+      "language": "Python",
+      "install_method": "",
+      "stars": 0,
+      "last_updated": "",
+      "command_count": 14,
+      "has_json_output": false,
+      "has_auth_support": false
+    },
+    {
+      "name": "chatgpt-exporter",
+      "url": "https://github.com/FdezRomero/chatgpt-exporter",
+      "language": "TypeScript",
+      "install_method": "",
+      "stars": 17,
+      "last_updated": "",
+      "command_count": 4,
+      "has_json_output": false,
+      "has_auth_support": false
+    },
+    {
+      "name": "chatgpt-conversation-extractor",
+      "url": "https://github.com/2015pulsar/chatgpt-conversation-extractor",
+      "language": "Python",
+      "install_method": "",
+      "stars": 0,
+      "last_updated": "",
+      "command_count": 3,
+      "has_json_output": false,
+      "has_auth_support": false
+    }
+  ],
+  "gaps": [],
+  "patterns": [],
+  "recommendation": "proceed",
+  "researched_at": "2026-09-20T16:55:00Z",
+  "novel_features": [
+    {
+      "name": "Hydrated chronological inventory",
+      "command": "list",
+      "description": "See every chat in chronological order with turn counts, time span, and freshness — not just titles.",
+      "rationale": "The list API returns no counts (verified empirically); a local SQLite hydration cache computes them incrementally by update watermark.",
+      "example": "chatgpt-pp-cli list --since 30d --order created --agent",
+      "why_it_matters": "Pick this when you need a real index of conversations by time and size instead of scrolling the sidebar.",
+      "group": "Inventory that answers questions"
+    },
+    {
+      "name": "Verified-complete extraction",
+      "command": "transcript",
+      "description": "Extract an entire conversation with a completeness proof against the live tree state.",
+      "rationale": "The detail API's has_next_page can report false on truncated windows (empirical); cursor-walking to current_node with verification is the only safe extraction.",
+      "example": "chatgpt-pp-cli transcript 6aaa52c7-daec-83ee-9c8a-e1635dbf397e --verify --json --select conversation_id,messages",
+      "why_it_matters": "Use this when an export must contain every message — audit, migration, or feeding another agent.",
+      "group": "Inventory that answers questions"
+    },
+    {
+      "name": "Long-thread outline",
+      "command": "outline",
+      "description": "Map a long thread into titled sections at each of your prompts, with timestamps and anchors.",
+      "rationale": "ChatGPT's own table of contents derives purely from user messages (verified via React inspection); the same derivation over the API needs no extra endpoint.",
+      "example": "chatgpt-pp-cli outline 6aaa52c7-daec-83ee-9c8a-e1635dbf397e --json",
+      "why_it_matters": "Use this before reading a 100-message thread — get the structure first, then pull only the section you need.",
+      "group": "Long-thread navigation"
+    },
+    {
+      "name": "Section-sliced extraction",
+      "command": "transcript",
+      "description": "Extract just part of a long conversation by section number or message anchors.",
+      "rationale": "Outline anchors index into the message array, so slicing is a local range computation no API provides.",
+      "example": "chatgpt-pp-cli transcript 6aaa52c7-daec-83ee-9c8a-e1635dbf397e --section 3",
+      "why_it_matters": "Use this to pull one topic out of a sprawling thread without extracting everything.",
+      "group": "Long-thread navigation"
+    },
+    {
+      "name": "Dual-mode search",
+      "command": "find",
+      "description": "Search message content server-side by default, or offline over your synced archive.",
+      "rationale": "The Ctrl+K global search endpoint returns federated message-level hits; the synced SQLite store mirrors it for offline work.",
+      "example": "chatgpt-pp-cli find \"haptics comparison\" --select items.title,items.snippet --agent",
+      "why_it_matters": "Pick this to find the exact conversation and message containing a phrase, fresh or from cache.",
+      "group": "Inventory that answers questions"
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "Hydrated chronological inventory",
+      "command": "list",
+      "description": "See every chat in chronological order with turn counts, time span, and freshness — not just titles.",
+      "rationale": "The list API returns no counts (verified empirically); a local SQLite hydration cache computes them incrementally by update watermark.",
+      "example": "chatgpt-pp-cli list --since 30d --order created --agent",
+      "why_it_matters": "Pick this when you need a real index of conversations by time and size instead of scrolling the sidebar.",
+      "group": "Inventory that answers questions"
+    },
+    {
+      "name": "Verified-complete extraction",
+      "command": "transcript",
+      "description": "Extract an entire conversation with a completeness proof against the live tree state.",
+      "rationale": "The detail API's has_next_page can report false on truncated windows (empirical); cursor-walking to current_node with verification is the only safe extraction.",
+      "example": "chatgpt-pp-cli transcript 6aaa52c7-daec-83ee-9c8a-e1635dbf397e --verify --json --select conversation_id,messages",
+      "why_it_matters": "Use this when an export must contain every message — audit, migration, or feeding another agent.",
+      "group": "Inventory that answers questions"
+    },
+    {
+      "name": "Long-thread outline",
+      "command": "outline",
+      "description": "Map a long thread into titled sections at each of your prompts, with timestamps and anchors.",
+      "rationale": "ChatGPT's own table of contents derives purely from user messages (verified via React inspection); the same derivation over the API needs no extra endpoint.",
+      "example": "chatgpt-pp-cli outline 6aaa52c7-daec-83ee-9c8a-e1635dbf397e --json",
+      "why_it_matters": "Use this before reading a 100-message thread — get the structure first, then pull only the section you need.",
+      "group": "Long-thread navigation"
+    },
+    {
+      "name": "Section-sliced extraction",
+      "command": "transcript",
+      "description": "Extract just part of a long conversation by section number or message anchors.",
+      "rationale": "Outline anchors index into the message array, so slicing is a local range computation no API provides.",
+      "example": "chatgpt-pp-cli transcript 6aaa52c7-daec-83ee-9c8a-e1635dbf397e --section 3",
+      "why_it_matters": "Use this to pull one topic out of a sprawling thread without extracting everything.",
+      "group": "Long-thread navigation"
+    },
+    {
+      "name": "Dual-mode search",
+      "command": "find",
+      "description": "Search message content server-side by default, or offline over your synced archive.",
+      "rationale": "The Ctrl+K global search endpoint returns federated message-level hits; the synced SQLite store mirrors it for offline work.",
+      "example": "chatgpt-pp-cli find \"haptics comparison\" --select items.title,items.snippet --agent",
+      "why_it_matters": "Pick this to find the exact conversation and message containing a phrase, fresh or from cache.",
+      "group": "Inventory that answers questions"
+    }
+  ],
+  "auth": {},
+  "narrative": {
+    "display_name": "ChatGPT",
+    "headline": "Your ChatGPT history as a queryable local archive — verified-complete extraction, outlines, and search no other tool has.",
+    "value_prop": "Turn conversations into a chronological index with real turn counts and spans, extract any thread completely with a completeness proof, navigate long threads by outline, and search message content server-side or offline. Sessions survive token expiry via cookie re-mint and optional Codex auth import.",
+    "auth_narrative": "No API key. Import your chatgpt.com browser session once (cookies) and the CLI mints fresh bearer tokens itself — cookies outlive the 10-day token TTL, so the session keeps working. Alternatively point it at your existing codex login (~/.codex/auth.json). Send commands are experimental and browser-gated: they consume only legitimately issued authorization and fail with a clear error otherwise.",
+    "quickstart": [
+      {
+        "command": "chatgpt-pp-cli doctor --dry-run",
+        "comment": "Health check without touching the network"
+      },
+      {
+        "command": "chatgpt-pp-cli list --since 30d --hydrate",
+        "comment": "Chronological inventory with turn counts and span"
+      },
+      {
+        "command": "chatgpt-pp-cli outline 6aaa52c7-daec-83ee-9c8a-e1635dbf397e",
+        "comment": "See the structure of a long thread first"
+      },
+      {
+        "command": "chatgpt-pp-cli transcript 6aaa52c7-daec-83ee-9c8a-e1635dbf397e --section 2",
+        "comment": "Extract one section, timestamps preserved"
+      },
+      {
+        "command": "chatgpt-pp-cli find \"haptics\" --agent --select items.title,items.snippet",
+        "comment": "Server-side message search with compact output"
+      }
+    ],
+    "troubleshoots": [
+      {
+        "symptom": "list returns empty or 404 conversation_inaccessible",
+        "fix": "Bearer is missing/expired: run chatgpt-pp-cli auth import again; cookie-only access returns masked empty responses."
+      },
+      {
+        "symptom": "403 Unusual activity on chat send",
+        "fix": "Turnstile-gated: sends are experimental and browser-gated; refresh authorization via chatgpt-pp-cli auth import and retry, or use the web UI."
+      },
+      {
+        "symptom": "transcript --verify reports missing tail",
+        "fix": "Re-run with --full-refresh to cursor-walk the conversation from scratch; the page_info flag can under-report."
+      }
+    ],
+    "when_to_use": "Use this CLI when you need chronological inventory of conversations with real metadata, verified-complete single-thread extraction (JSON or readable transcript), long-thread outlines and section slicing, or message-content search (server-fresh (find) or offline (search)). Ideal for archiving, auditing, feeding conversation context to other agents, and navigating very long threads. Use 'use chatgpt' or 'run chatgpt' for these workflows.",
+    "anti_triggers": [
+      "Do not use this CLI to delete, rename, or archive conversations — destructive management is deliberately excluded",
+      "Do not use it for bulk attachment or project backups — dedicated exporters cover that",
+      "Do not use it for deep-research or agent-mode chat parity — use the web UI or pi-gpt",
+      "Do not expect headless send reliability — sends are experimental and browser-gated"
+    ],
+    "recipes": [
+      {
+        "title": "Month-in-review index",
+        "command": "chatgpt-pp-cli list --since 30d --order created --hydrate --agent",
+        "explanation": "Every conversation from the last month with turn counts and time spans in one table."
+      },
+      {
+        "title": "Mine one topic from a long thread",
+        "command": "chatgpt-pp-cli transcript 6aaa52c7-daec-83ee-9c8a-e1635dbf397e --section 4 --json --select messages",
+        "explanation": "Outline section 4 only — the slice between user anchors 4 and 5."
+      },
+      {
+        "title": "Full verified export",
+        "command": "chatgpt-pp-cli transcript 6aaa52c7-daec-83ee-9c8a-e1635dbf397e --verify --format md -o thread.md",
+        "explanation": "Complete extraction with a completeness check written as markdown."
+      },
+      {
+        "title": "Find the exact message",
+        "command": "chatgpt-pp-cli find \"backport deadline\" --agent --select items.title,items.snippet,items.payload.message_id",
+        "explanation": "Server-side search narrowed to the fields that matter."
+      },
+      {
+        "title": "Offline archive search",
+        "command": "chatgpt-pp-cli search \"camera comparison\" --limit 10",
+        "explanation": "Offline FTS over bodies synced by list --hydrate / transcript runs; no session needed."
+      }
+    ],
+    "trigger_phrases": [
+      "list my chatgpt conversations",
+      "export a chatgpt thread",
+      "chatgpt conversation outline",
+      "search my chatgpt history",
+      "use chatgpt",
+      "run chatgpt"
+    ]
+  }
+}

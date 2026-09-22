@@ -1,0 +1,55 @@
+version: 2
+project_name: chatgpt-pp-cli
+changelog:
+  disable: true
+builds:
+  - id: chatgpt-pp-cli
+    main: ./cmd/chatgpt-pp-cli
+    binary: chatgpt-pp-cli
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w -X chatgpt-pp-cli/internal/cli.version={{ .Version }}
+    targets:
+      - darwin_amd64
+      - darwin_arm64
+      - linux_amd64
+      - linux_arm64
+      - windows_amd64
+      - windows_arm64
+  - id: chatgpt-pp-mcp
+    main: ./cmd/chatgpt-pp-mcp
+    binary: chatgpt-pp-mcp
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w -X main.version={{ .Version }}
+    targets:
+      - darwin_amd64
+      - darwin_arm64
+      - linux_amd64
+      - linux_arm64
+      - windows_amd64
+      - windows_arm64
+archives:
+  - formats: [tar.gz]
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+checksum:
+  name_template: checksums.txt
+brews:
+  - name: chatgpt-pp-cli
+    repository:
+      owner: abhirup-dev
+      name: homebrew-tap
+    homepage: "https://github.com/abhirup-dev/chatgpt-pp-cli"
+    description: "Your ChatGPT history as a queryable local archive — verified-complete extraction, outlines, and search no other tool has."
+    install: |
+      bin.install "chatgpt-pp-cli"
+      bin.install "chatgpt-pp-mcp"

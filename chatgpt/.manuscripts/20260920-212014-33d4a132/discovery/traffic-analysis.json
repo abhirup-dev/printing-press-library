@@ -1,0 +1,1432 @@
+{
+  "version": "1",
+  "summary": {
+    "target_url": "https://chatgpt.com/",
+    "captured_at": "2026-09-20T16:20:00Z",
+    "entry_count": 12,
+    "api_entry_count": 12,
+    "noise_entry_count": 0,
+    "host_distribution": {
+      "chatgpt.com": 12
+    }
+  },
+  "reachability": {
+    "mode": "browser_clearance_http",
+    "confidence": 0.9,
+    "needs_browser_capture": true,
+    "needs_clearance_cookie": true,
+    "rationale": "probe-reachability: stdlib+Surf bot-gated anonymously; browser capture succeeded with real API traffic (12 endpoints, real bodies). Reads are bearer-required (bearer-only 200 in browser ctx; cookie-only returns masked empty). Runtime: Chrome-compatible transport + imported browser cookies (incl clearance) + bearer minted via /api/auth/session. Sends additionally sentinel/PoW/turnstile-gated (experimental tier)."
+  },
+  "protocols": [
+    {
+      "label": "sse",
+      "confidence": 0.95,
+      "evidence": [
+        {
+          "entry_index": 9,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/f/conversation",
+          "status": 200,
+          "content_type": "text/event-stream",
+          "reason": "event-stream response"
+        }
+      ]
+    },
+    {
+      "label": "rest_json",
+      "confidence": 0.75,
+      "evidence": [
+        {
+          "entry_index": 0,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/api/auth/session",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 1,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 2,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 3,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e/messages",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 4,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 5,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/global/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 6,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 7,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/sentinel/chat-requirements",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 8,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/f/conversation/prepare",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 9,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/f/conversation",
+          "status": 200,
+          "content_type": "text/event-stream",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 10,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6ab00407-f62c-83e8-bf9f-1db869ba9374/stream_status",
+          "status": 404,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        },
+        {
+          "entry_index": 11,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversation",
+          "status": 403,
+          "content_type": "application/json",
+          "reason": "JSON HTTP request/response without specialized protocol markers"
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "candidates": [
+      {
+        "type": "bearer_token",
+        "confidence": 0.95,
+        "header_names": [
+          "Authorization"
+        ],
+        "evidence": [
+          {
+            "note": "bearer-only requests return 200 in browser ctx; cookie-only returns masked empty; minted via GET /api/auth/session"
+          }
+        ]
+      },
+      {
+        "type": "cookie",
+        "confidence": 0.8,
+        "header_names": [
+          "Cookie"
+        ],
+        "evidence": [
+          {
+            "note": "browser cookies (session + clearance) outlive the 10-day bearer TTL and are the re-mint source"
+          }
+        ]
+      }
+    ]
+  },
+  "protections": [
+    {
+      "label": "captcha",
+      "confidence": 0.85,
+      "evidence": [
+        {
+          "entry_index": 7,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/sentinel/chat-requirements",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "CAPTCHA marker"
+        }
+      ]
+    }
+  ],
+  "endpoint_clusters": [
+    {
+      "host": "chatgpt.com",
+      "method": "GET",
+      "path": "/api/auth/session",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "accessToken",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "account",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "authProvider",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "expires",
+            "type": "string",
+            "required": true,
+            "format": "date-time"
+          },
+          {
+            "name": "sessionToken",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user",
+            "type": "object",
+            "required": true
+          }
+        ]
+      },
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 0,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/api/auth/session",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "chatgpt.com",
+      "method": "POST",
+      "path": "/backend-api/conversation",
+      "count": 1,
+      "statuses": [
+        403
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "action",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "messages",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "model",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "detail",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization",
+        "openai-sentinel-chat-requirements-token"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 11,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversation",
+          "status": 403,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "chatgpt.com",
+      "method": "GET",
+      "path": "/backend-api/conversations",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "items",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "limit",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "offset",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "total",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 1,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "chatgpt.com",
+      "method": "GET",
+      "path": "/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "medium",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "blocked_urls",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "conversation_id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "create_time",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "current_node",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "default_model_slug",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "disabled_tool_ids",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "is_archived",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "is_do_not_remember",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "is_temporary_chat",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "memory_scope",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "messages",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "moderation_results",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "page_info",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "safe_urls",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "update_time",
+            "type": "number",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 2,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "chatgpt.com",
+      "method": "GET",
+      "path": "/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e/messages",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "blocked_urls",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "messages",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "page_info",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "safe_urls",
+            "type": "array",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 3,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e/messages",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "chatgpt.com",
+      "method": "GET",
+      "path": "/backend-api/conversations/6ab00407-f62c-83e8-bf9f-1db869ba9374/stream_status",
+      "count": 1,
+      "statuses": [
+        404
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "detail",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 10,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6ab00407-f62c-83e8-bf9f-1db869ba9374/stream_status",
+          "status": 404,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "chatgpt.com",
+      "method": "GET",
+      "path": "/backend-api/conversations/search",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "items",
+            "type": "array",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 4,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "chatgpt.com",
+      "method": "POST",
+      "path": "/backend-api/f/conversation",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "text/event-stream"
+      ],
+      "size_class": "small",
+      "request_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "action",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "client_prepare_state",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "conversation_id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "conversation_mode",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "messages",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "model",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "parent_message_id",
+            "type": "string",
+            "required": true,
+            "format": "uuid"
+          },
+          {
+            "name": "supported_encodings",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "supports_buffering",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "system_hints",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "thinking_effort",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "timezone",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "timezone_offset_min",
+            "type": "integer",
+            "required": true
+          }
+        ]
+      },
+      "response_shape": {
+        "kind": "unknown"
+      },
+      "observed_auth": [
+        "authorization",
+        "openai-sentinel-chat-requirements-token",
+        "openai-sentinel-proof-token",
+        "openai-sentinel-turnstile-token",
+        "x-conduit-token"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 9,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/f/conversation",
+          "status": 200,
+          "content_type": "text/event-stream",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "chatgpt.com",
+      "method": "POST",
+      "path": "/backend-api/f/conversation/prepare",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "conduit_token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 8,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/f/conversation/prepare",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "chatgpt.com",
+      "method": "POST",
+      "path": "/backend-api/global/search",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "limit",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "query",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "cursor",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "items",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "partial_results",
+            "type": "boolean",
+            "required": true
+          },
+          {
+            "name": "source_statuses",
+            "type": "array",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 5,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/global/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "chatgpt.com",
+      "method": "GET",
+      "path": "/backend-api/models",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {},
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "categories",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "default_model_slug",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "internal_groups",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "model_picker_version",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "models",
+            "type": "array",
+            "required": true
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 6,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "host": "chatgpt.com",
+      "method": "POST",
+      "path": "/backend-api/sentinel/chat-requirements",
+      "count": 1,
+      "statuses": [
+        200
+      ],
+      "content_types": [
+        "application/json"
+      ],
+      "size_class": "small",
+      "request_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "p",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "response_shape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "expire_after",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "expire_at",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "persona",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "proofofwork",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "so",
+            "type": "object",
+            "required": true
+          },
+          {
+            "name": "token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "turnstile",
+            "type": "object",
+            "required": true
+          }
+        ]
+      },
+      "observed_auth": [
+        "authorization"
+      ],
+      "normalization_flags": [
+        "single-sample",
+        "single-status"
+      ],
+      "confidence": "low",
+      "evidence": [
+        {
+          "entry_index": 7,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/sentinel/chat-requirements",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    }
+  ],
+  "request_sequences": [
+    {
+      "label": "observed_api_flow",
+      "confidence": 0.35,
+      "evidence": [
+        {
+          "entry_index": 0,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/api/auth/session",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 1,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 2,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 3,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e/messages",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 4,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 5,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/global/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 6,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        },
+        {
+          "entry_index": 7,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/sentinel/chat-requirements",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "observed API request order"
+        }
+      ],
+      "notes": [
+        "Capture order used; timing unavailable."
+      ]
+    }
+  ],
+  "pagination": [
+    {
+      "location": "body",
+      "name": "limit",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "entry_index": 5,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/global/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like request field"
+        }
+      ]
+    },
+    {
+      "location": "query",
+      "name": "after",
+      "confidence": 0.75,
+      "evidence": [
+        {
+          "entry_index": 3,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e/messages",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        }
+      ]
+    },
+    {
+      "location": "query",
+      "name": "limit",
+      "confidence": 0.75,
+      "evidence": [
+        {
+          "entry_index": 1,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        },
+        {
+          "entry_index": 4,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        }
+      ]
+    },
+    {
+      "location": "query",
+      "name": "offset",
+      "confidence": 0.75,
+      "evidence": [
+        {
+          "entry_index": 1,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        },
+        {
+          "entry_index": 4,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "pagination-like query parameter"
+        }
+      ]
+    }
+  ],
+  "candidate_commands": [
+    {
+      "name": "create_chat_requirements",
+      "resource": "chat_requirements",
+      "confidence": 0.55,
+      "rationale": "Derived from observed POST /backend-api/sentinel/chat-requirements traffic.",
+      "evidence": [
+        {
+          "entry_index": 7,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/sentinel/chat-requirements",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "create_conversation",
+      "resource": "conversation",
+      "confidence": 0.55,
+      "rationale": "Derived from observed POST /backend-api/conversation traffic.",
+      "evidence": [
+        {
+          "entry_index": 11,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversation",
+          "status": 403,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "create_prepare",
+      "resource": "prepare",
+      "confidence": 0.55,
+      "rationale": "Derived from observed POST /backend-api/f/conversation/prepare traffic.",
+      "evidence": [
+        {
+          "entry_index": 8,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/f/conversation/prepare",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "create_search",
+      "resource": "search",
+      "confidence": 0.55,
+      "rationale": "Derived from observed POST /backend-api/global/search traffic.",
+      "evidence": [
+        {
+          "entry_index": 5,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/global/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_6aaa52c7_daec_83ee_9c8a_e1635dbf397e",
+      "resource": "6aaa52c7_daec_83ee_9c8a_e1635dbf397e",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e traffic.",
+      "evidence": [
+        {
+          "entry_index": 2,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_conversations",
+      "resource": "conversations",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /backend-api/conversations traffic.",
+      "evidence": [
+        {
+          "entry_index": 1,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_messages",
+      "resource": "messages",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e/messages traffic.",
+      "evidence": [
+        {
+          "entry_index": 3,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e/messages",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_models",
+      "resource": "models",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /backend-api/models traffic.",
+      "evidence": [
+        {
+          "entry_index": 6,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/models",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_search",
+      "resource": "search",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /backend-api/conversations/search traffic.",
+      "evidence": [
+        {
+          "entry_index": 4,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/search",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_session",
+      "resource": "session",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /api/auth/session traffic.",
+      "evidence": [
+        {
+          "entry_index": 0,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/api/auth/session",
+          "status": 200,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "name": "list_stream_status",
+      "resource": "stream_status",
+      "confidence": 0.55,
+      "rationale": "Derived from observed GET /backend-api/conversations/6ab00407-f62c-83e8-bf9f-1db869ba9374/stream_status traffic.",
+      "evidence": [
+        {
+          "entry_index": 10,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6ab00407-f62c-83e8-bf9f-1db869ba9374/stream_status",
+          "status": 404,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    }
+  ],
+  "generation_hints": [
+    "requires_browser_auth",
+    "requires_protected_client"
+  ],
+  "warnings": [
+    {
+      "type": "error_status_cluster",
+      "message": "Endpoint cluster only observed error HTTP statuses.",
+      "confidence": 0.7,
+      "evidence": [
+        {
+          "entry_index": 10,
+          "method": "GET",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversations/6ab00407-f62c-83e8-bf9f-1db869ba9374/stream_status",
+          "status": 404,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "type": "error_status_cluster",
+      "message": "Endpoint cluster only observed error HTTP statuses.",
+      "confidence": 0.7,
+      "evidence": [
+        {
+          "entry_index": 11,
+          "method": "POST",
+          "host": "chatgpt.com",
+          "path": "/backend-api/conversation",
+          "status": 403,
+          "content_type": "application/json",
+          "reason": "endpoint cluster member"
+        }
+      ]
+    },
+    {
+      "type": "reserved_resource_name",
+      "message": "resource name \"auth\" may conflict with a reserved Printing Press command or template; consider renaming it to a domain-specific command name",
+      "confidence": 1
+    }
+  ]
+}

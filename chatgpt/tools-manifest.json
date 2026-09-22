@@ -1,0 +1,326 @@
+{
+  "api_name": "chatgpt",
+  "base_url": "https://chatgpt.com",
+  "description": "Your ChatGPT history as a queryable local archive — verified-complete extraction, outlines, and search no other tool has.",
+  "mcp_ready": "full",
+  "http_transport": "browser-chrome",
+  "auth": {
+    "type": "bearer_token",
+    "header": "Authorization",
+    "format": "Bearer {CHATGPT_TOKEN}",
+    "env_vars": [
+      "CHATGPT_TOKEN"
+    ],
+    "env_var_specs": [
+      {
+        "name": "CHATGPT_TOKEN",
+        "kind": "per_call",
+        "required": true,
+        "sensitive": true,
+        "inferred": true
+      }
+    ],
+    "browser_session_validation_path": "/backend-api/conversations",
+    "browser_session_validation_method": "GET"
+  },
+  "required_headers": [],
+  "tools": [
+    {
+      "name": "chat_prepare",
+      "description": "Conduit prepare — mints the short-lived (60s) conduit token required by the send call. Returns the new ConduitPrepare.",
+      "method": "POST",
+      "path": "/backend-api/f/conversation/prepare",
+      "params": []
+    },
+    {
+      "name": "chat_requirements",
+      "description": "Sentinel gate — returns requirements token, PoW seed/difficulty, turnstile requirement (token values are credential material). Optional: proof.",
+      "method": "POST",
+      "path": "/backend-api/sentinel/chat-requirements",
+      "params": [
+        {
+          "name": "proof",
+          "wire_name": "p",
+          "type": "string",
+          "location": "body",
+          "description": "Base64 fingerprint/proof payload (empty for the first mint)",
+          "aliases": [
+            "p"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "chat_send",
+      "description": "Send a message — SSE response with typed events; message_stream_complete is the semantic terminal; resume_conversation_token enables reconnection. EXPERIMENTAL: turnstile-gated; fails clearly without legitimately issued authorization. Required: action, messages, parent_message_id, model. Optional: conversation_id, timezone_offset_min, thinking_effort.",
+      "method": "POST",
+      "path": "/backend-api/f/conversation",
+      "params": [
+        {
+          "name": "action",
+          "type": "string",
+          "location": "body",
+          "description": "Always 'next'",
+          "required": true
+        },
+        {
+          "name": "messages",
+          "type": "array",
+          "location": "body",
+          "description": "Message array (id + author role user + content object with content_type text and parts list)",
+          "required": true
+        },
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "location": "body",
+          "description": "Conversation UUID — omit to start a new chat"
+        },
+        {
+          "name": "parent_message_id",
+          "type": "string",
+          "location": "body",
+          "description": "Parent node — current_node for a follow-up",
+          "required": true
+        },
+        {
+          "name": "model",
+          "type": "string",
+          "location": "body",
+          "description": "Model slug (see models list)",
+          "required": true
+        },
+        {
+          "name": "timezone_offset_min",
+          "type": "integer",
+          "location": "body",
+          "description": "Timezone offset in minutes"
+        },
+        {
+          "name": "thinking_effort",
+          "type": "string",
+          "location": "body",
+          "description": "Thinking effort (low|standard|high)"
+        }
+      ]
+    },
+    {
+      "name": "conversations_get",
+      "description": "Full conversation as the webapp consumes it — messages array plus Relay page_info; has_next_page can be false on truncated windows, verify against current_node. Required: conversation_id. Optional: num_turns, include_has_versions. Returns the Conversation.",
+      "method": "GET",
+      "path": "/backend-api/conversations/{conversation_id}",
+      "params": [
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "location": "path",
+          "description": "Conversation UUID",
+          "required": true
+        },
+        {
+          "name": "num_turns",
+          "type": "integer",
+          "location": "query",
+          "description": "Turn-window limit (response may still claim has_next_page=false)"
+        },
+        {
+          "name": "include_has_versions",
+          "type": "boolean",
+          "location": "query",
+          "description": "Include version flags"
+        }
+      ]
+    },
+    {
+      "name": "conversations_get_tree",
+      "description": "Legacy compat read — singular endpoint returns the parent/children mapping tree (visible roles only; no hidden system/thoughts nodes). Required: conversation_id.",
+      "method": "GET",
+      "path": "/backend-api/conversation/{conversation_id}",
+      "params": [
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "location": "path",
+          "description": "Conversation UUID",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "conversations_list",
+      "description": "Chronological conversation list — offset/limit pagination; total is a min(realTotal, offset+limit+1) hint, walk pages until a short page. Optional: offset (default: 0), limit (default: 28), order (default: updated) (plus 2 more). Returns the ConversationList.",
+      "method": "GET",
+      "path": "/backend-api/conversations",
+      "params": [
+        {
+          "name": "offset",
+          "type": "integer",
+          "location": "query",
+          "description": "Pagination offset"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "location": "query",
+          "description": "Page size (max 100; 999 rejected as 422)"
+        },
+        {
+          "name": "order",
+          "type": "string",
+          "location": "query",
+          "description": "Sort key (updated accepted; created returns 500 — sort client-side)"
+        },
+        {
+          "name": "is_archived",
+          "type": "boolean",
+          "location": "query",
+          "description": "Filter archived conversations"
+        },
+        {
+          "name": "is_starred",
+          "type": "boolean",
+          "location": "query",
+          "description": "Filter starred conversations"
+        }
+      ]
+    },
+    {
+      "name": "conversations_list_messages",
+      "description": "Message window with forward cursor — after=\u003cmessage_id\u003e returns everything after that id (cursor/limit/end_cursor params are ignored here). Required: conversation_id. Optional: after.",
+      "method": "GET",
+      "path": "/backend-api/conversations/{conversation_id}/messages",
+      "params": [
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "location": "path",
+          "description": "Conversation UUID",
+          "required": true
+        },
+        {
+          "name": "after",
+          "type": "string",
+          "location": "query",
+          "description": "Return messages after this message id"
+        }
+      ]
+    },
+    {
+      "name": "conversations_search",
+      "description": "Legacy search — query param is literally 'query' (not q); returns message-level hits with snippets. Required: query. Optional: offset, limit.",
+      "method": "GET",
+      "path": "/backend-api/conversations/search",
+      "params": [
+        {
+          "name": "query",
+          "type": "string",
+          "location": "path",
+          "description": "Search text",
+          "required": true
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "location": "query",
+          "description": "Result offset"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "location": "query",
+          "description": "Result limit"
+        }
+      ]
+    },
+    {
+      "name": "conversations_stream_status",
+      "description": "Streaming state for an active send (404 when idle) — used by status/wait. Required: conversation_id. Returns the StreamStatus.",
+      "method": "GET",
+      "path": "/backend-api/conversations/{conversation_id}/stream_status",
+      "params": [
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "location": "path",
+          "description": "Conversation UUID",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "global_search_global",
+      "description": "Federated message-content search across conversations and projects — strict body schema (extra fields 422); cursor pagination. Required: query. Optional: limit, cursor. Returns the new GlobalSearchResults.",
+      "method": "POST",
+      "path": "/backend-api/global/search",
+      "params": [
+        {
+          "name": "query",
+          "type": "string",
+          "location": "body",
+          "description": "Search text",
+          "required": true
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "location": "body",
+          "description": "Page size"
+        },
+        {
+          "name": "cursor",
+          "type": "string",
+          "location": "body",
+          "description": "Opaque cursor from the previous response"
+        }
+      ]
+    },
+    {
+      "name": "models_list",
+      "description": "Model picker inventory — slugs, reasoning types, thinking efforts, default badge. Optional: history_view_enabled. Returns the ModelsResponse.",
+      "method": "GET",
+      "path": "/backend-api/models",
+      "params": [
+        {
+          "name": "history_view_enabled",
+          "type": "boolean",
+          "location": "query",
+          "description": "Include history-view models"
+        }
+      ]
+    },
+    {
+      "name": "session_get",
+      "description": "Current session, account, and freshly minted access token (values are credential material — never logged). Returns the Session.",
+      "method": "GET",
+      "path": "/api/auth/session",
+      "params": []
+    }
+  ],
+  "novel_features": [
+    {
+      "name": "Hydrated chronological inventory",
+      "command": "list",
+      "description": "See every chat in chronological order with turn counts, time span, and freshness — not just titles."
+    },
+    {
+      "name": "Verified-complete extraction",
+      "command": "transcript",
+      "description": "Extract an entire conversation with a completeness proof against the live tree state."
+    },
+    {
+      "name": "Long-thread outline",
+      "command": "outline",
+      "description": "Map a long thread into titled sections at each of your prompts, with timestamps and anchors."
+    },
+    {
+      "name": "Section-sliced extraction",
+      "command": "transcript",
+      "description": "Extract just part of a long conversation by section number or message anchors."
+    },
+    {
+      "name": "Dual-mode search",
+      "command": "find",
+      "description": "Search message content server-side by default, or offline over your synced archive."
+    }
+  ]
+}

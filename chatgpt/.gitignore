@@ -1,0 +1,8 @@
+# Root-anchored so cmd/<binary>/ source stays tracked.
+/chatgpt-pp-cli
+/chatgpt-pp-cli.exe
+/chatgpt-pp-mcp
+/chatgpt-pp-mcp.exe
+/bin/
+/build/
+/dist/

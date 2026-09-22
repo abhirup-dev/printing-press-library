@@ -1,0 +1,39 @@
+{
+  "manifest_version": "0.3",
+  "name": "chatgpt-pp-mcp",
+  "display_name": "ChatGPT",
+  "version": "0.1.0",
+  "description": "Your ChatGPT history as a queryable local archive — verified-complete extraction, outlines, and search no other tool has.",
+  "author": {
+    "name": "CLI Printing Press"
+  },
+  "license": "Apache-2.0",
+  "server": {
+    "type": "binary",
+    "entry_point": "bin/chatgpt-pp-mcp",
+    "mcp_config": {
+      "command": "${__dirname}/bin/chatgpt-pp-mcp",
+      "args": [],
+      "env": {
+        "CHATGPT_TOKEN": "${user_config.chatgpt_token}"
+      }
+    }
+  },
+  "user_config": {
+    "chatgpt_token": {
+      "type": "string",
+      "title": "CHATGPT_TOKEN",
+      "description": "Sets CHATGPT_TOKEN for the ChatGPT MCP server.",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=1.0.0",
+    "platforms": [
+      "darwin",
+      "linux",
+      "win32"
+    ]
+  }
+}

@@ -1,0 +1,711 @@
+name: chatgpt
+description: Discovered API spec for chatgpt
+version: 0.1.0
+base_url: https://chatgpt.com
+spec_source: sniffed
+auth:
+    type: bearer_token
+    header: Authorization
+    format: ""
+    env_vars:
+        - CHATGPT_TOKEN
+    env_var_specs:
+        - name: CHATGPT_TOKEN
+          kind: per_call
+          required: true
+          sensitive: true
+          inferred: true
+auth_warnings:
+    - 'rejected auth candidate "limit" from body: search input'
+    - 'rejected auth candidate "limit" from query: search input'
+    - 'rejected auth candidate "offset" from query: search input'
+    - 'rejected auth candidate "query" from body: search input'
+    - 'rejected auth candidate "query" from query: search input'
+    - 'rejected auth candidate "timezone_offset_min" from body: search input'
+config:
+    format: toml
+    path: ~/.config/chatgpt-pp-cli/config.toml
+resources:
+    auth:
+        description: Operations on session
+        endpoints:
+            list_session:
+                method: GET
+                path: /api/auth/session
+                description: GET /api/auth/session
+                params: []
+                body: []
+                response:
+                    type: object
+                    item: Session
+                pagination: null
+    backend-api:
+        description: Operations on conversations
+        endpoints:
+            create_chat_requirements:
+                method: POST
+                path: /backend-api/sentinel/chat-requirements
+                description: POST /backend-api/sentinel/chat-requirements
+                params: []
+                body:
+                    - name: p
+                      type: string
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                request_content_type: application/json
+                response:
+                    type: object
+                    item: ChatRequirement
+                pagination: null
+                observed_auth:
+                    - authorization
+            create_conversation:
+                method: POST
+                path: /backend-api/f/conversation
+                description: POST /backend-api/f/conversation
+                params: []
+                body:
+                    - name: action
+                      type: string
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: client_prepare_state
+                      type: string
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: conversation_id
+                      type: string
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: conversation_mode
+                      type: object
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields:
+                        - name: kind
+                          type: string
+                          required: true
+                          positional: false
+                          default: null
+                          description: ""
+                          fields: []
+                    - name: messages
+                      type: array
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields:
+                        - name: author
+                          type: object
+                          required: true
+                          positional: false
+                          default: null
+                          description: ""
+                          fields:
+                            - name: role
+                              type: string
+                              required: true
+                              positional: false
+                              default: null
+                              description: ""
+                              fields: []
+                        - name: content
+                          type: object
+                          required: true
+                          positional: false
+                          default: null
+                          description: ""
+                          fields:
+                            - name: content_type
+                              type: string
+                              required: true
+                              positional: false
+                              default: null
+                              description: ""
+                              fields: []
+                            - name: parts
+                              type: array
+                              required: true
+                              positional: false
+                              default: null
+                              description: ""
+                              fields: []
+                        - name: id
+                          type: string
+                          required: true
+                          positional: false
+                          default: null
+                          description: ""
+                          fields: []
+                        - name: metadata
+                          type: object
+                          required: true
+                          positional: false
+                          default: null
+                          description: ""
+                          fields:
+                            - name: serialization_metadata
+                              type: object
+                              required: true
+                              positional: false
+                              default: null
+                              description: ""
+                              fields: []
+                            - name: submission_mode
+                              type: string
+                              required: true
+                              positional: false
+                              default: null
+                              description: ""
+                              fields: []
+                    - name: model
+                      type: string
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: parent_message_id
+                      type: string
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                      format: uuid
+                    - name: supported_encodings
+                      type: array
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: supports_buffering
+                      type: boolean
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: system_hints
+                      type: array
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: thinking_effort
+                      type: string
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: timezone
+                      type: string
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: timezone_offset_min
+                      type: integer
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                request_content_type: application/json
+                response:
+                    type: object
+                    item: conversation
+                pagination: null
+                observed_auth:
+                    - authorization
+                    - openai-sentinel-chat-requirements-token
+                    - openai-sentinel-proof-token
+                    - openai-sentinel-turnstile-token
+                    - x-conduit-token
+            create_conversation_2:
+                method: POST
+                path: /backend-api/conversation
+                description: POST /backend-api/conversation
+                params: []
+                body:
+                    - name: action
+                      type: string
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: messages
+                      type: array
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: model
+                      type: string
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                request_content_type: application/json
+                response:
+                    type: object
+                    item: Conversation
+                pagination: null
+                observed_auth:
+                    - authorization
+                    - openai-sentinel-chat-requirements-token
+            create_prepare:
+                method: POST
+                path: /backend-api/f/conversation/prepare
+                description: POST /backend-api/f/conversation/prepare
+                params: []
+                body: []
+                response:
+                    type: object
+                    item: Prepare
+                pagination: null
+                observed_auth:
+                    - authorization
+            create_search:
+                method: POST
+                path: /backend-api/global/search
+                description: POST /backend-api/global/search
+                params: []
+                body:
+                    - name: limit
+                      type: integer
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: query
+                      type: string
+                      required: true
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                request_content_type: application/json
+                response:
+                    type: array
+                    item: SearchItem2
+                pagination: null
+                response_path: items
+                observed_auth:
+                    - authorization
+            list_6aaa52c7_daec_83ee_9c8a_e1635dbf397e:
+                method: GET
+                path: /backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e
+                description: GET /backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e
+                params: []
+                body: []
+                response:
+                    type: array
+                    item: T6aaa52c7Daec83ee9c8aE1635dbf397eMessage
+                pagination: null
+                response_path: messages
+                observed_auth:
+                    - authorization
+            list_conversations:
+                method: GET
+                path: /backend-api/conversations
+                description: GET /backend-api/conversations
+                params:
+                    - name: is_archived
+                      type: boolean
+                      required: false
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: is_starred
+                      type: boolean
+                      required: false
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: limit
+                      type: integer
+                      required: false
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: offset
+                      type: integer
+                      required: false
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: order
+                      type: string
+                      required: false
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                body: []
+                response:
+                    type: array
+                    item: ConversationItem
+                pagination: null
+                response_path: items
+                observed_auth:
+                    - authorization
+            list_messages:
+                method: GET
+                path: /backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e/messages
+                description: GET /backend-api/conversations/6aaa52c7-daec-83ee-9c8a-e1635dbf397e/messages
+                params:
+                    - name: after
+                      type: string
+                      required: false
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                body: []
+                response:
+                    type: array
+                    item: Message
+                pagination: null
+                response_path: messages
+                observed_auth:
+                    - authorization
+            list_models:
+                method: GET
+                path: /backend-api/models
+                description: GET /backend-api/models
+                params:
+                    - name: history_view_enabled
+                      type: boolean
+                      required: false
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                body: []
+                response:
+                    type: array
+                    item: ModelCategory
+                pagination: null
+                response_path: categories
+                observed_auth:
+                    - authorization
+            list_search:
+                method: GET
+                path: /backend-api/conversations/search
+                description: GET /backend-api/conversations/search
+                params:
+                    - name: limit
+                      type: integer
+                      required: false
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: offset
+                      type: integer
+                      required: false
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                    - name: query
+                      type: string
+                      required: false
+                      positional: false
+                      default: null
+                      description: ""
+                      fields: []
+                body: []
+                response:
+                    type: array
+                    item: SearchItem
+                pagination: null
+                response_path: items
+                observed_auth:
+                    - authorization
+            list_stream_status:
+                method: GET
+                path: /backend-api/conversations/6ab00407-f62c-83e8-bf9f-1db869ba9374/stream_status
+                description: GET /backend-api/conversations/6ab00407-f62c-83e8-bf9f-1db869ba9374/stream_status
+                params: []
+                body: []
+                response:
+                    type: object
+                    item: StreamStatus
+                pagination: null
+                observed_auth:
+                    - authorization
+types:
+    Account:
+        fields:
+            - name: account_id
+              type: string
+            - name: plan_type
+              type: string
+    Author:
+        fields:
+            - name: metadata
+              type: object
+            - name: role
+              type: string
+    Author2:
+        fields:
+            - name: metadata
+              type: object
+            - name: role
+              type: string
+    ChatRequirement:
+        fields:
+            - name: expire_after
+              type: integer
+            - name: expire_at
+              type: integer
+            - name: persona
+              type: string
+            - name: proofofwork
+              type: ref:Proofofwork
+            - name: so
+              type: ref:So
+            - name: token
+              type: string
+            - name: turnstile
+              type: ref:Turnstile
+    Content:
+        fields:
+            - name: content_type
+              type: string
+            - name: parts
+              type: array
+    Content2:
+        fields:
+            - name: content_type
+              type: string
+            - name: parts
+              type: array
+    ContextScopesV2:
+        fields:
+            - name: context_scopes
+              type: array
+    Conversation:
+        fields:
+            - name: detail
+              type: string
+    ConversationItem:
+        fields:
+            - name: blocked_urls
+              type: array
+            - name: context_scopes_v2
+              type: ref:ContextScopesV2
+            - name: create_time
+              type: string
+              format: date-time
+            - name: id
+              type: string
+            - name: is_archived
+              type: bool
+            - name: is_automation_conversation
+              type: bool
+            - name: is_do_not_remember
+              type: bool
+            - name: is_temporary_chat
+              type: bool
+            - name: memory_scope
+              type: string
+            - name: safe_urls
+              type: array
+            - name: sugar_item_visible
+              type: bool
+            - name: title
+              type: string
+            - name: update_time
+              type: string
+              format: date-time
+    Message:
+        fields:
+            - name: author
+              type: ref:Author2
+            - name: content
+              type: ref:Content2
+            - name: create_time
+              type: number
+            - name: end_turn
+              type: bool
+            - name: id
+              type: string
+            - name: metadata
+              type: ref:Metadata2
+            - name: recipient
+              type: string
+            - name: status
+              type: string
+            - name: weight
+              type: integer
+    Metadata:
+        fields:
+            - name: is_visually_hidden_from_conversation
+              type: bool
+            - name: request_id
+              type: string
+    Metadata2:
+        fields:
+            - name: request_id
+              type: string
+    ModelCategory:
+        fields:
+            - name: category
+              type: string
+            - name: models
+              type: array
+            - name: priority
+              type: integer
+    Payload:
+        fields:
+            - name: kind
+              type: string
+            - name: message_id
+              type: string
+              format: uuid
+            - name: snippet
+              type: string
+    Payload2:
+        fields:
+            - name: conversation_id
+              type: string
+            - name: is_archived
+              type: bool
+            - name: kind
+              type: string
+            - name: message_id
+              type: string
+              format: uuid
+    Prepare:
+        fields:
+            - name: conduit_token
+              type: string
+            - name: status
+              type: string
+    Proofofwork:
+        fields:
+            - name: difficulty
+              type: string
+            - name: required
+              type: bool
+            - name: seed
+              type: string
+    SearchItem:
+        fields:
+            - name: conversation_id
+              type: string
+            - name: current_node_id
+              type: string
+              format: uuid
+            - name: is_archived
+              type: bool
+            - name: payload
+              type: ref:Payload
+            - name: title
+              type: string
+            - name: update_time
+              type: number
+    SearchItem2:
+        fields:
+            - name: id
+              type: string
+            - name: match_kind
+              type: string
+            - name: payload
+              type: ref:Payload2
+            - name: snippet
+              type: string
+            - name: source_key
+              type: string
+            - name: source_type
+              type: string
+            - name: title
+              type: string
+            - name: update_time
+              type: number
+    Session:
+        fields:
+            - name: accessToken
+              type: string
+            - name: account
+              type: ref:Account
+            - name: authProvider
+              type: string
+            - name: expires
+              type: string
+              format: date-time
+            - name: sessionToken
+              type: string
+            - name: user
+              type: ref:User
+    So:
+        fields:
+            - name: a
+              type: integer
+    StreamStatus:
+        fields:
+            - name: detail
+              type: string
+    T6aaa52c7Daec83ee9c8aE1635dbf397eMessage:
+        fields:
+            - name: author
+              type: ref:Author
+            - name: content
+              type: ref:Content
+            - name: create_time
+              type: number
+            - name: id
+              type: string
+              format: uuid
+            - name: metadata
+              type: ref:Metadata
+            - name: recipient
+              type: string
+            - name: status
+              type: string
+            - name: weight
+              type: integer
+    Turnstile:
+        fields:
+            - name: difficulty
+              type: string
+            - name: required
+              type: bool
+    User:
+        fields:
+            - name: email
+              type: string
+            - name: id
+              type: string
+            - name: name
+              type: string
