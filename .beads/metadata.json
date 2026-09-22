@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "library",
+  "project_id": "d1e50a75-b7eb-4346-9c14-171d0b68f5c4"
+}
