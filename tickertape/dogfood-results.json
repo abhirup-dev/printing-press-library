@@ -1,0 +1,222 @@
+{
+  "dir": "\u003ccli-dir\u003e/tickertape-pp-cli",
+  "spec_path": "\u003ccli-dir\u003e/spec.yaml",
+  "spec_source": "bundled",
+  "verdict": "FAIL",
+  "path_check": {
+    "tested": 0,
+    "valid": 0,
+    "valid_pct": 0,
+    "skipped": true,
+    "detail": "internal-yaml spec: paths validated at parse time"
+  },
+  "auth_check": {
+    "spec_scheme": "",
+    "generated_format": "unknown",
+    "match": true,
+    "detail": "no bot/bearer/basic scheme detected"
+  },
+  "browser_session_check": {
+    "required": false,
+    "pass": true,
+    "detail": "browser-session auth not required"
+  },
+  "oauth_scope_coverage_check": {
+    "checked": 0,
+    "covered": 0,
+    "skipped": true,
+    "detail": "no OAuth-scoped endpoints in spec"
+  },
+  "dead_flags": {
+    "total": 14,
+    "dead": 1,
+    "items": [
+      "allowPartialFailure"
+    ]
+  },
+  "dead_functions": {
+    "total": 107,
+    "dead": 11,
+    "items": [
+      "detectPartialFailure",
+      "isDryRunResponseForClient",
+      "isSyncAccessWarning",
+      "parseSyncKVFlags",
+      "parseSyncUserParams",
+      "partialFailureErr",
+      "readSecretFromStdin",
+      "retainCLIQueryParams",
+      "retainExplicitQueryParams",
+      "syncErrorJSON",
+      "syncWarningJSON"
+    ]
+  },
+  "pipeline_check": {
+    "sync_calls_domain": false,
+    "search_calls_domain": false,
+    "domain_tables": 0,
+    "sync_file_emitted": false,
+    "sync_resources_present": false,
+    "detail": "sync Upsert calls not found; search methods not found"
+  },
+  "example_check": {
+    "tested": 10,
+    "with_examples": 10,
+    "valid_examples": 10,
+    "detail": "10/10 commands have examples"
+  },
+  "wiring_check": {
+    "command_tree": {
+      "defined": 80,
+      "registered": 80
+    },
+    "config_consistency": {
+      "consistent": true
+    },
+    "workflow_completeness": {
+      "skipped": true,
+      "total_steps": 0,
+      "mapped_steps": 0,
+      "detail": "no workflow_verify.yaml found"
+    }
+  },
+  "novel_features_check": {
+    "planned": 7,
+    "found": 7,
+    "depth_mismatches": [
+      {
+        "command": "inspect access",
+        "advertised": "inspect access company scorecard",
+        "actual": "company scorecard"
+      }
+    ]
+  },
+  "mcp_surface_parity": {
+    "state": "runtime_walking",
+    "pass": true,
+    "detail": "MCP surface mirrors the Cobra tree at runtime"
+  },
+  "reimplementation_check": {
+    "checked": 7,
+    "exempted_via_store": 0,
+    "suspicious": [
+      {
+        "command": "company timeline",
+        "file": "company_timeline.go",
+        "reason": "hand-rolled response: no API client call, no store access"
+      },
+      {
+        "command": "lookup",
+        "file": "lookup.go",
+        "reason": "hand-rolled response: no API client call, no store access"
+      },
+      {
+        "command": "inspect access",
+        "file": "inspect_access.go",
+        "reason": "hand-rolled response: no API client call, no store access"
+      },
+      {
+        "command": "market brief",
+        "file": "company_brief.go",
+        "reason": "hand-rolled response: no API client call, no store access"
+      },
+      {
+        "command": "company brief",
+        "file": "company_brief.go",
+        "reason": "hand-rolled response: no API client call, no store access"
+      },
+      {
+        "command": "screen catalog",
+        "file": "screen_catalog.go",
+        "reason": "hand-rolled response: no API client call, no store access"
+      }
+    ],
+    "missing_data_source_strategy": [
+      {
+        "command": "company timeline",
+        "file": "company_timeline.go",
+        "reason": "missing // pp:data-source \u003cauto|local|live|computed\u003e annotation"
+      },
+      {
+        "command": "lookup",
+        "file": "lookup.go",
+        "reason": "missing // pp:data-source \u003cauto|local|live|computed\u003e annotation"
+      },
+      {
+        "command": "inspect access",
+        "file": "inspect_access.go",
+        "reason": "missing // pp:data-source \u003cauto|local|live|computed\u003e annotation"
+      },
+      {
+        "command": "market brief",
+        "file": "company_brief.go",
+        "reason": "missing // pp:data-source \u003cauto|local|live|computed\u003e annotation"
+      },
+      {
+        "command": "company brief",
+        "file": "company_brief.go",
+        "reason": "missing // pp:data-source \u003cauto|local|live|computed\u003e annotation"
+      },
+      {
+        "command": "screen catalog",
+        "file": "screen_catalog.go",
+        "reason": "missing // pp:data-source \u003cauto|local|live|computed\u003e annotation"
+      }
+    ]
+  },
+  "description_drift_check": {
+    "expected": "Live, provenance-aware Tickertape research without stale local market data",
+    "findings": [
+      {
+        "surface": "root.Short",
+        "file": "internal/cli/root.go",
+        "actual": "Research Indian and US stocks, mutual funds, ETFs, indices, screen metadata, scorecards, market mood, and deal ideas from live Tickertape endpoints without storing domain data locally.",
+        "expected": "Live, provenance-aware Tickertape research without stale local market data"
+      }
+    ]
+  },
+  "source_client_check": {
+    "checked": 13
+  },
+  "print_json_filtered_check": {
+    "checked": 73
+  },
+  "test_presence": {
+    "checked": 2,
+    "missing_tests": [
+      "platform"
+    ]
+  },
+  "naming_check": {
+    "checked": 73,
+    "violations": [
+      {
+        "file": "internal/cli/company_info.go",
+        "banned": "info",
+        "preferred": "get",
+        "category": "verb"
+      },
+      {
+        "file": "internal/cli/mutualfund_info.go",
+        "banned": "info",
+        "preferred": "get",
+        "category": "verb"
+      }
+    ]
+  },
+  "sync_param_drop_check": {
+    "checked": 0,
+    "skipped": true
+  },
+  "issues": [
+    "1 dead flags found",
+    "11 dead helper functions found",
+    "sync uses generic Upsert only",
+    "1 novel feature command-depth mismatches: inspect access advertised as inspect access company scorecard but registered as company scorecard",
+    "6/7 novel features look reimplemented: company timeline (company_timeline.go) — hand-rolled response: no API client call, no store access; lookup (lookup.go) — hand-rolled response: no API client call, no store access; inspect access (inspect_access.go) — hand-rolled response: no API client call, no store access; market brief (company_brief.go) — hand-rolled response: no API client call, no store access; company brief (company_brief.go) — hand-rolled response: no API client call, no store access; screen catalog (screen_catalog.go) — hand-rolled response: no API client call, no store access",
+    "6/7 novel features missing data-source strategy: company timeline (company_timeline.go) — missing // pp:data-source \u003cauto|local|live|computed\u003e annotation; lookup (lookup.go) — missing // pp:data-source \u003cauto|local|live|computed\u003e annotation; inspect access (inspect_access.go) — missing // pp:data-source \u003cauto|local|live|computed\u003e annotation; market brief (company_brief.go) — missing // pp:data-source \u003cauto|local|live|computed\u003e annotation; company brief (company_brief.go) — missing // pp:data-source \u003cauto|local|live|computed\u003e annotation; screen catalog (screen_catalog.go) — missing // pp:data-source \u003cauto|local|live|computed\u003e annotation",
+    "pure-logic packages with no tests: platform",
+    "2 naming violations: verb info→get in internal/cli/company_info.go; verb info→get in internal/cli/mutualfund_info.go",
+    "1 description surface(s) drifted from research.json narrative: root.Short in internal/cli/root.go is \"Research Indian and US stocks, mutual funds, ETFs, indices, screen metadata, scorecards, market mood, and deal ideas from live Tickertape endpoints without storing domain data locally.\"; expected \"Live, provenance-aware Tickertape research without stale local market data\""
+  ]
+}

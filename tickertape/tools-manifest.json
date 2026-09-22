@@ -1,0 +1,845 @@
+{
+  "api_name": "tickertape",
+  "base_url": "https://api.tickertape.in",
+  "description": "Live, provenance-aware Tickertape research without stale local market data",
+  "mcp_ready": "full",
+  "http_transport": "standard",
+  "auth": {
+    "type": ""
+  },
+  "required_headers": [],
+  "tools": [
+    {
+      "name": "company_aggregated_deals",
+      "description": "Entitlement-aware company deal signals. Required: sid. Returns the JsonObject. (requires auth)",
+      "method": "GET",
+      "path": "/stocks/aggregateddeals/{sid}",
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_ai_summary",
+      "description": "Entitlement-aware AI summary; preserves explicit 401 or locked access metadata. Required: sid. Returns the JsonObject. (requires auth)",
+      "method": "GET",
+      "path": "/stocks/aiSummary/{sid}",
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_chart_inter",
+      "description": "Inter-day historical stock chart. Required: sid. Optional: duration. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/stocks/charts/inter/{sid}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        },
+        {
+          "name": "duration",
+          "type": "string",
+          "location": "query",
+          "description": "Chart duration supported by Tickertape."
+        }
+      ]
+    },
+    {
+      "name": "company_chart_intra",
+      "description": "Intra-day stock chart. Required: sid. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/stocks/charts/intra/{sid}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_checklist",
+      "description": "Public company investment checklist records. Required: sid. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/stocks/investmentChecklists/{sid}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_financials",
+      "description": "Company income statement, balance sheet, or cash flow rows. Required: statement, sid, period, view. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/stocks/financials/{statement}/{sid}/{period}/{view}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "statement",
+          "type": "string",
+          "location": "path",
+          "description": "Statement name, such as income, balancesheet, or cashflow.",
+          "required": true
+        },
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        },
+        {
+          "name": "period",
+          "type": "string",
+          "location": "path",
+          "description": "Annual or quarterly period selector.",
+          "required": true
+        },
+        {
+          "name": "view",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape financial view selector.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_forecast",
+      "description": "Entitlement-aware analyst forecast envelope. Required: sid. Returns the JsonObject. (requires auth)",
+      "method": "GET",
+      "path": "/stocks/estimates/forecast/{sid}",
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_info",
+      "description": "Company identity, labels, ratios, and quote metadata. Required: sid. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/stocks/info/{sid}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_news",
+      "description": "Company news records. Required: sid. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/stocks/news/{sid}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_ratings",
+      "description": "Entitlement-aware analyst ratings envelope. Required: sid. Returns the JsonObject. (requires auth)",
+      "method": "GET",
+      "path": "/stocks/ratings/{sid}",
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_ratios",
+      "description": "Key ratio records for a company. Required: sid. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/stocks/keyratioList/{sid}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_scorecard",
+      "description": "Six-dimension scorecard with locked, rank, callout, and element metadata. Required: sid. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/stocks/scorecard/{sid}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "company_smallcases",
+      "description": "Public smallcase references associated with a company. Required: sid. Optional: count, offset. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/stocks/smallcases/{sid}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        },
+        {
+          "name": "count",
+          "type": "integer",
+          "location": "query",
+          "description": "Number of records to return."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "location": "query",
+          "description": "Result offset."
+        }
+      ]
+    },
+    {
+      "name": "company_summary",
+      "description": "Financial summary, events, news, peers, forecast envelope, and presentations. Required: sid. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/stocks/summary/{sid}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "sid",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape security ID or symbol slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "deals_ideas",
+      "description": "Public deal ideas and market-mover highlights. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/stocks/deals/ideas",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "deals_insight",
+      "description": "Deal insights by type, duration, and sort; required values are source-specific. Required: type, duration, sort-by. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/stocks/deals/insight",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "type",
+          "type": "string",
+          "location": "query",
+          "description": "Tickertape deal type.",
+          "required": true
+        },
+        {
+          "name": "duration",
+          "type": "string",
+          "location": "query",
+          "description": "Tickertape duration selector.",
+          "required": true
+        },
+        {
+          "name": "sort-by",
+          "wire_name": "sortBy",
+          "type": "string",
+          "location": "query",
+          "description": "Tickertape sort selector.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "homepage_events",
+      "description": "Paginated homepage events with optional asset and type filters. Optional: count, offset, sids (plus 1 more). Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/v2/homepage/events",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "count",
+          "type": "integer",
+          "location": "query",
+          "description": "Page size."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "location": "query",
+          "description": "Page offset."
+        },
+        {
+          "name": "sids",
+          "type": "string",
+          "location": "query",
+          "description": "Optional comma-separated security IDs."
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "location": "query",
+          "description": "Optional Tickertape event type."
+        }
+      ]
+    },
+    {
+      "name": "market_mood",
+      "description": "Current Market Mood Index and component indicators. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/mmi/now",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "market_quotes",
+      "description": "Snapshot quotes for comma-separated Tickertape security IDs. Required: sids. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/quotes",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "sids",
+          "type": "string",
+          "location": "query",
+          "description": "Comma-separated security IDs.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "market_status",
+      "description": "Market open, closed, holiday, and trading-window status. Required: market. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/market/{market}/status",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "market",
+          "type": "string",
+          "location": "path",
+          "description": "Market code, IN or US.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "market_us_latest_quotes",
+      "description": "Latest US quotes keyed by ticker. Required: tickers. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/quotes/US/latest",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "tickers",
+          "type": "string",
+          "location": "query",
+          "description": "Comma-separated US tickers.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "mutualfund_chart_inter",
+      "description": "Mutual-fund historical NAV or return chart. Required: mf-id. Optional: duration. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/mutualfunds/{mf_id}/charts/inter",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "mf-id",
+          "wire_name": "mf_id",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape mutual-fund ID, ISIN, or slug.",
+          "required": true
+        },
+        {
+          "name": "duration",
+          "type": "string",
+          "location": "query",
+          "description": "Chart duration supported by Tickertape."
+        }
+      ]
+    },
+    {
+      "name": "mutualfund_chart_sip",
+      "description": "Mutual-fund SIP chart. Required: mf-id. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/mutualfunds/{mf_id}/charts/sip",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "mf-id",
+          "wire_name": "mf_id",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape mutual-fund ID, ISIN, or slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "mutualfund_checklist",
+      "description": "Mutual-fund investment checklist records. Required: mf-id. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/mutualfunds/{mf_id}/investmentChecklists",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "mf-id",
+          "wire_name": "mf_id",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape mutual-fund ID, ISIN, or slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "mutualfund_holdings",
+      "description": "Allocation history, current allocation, sectors, and red-flag counts. Required: mf-id. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/mutualfunds/{mf_id}/holdings",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "mf-id",
+          "wire_name": "mf_id",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape mutual-fund ID, ISIN, or slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "mutualfund_info",
+      "description": "Mutual-fund identity, AMC, NAV, option, and sector labels. Required: mf-id. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/mutualfunds/{mf_id}/info",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "mf-id",
+          "wire_name": "mf_id",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape mutual-fund ID, ISIN, or slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "mutualfund_list",
+      "description": "Mutual-fund universe and identifiers. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/mutualfunds/list",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "mutualfund_managers",
+      "description": "Fund-manager records. Required: mf-id. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/mutualfunds/{mf_id}/fundmanagers",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "mf-id",
+          "wire_name": "mf_id",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape mutual-fund ID, ISIN, or slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "mutualfund_summary",
+      "description": "Mutual-fund peers, scheme information, ratios, CAGR, tax, and AMC details. Required: mf-id. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/mutualfunds/{mf_id}/summary",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "mf-id",
+          "wire_name": "mf_id",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape mutual-fund ID, ISIN, or slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "mutualfund_widget",
+      "description": "Compact mutual-fund widget and score data. Required: mf-id. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/mutualfunds/{mf_id}/widget",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "mf-id",
+          "wire_name": "mf_id",
+          "type": "string",
+          "location": "path",
+          "description": "Tickertape mutual-fund ID, ISIN, or slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "screener_equity_filters",
+      "description": "Equity screener filter metadata with premium and locked markers. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/screener/filters",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "screener_equity_prebuilt",
+      "description": "Equity prebuilt screen catalog. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/screener/prebuilt",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "screener_equity_query",
+      "description": "Read-only equity screener query; premium fields may return access errors. Optional: filters, project, sort (plus 1 more). Returns the new JsonObject. (requires auth)",
+      "method": "POST",
+      "path": "/screener/query",
+      "params": [
+        {
+          "name": "filters",
+          "type": "object",
+          "location": "body",
+          "description": "Tickertape filter expression object."
+        },
+        {
+          "name": "project",
+          "type": "object",
+          "location": "body",
+          "description": "Requested output fields."
+        },
+        {
+          "name": "sort",
+          "type": "object",
+          "location": "body",
+          "description": "Sort specification."
+        },
+        {
+          "name": "page",
+          "type": "object",
+          "location": "body",
+          "description": "Pagination specification."
+        }
+      ]
+    },
+    {
+      "name": "screener_equity_universes",
+      "description": "Equity screener universe metadata. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/screener/universes",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "screener_mf_filters",
+      "description": "Mutual-fund screener filter metadata. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/mf-screener/filters",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "screener_mf_prebuilt",
+      "description": "Mutual-fund prebuilt screen catalog. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/mf-screener/prebuilt",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "screener_mf_query",
+      "description": "Read-only mutual-fund screener query; premium fields may return access errors. Optional: filters, project, sort (plus 1 more). Returns the new JsonObject. (requires auth)",
+      "method": "POST",
+      "path": "/mf-screener/query",
+      "params": [
+        {
+          "name": "filters",
+          "type": "object",
+          "location": "body",
+          "description": "Tickertape filter expression object."
+        },
+        {
+          "name": "project",
+          "type": "object",
+          "location": "body",
+          "description": "Requested output fields."
+        },
+        {
+          "name": "sort",
+          "type": "object",
+          "location": "body",
+          "description": "Sort specification."
+        },
+        {
+          "name": "page",
+          "type": "object",
+          "location": "body",
+          "description": "Pagination specification."
+        }
+      ]
+    },
+    {
+      "name": "screener_mf_universes",
+      "description": "Mutual-fund screener universe metadata. Returns array of JsonObject.",
+      "method": "GET",
+      "path": "/mf-screener/universes",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "search_resource_suggest",
+      "description": "Suggest Indian assets and return search metadata. Required: q. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/search/suggest",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "q",
+          "type": "string",
+          "location": "path",
+          "description": "Search text, symbol, name, or slug.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "us_chart",
+      "description": "US security intra-day or inter-day chart. Required: ticker, kind. Optional: duration. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/US/securities/{ticker}/charts/{kind}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "ticker",
+          "type": "string",
+          "location": "path",
+          "description": "US ticker symbol.",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "location": "path",
+          "description": "Chart kind, intra or inter.",
+          "required": true
+        },
+        {
+          "name": "duration",
+          "type": "string",
+          "location": "query",
+          "description": "Chart duration supported by Tickertape."
+        }
+      ]
+    },
+    {
+      "name": "us_etf_info",
+      "description": "US ETF identity and asset metadata. Required: ticker. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/US/etfs/info",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "ticker",
+          "type": "string",
+          "location": "query",
+          "description": "Comma-separated US ETF tickers.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "us_etf_overview",
+      "description": "US ETF overview with type and top holdings. Required: ticker. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/US/etfs/{ticker}/overview",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "ticker",
+          "type": "string",
+          "location": "path",
+          "description": "US ETF ticker symbol.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "us_filters",
+      "description": "US security and ETF filter metadata. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/US/filters",
+      "no_auth": true,
+      "params": []
+    },
+    {
+      "name": "us_financials",
+      "description": "US stock income, balance-sheet, or cash-flow financials. Required: ticker, statement. Optional: view. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/US/securities/{ticker}/financials/{statement}",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "ticker",
+          "type": "string",
+          "location": "path",
+          "description": "US ticker symbol.",
+          "required": true
+        },
+        {
+          "name": "statement",
+          "type": "string",
+          "location": "path",
+          "description": "Statement, income, balancesheet, or cashflow.",
+          "required": true
+        },
+        {
+          "name": "view",
+          "type": "string",
+          "location": "query",
+          "description": "Financial view selector."
+        }
+      ]
+    },
+    {
+      "name": "us_security_info",
+      "description": "US security identity and asset metadata. Required: ticker. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/US/securities/info",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "ticker",
+          "type": "string",
+          "location": "query",
+          "description": "Comma-separated US tickers.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "us_security_overview",
+      "description": "US stock overview with metrics, labels, holdings, and peers. Required: ticker. Returns the JsonObject.",
+      "method": "GET",
+      "path": "/US/securities/{ticker}/overview",
+      "no_auth": true,
+      "params": [
+        {
+          "name": "ticker",
+          "type": "string",
+          "location": "path",
+          "description": "US ticker symbol.",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "novel_features": [
+    {
+      "name": "Entitlement-aware scorecards",
+      "command": "company scorecard",
+      "description": "Show Tickertape score dimensions, locked fields, entry-point signals, and red flags without silently dropping premium data."
+    },
+    {
+      "name": "Company publication timeline",
+      "command": "company timeline",
+      "description": "Combine live company events, news, results, and investor-presentation metadata into a dated source-labelled stream."
+    },
+    {
+      "name": "Live multi-asset lookup",
+      "command": "lookup",
+      "description": "Triages Indian stocks, mutual funds, ETFs, indices, and US securities through one live command while retaining source-specific identity fields."
+    },
+    {
+      "name": "Access and provenance envelope",
+      "command": "inspect access",
+      "description": "Explain source host, route, observation time, entity identity, lock state, and entitlement errors for any live result."
+    },
+    {
+      "name": "MMI component brief",
+      "command": "market brief",
+      "description": "Turn the live Market Mood Index payload into a concise timestamped brief of fear/greed, FII, momentum, volatility, and component signals."
+    },
+    {
+      "name": "Source-specific company research brief",
+      "command": "company brief",
+      "description": "Compose live company identity, summary, scorecard, reports, and access state into one bounded triage response."
+    },
+    {
+      "name": "Live screener catalog navigator",
+      "command": "screen catalog",
+      "description": "Organize equity and mutual-fund filters, categories, universes, and prebuilt screens while preserving premium markers."
+    }
+  ]
+}

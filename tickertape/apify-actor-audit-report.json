@@ -1,0 +1,9 @@
+{
+  "dir": "\u003ccli-dir\u003e/tickertape-pp-cli",
+  "research_dir": "\u003ccli-dir\u003e/20260922-042624-006e2e2d",
+  "verdict": "pass",
+  "actors": null,
+  "issues": [
+    "no Apify actor references found, skipping"
+  ]
+}

@@ -1,0 +1,631 @@
+name: tickertape
+display_name: Tickertape
+version: 0.1.0
+description: >-
+  Live, read-only research access to Tickertape's public Indian and US market,
+  company, mutual-fund, ETF, index, screener, scorecard, MMI, and deal surfaces.
+  Domain data is never cached or persisted; premium and authenticated fields
+  remain explicitly marked when unavailable.
+cli_description: >-
+  Research Indian and US stocks, mutual funds, ETFs, indices, screen metadata,
+  scorecards, market mood, and deal ideas from live Tickertape endpoints without
+  storing domain data locally.
+base_url: https://api.tickertape.in
+spec_source: sniffed
+category: other
+http_transport: standard
+health_check_path: /mmi/now
+learn:
+  disabled: true
+resources:
+  search_resource:
+    description: Search and symbol discovery.
+    endpoints:
+      suggest:
+        method: GET
+        path: /search/suggest
+        description: Suggest Indian assets and return search metadata.
+        params:
+          - name: q
+            type: string
+            required: true
+            positional: true
+            description: Search text, symbol, name, or slug.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+  market:
+    description: Live market-wide status, mood, and quote surfaces.
+    endpoints:
+      mood:
+        method: GET
+        path: /mmi/now
+        description: Current Market Mood Index and component indicators.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      status:
+        method: GET
+        path: /market/{market}/status
+        base_url: https://gms-api.tickertape.in
+        description: Market open, closed, holiday, and trading-window status.
+        params:
+          - name: market
+            type: string
+            required: true
+            positional: true
+            description: Market code, IN or US.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      quotes:
+        method: GET
+        path: /quotes
+        base_url: https://quotes-api.tickertape.in
+        description: Snapshot quotes for comma-separated Tickertape security IDs.
+        params:
+          - name: sids
+            type: string
+            required: true
+            description: Comma-separated security IDs.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      us_latest_quotes:
+        method: GET
+        path: /quotes/US/latest
+        base_url: https://gms-api.tickertape.in
+        description: Latest US quotes keyed by ticker.
+        params:
+          - name: tickers
+            type: string
+            required: true
+            description: Comma-separated US tickers.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+  company:
+    description: Indian company identity, fundamentals, reports, scorecards, and public signals.
+    endpoints:
+      info:
+        method: GET
+        path: /stocks/info/{sid}
+        description: Company identity, labels, ratios, and quote metadata.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      summary:
+        method: GET
+        path: /stocks/summary/{sid}
+        description: Financial summary, events, news, peers, forecast envelope, and presentations.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      chart_inter:
+        method: GET
+        path: /stocks/charts/inter/{sid}
+        description: Inter-day historical stock chart.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+          - name: duration
+            type: string
+            description: Chart duration supported by Tickertape.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      chart_intra:
+        method: GET
+        path: /stocks/charts/intra/{sid}
+        description: Intra-day stock chart.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      financials:
+        method: GET
+        path: /stocks/financials/{statement}/{sid}/{period}/{view}
+        description: Company income statement, balance sheet, or cash flow rows.
+        params:
+          - name: statement
+            type: string
+            required: true
+            positional: true
+            description: Statement name, such as income, balancesheet, or cashflow.
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+          - name: period
+            type: string
+            required: true
+            positional: true
+            description: Annual or quarterly period selector.
+          - name: view
+            type: string
+            required: true
+            positional: true
+            description: Tickertape financial view selector.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      checklist:
+        method: GET
+        path: /stocks/investmentChecklists/{sid}
+        description: Public company investment checklist records.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      news:
+        method: GET
+        path: /stocks/news/{sid}
+        description: Company news records.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      ratios:
+        method: GET
+        path: /stocks/keyratioList/{sid}
+        description: Key ratio records for a company.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      smallcases:
+        method: GET
+        path: /stocks/smallcases/{sid}
+        description: Public smallcase references associated with a company.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+          - name: count
+            type: integer
+            description: Number of records to return.
+          - name: offset
+            type: integer
+            description: Result offset.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      scorecard:
+        method: GET
+        path: /stocks/scorecard/{sid}
+        base_url: https://analyze.api.tickertape.in
+        description: Six-dimension scorecard with locked, rank, callout, and element metadata.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      ai_summary:
+        method: GET
+        path: /stocks/aiSummary/{sid}
+        description: Entitlement-aware AI summary; preserves explicit 401 or locked access metadata.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+        response: {type: object, item: JsonObject}
+      forecast:
+        method: GET
+        path: /stocks/estimates/forecast/{sid}
+        description: Entitlement-aware analyst forecast envelope.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+        response: {type: object, item: JsonObject}
+      ratings:
+        method: GET
+        path: /stocks/ratings/{sid}
+        description: Entitlement-aware analyst ratings envelope.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+        response: {type: object, item: JsonObject}
+      aggregated_deals:
+        method: GET
+        path: /stocks/aggregateddeals/{sid}
+        description: Entitlement-aware company deal signals.
+        params:
+          - name: sid
+            type: string
+            required: true
+            positional: true
+            description: Tickertape security ID or symbol slug.
+        response: {type: object, item: JsonObject}
+  mutualfund:
+    description: Mutual-fund discovery, summary, holdings, charts, managers, and checklists.
+    endpoints:
+      list:
+        method: GET
+        path: /mutualfunds/list
+        description: Mutual-fund universe and identifiers.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      info:
+        method: GET
+        path: /mutualfunds/{mf_id}/info
+        description: Mutual-fund identity, AMC, NAV, option, and sector labels.
+        params:
+          - name: mf_id
+            flag_name: mf-id
+            type: string
+            required: true
+            positional: true
+            description: Tickertape mutual-fund ID, ISIN, or slug.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      summary:
+        method: GET
+        path: /mutualfunds/{mf_id}/summary
+        description: Mutual-fund peers, scheme information, ratios, CAGR, tax, and AMC details.
+        params:
+          - name: mf_id
+            flag_name: mf-id
+            type: string
+            required: true
+            positional: true
+            description: Tickertape mutual-fund ID, ISIN, or slug.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      holdings:
+        method: GET
+        path: /mutualfunds/{mf_id}/holdings
+        description: Allocation history, current allocation, sectors, and red-flag counts.
+        params:
+          - name: mf_id
+            flag_name: mf-id
+            type: string
+            required: true
+            positional: true
+            description: Tickertape mutual-fund ID, ISIN, or slug.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      chart_inter:
+        method: GET
+        path: /mutualfunds/{mf_id}/charts/inter
+        description: Mutual-fund historical NAV or return chart.
+        params:
+          - name: mf_id
+            flag_name: mf-id
+            type: string
+            required: true
+            positional: true
+            description: Tickertape mutual-fund ID, ISIN, or slug.
+          - name: duration
+            type: string
+            description: Chart duration supported by Tickertape.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      chart_sip:
+        method: GET
+        path: /mutualfunds/{mf_id}/charts/sip
+        description: Mutual-fund SIP chart.
+        params:
+          - name: mf_id
+            flag_name: mf-id
+            type: string
+            required: true
+            positional: true
+            description: Tickertape mutual-fund ID, ISIN, or slug.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      managers:
+        method: GET
+        path: /mutualfunds/{mf_id}/fundmanagers
+        description: Fund-manager records.
+        params:
+          - name: mf_id
+            flag_name: mf-id
+            type: string
+            required: true
+            positional: true
+            description: Tickertape mutual-fund ID, ISIN, or slug.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      checklist:
+        method: GET
+        path: /mutualfunds/{mf_id}/investmentChecklists
+        description: Mutual-fund investment checklist records.
+        params:
+          - name: mf_id
+            flag_name: mf-id
+            type: string
+            required: true
+            positional: true
+            description: Tickertape mutual-fund ID, ISIN, or slug.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      widget:
+        method: GET
+        path: /mutualfunds/{mf_id}/widget
+        description: Compact mutual-fund widget and score data.
+        params:
+          - name: mf_id
+            flag_name: mf-id
+            type: string
+            required: true
+            positional: true
+            description: Tickertape mutual-fund ID, ISIN, or slug.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+  screener:
+    description: Equity and mutual-fund filter catalogs, prebuilt screens, universes, and optional queries.
+    endpoints:
+      equity_filters:
+        method: GET
+        path: /screener/filters
+        description: Equity screener filter metadata with premium and locked markers.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      equity_prebuilt:
+        method: GET
+        path: /screener/prebuilt
+        description: Equity prebuilt screen catalog.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      equity_universes:
+        method: GET
+        path: /screener/universes
+        description: Equity screener universe metadata.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      mf_filters:
+        method: GET
+        path: /mf-screener/filters
+        description: Mutual-fund screener filter metadata.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      mf_prebuilt:
+        method: GET
+        path: /mf-screener/prebuilt
+        description: Mutual-fund prebuilt screen catalog.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      mf_universes:
+        method: GET
+        path: /mf-screener/universes
+        description: Mutual-fund screener universe metadata.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      equity_query:
+        method: POST
+        path: /screener/query
+        description: Read-only equity screener query; premium fields may return access errors.
+        body:
+          - name: filters
+            type: object
+            required: false
+            description: Tickertape filter expression object.
+          - name: project
+            type: object
+            required: false
+            description: Requested output fields.
+          - name: sort
+            type: object
+            required: false
+            description: Sort specification.
+          - name: page
+            type: object
+            required: false
+            description: Pagination specification.
+        response: {type: object, item: JsonObject}
+      mf_query:
+        method: POST
+        path: /mf-screener/query
+        description: Read-only mutual-fund screener query; premium fields may return access errors.
+        body:
+          - name: filters
+            type: object
+            required: false
+            description: Tickertape filter expression object.
+          - name: project
+            type: object
+            required: false
+            description: Requested output fields.
+          - name: sort
+            type: object
+            required: false
+            description: Sort specification.
+          - name: page
+            type: object
+            required: false
+            description: Pagination specification.
+        response: {type: object, item: JsonObject}
+  deals:
+    description: Public market-mover and deal-idea surfaces.
+    endpoints:
+      ideas:
+        method: GET
+        path: /stocks/deals/ideas
+        base_url: https://analyze.api.tickertape.in
+        description: Public deal ideas and market-mover highlights.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+      insight:
+        method: GET
+        path: /stocks/deals/insight
+        base_url: https://analyze.api.tickertape.in
+        description: Deal insights by type, duration, and sort; required values are source-specific.
+        params:
+          - name: type
+            type: string
+            required: true
+            description: Tickertape deal type.
+          - name: duration
+            type: string
+            required: true
+            description: Tickertape duration selector.
+          - name: sortBy
+            flag_name: sort-by
+            type: string
+            required: true
+            description: Tickertape sort selector.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+  us:
+    description: US security and ETF research through Tickertape's global market service.
+    endpoints:
+      security_info:
+        method: GET
+        path: /US/securities/info
+        base_url: https://gms-api.tickertape.in
+        description: US security identity and asset metadata.
+        params:
+          - name: ticker
+            type: string
+            required: true
+            description: Comma-separated US tickers.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      etf_info:
+        method: GET
+        path: /US/etfs/info
+        base_url: https://gms-api.tickertape.in
+        description: US ETF identity and asset metadata.
+        params:
+          - name: ticker
+            type: string
+            required: true
+            description: Comma-separated US ETF tickers.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      security_overview:
+        method: GET
+        path: /US/securities/{ticker}/overview
+        base_url: https://gms-api.tickertape.in
+        description: US stock overview with metrics, labels, holdings, and peers.
+        params:
+          - name: ticker
+            type: string
+            required: true
+            positional: true
+            description: US ticker symbol.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      etf_overview:
+        method: GET
+        path: /US/etfs/{ticker}/overview
+        base_url: https://gms-api.tickertape.in
+        description: US ETF overview with type and top holdings.
+        params:
+          - name: ticker
+            type: string
+            required: true
+            positional: true
+            description: US ETF ticker symbol.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      chart:
+        method: GET
+        path: /US/securities/{ticker}/charts/{kind}
+        base_url: https://gms-api.tickertape.in
+        description: US security intra-day or inter-day chart.
+        params:
+          - name: ticker
+            type: string
+            required: true
+            positional: true
+            description: US ticker symbol.
+          - name: kind
+            type: string
+            required: true
+            positional: true
+            description: Chart kind, intra or inter.
+          - name: duration
+            type: string
+            description: Chart duration supported by Tickertape.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      financials:
+        method: GET
+        path: /US/securities/{ticker}/financials/{statement}
+        base_url: https://gms-api.tickertape.in
+        description: US stock income, balance-sheet, or cash-flow financials.
+        params:
+          - name: ticker
+            type: string
+            required: true
+            positional: true
+            description: US ticker symbol.
+          - name: statement
+            type: string
+            required: true
+            positional: true
+            description: Statement, income, balancesheet, or cashflow.
+          - name: view
+            type: string
+            description: Financial view selector.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+      filters:
+        method: GET
+        path: /US/filters
+        base_url: https://gms-api.tickertape.in
+        description: US security and ETF filter metadata.
+        response: {type: object, item: JsonObject}
+        no_auth: true
+  homepage:
+    description: Public event and publication stream.
+    endpoints:
+      events:
+        method: GET
+        path: /v2/homepage/events
+        base_url: https://analyze.api.tickertape.in
+        description: Paginated homepage events with optional asset and type filters.
+        params:
+          - name: count
+            type: integer
+            description: Page size.
+          - name: offset
+            type: integer
+            description: Page offset.
+          - name: sids
+            type: string
+            description: Optional comma-separated security IDs.
+          - name: type
+            type: string
+            description: Optional Tickertape event type.
+        response: {type: array, item: JsonObject}
+        no_auth: true
+types:
+  JsonObject:
+    fields: []

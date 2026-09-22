@@ -1,0 +1,8 @@
+# Root-anchored so cmd/<binary>/ source stays tracked.
+/tickertape-pp-cli
+/tickertape-pp-cli.exe
+/tickertape-pp-mcp
+/tickertape-pp-mcp.exe
+/bin/
+/build/
+/dist/

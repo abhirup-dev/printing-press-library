@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-09-22T01:09:31.110042Z",
+  "printing_press_version": "4.32.2",
+  "api_name": "tickertape",
+  "display_name": "Tickertape",
+  "cli_name": "tickertape-pp-cli",
+  "creator": {
+    "handle": "dev-abhirup-sc",
+    "name": "dev-abhirup-sc"
+  },
+  "owner": "dev-abhirup-sc",
+  "printer": "dev-abhirup-sc",
+  "printer_name": "dev-abhirup-sc",
+  "spec_path": "spec.yaml",
+  "spec_format": "internal",
+  "spec_source": "sniffed",
+  "spec_checksum": "sha256:758ac1645ed419703663bdda2fe691465ae3d3a0f841645cc5d05c01809b0421",
+  "run_id": "20260922-042624-006e2e2d",
+  "category": "other",
+  "description": "Live, provenance-aware Tickertape research without stale local market data",
+  "mcp_binary": "tickertape-pp-mcp",
+  "mcp_tool_count": 46,
+  "mcp_public_tool_count": 40,
+  "mcp_ready": "full",
+  "api_version": "0.1.0",
+  "auth_type": "none",
+  "novel_features": [
+    {
+      "name": "Entitlement-aware scorecards",
+      "command": "company scorecard",
+      "description": "Show Tickertape score dimensions, locked fields, entry-point signals, and red flags without silently dropping premium data."
+    },
+    {
+      "name": "Company publication timeline",
+      "command": "company timeline",
+      "description": "Combine live company events, news, results, and investor-presentation metadata into a dated source-labelled stream."
+    },
+    {
+      "name": "Live multi-asset lookup",
+      "command": "lookup",
+      "description": "Triages Indian stocks, mutual funds, ETFs, indices, and US securities through one live command while retaining source-specific identity fields."
+    },
+    {
+      "name": "Access and provenance envelope",
+      "command": "inspect access",
+      "description": "Explain source host, route, observation time, entity identity, lock state, and entitlement errors for any live result."
+    },
+    {
+      "name": "MMI component brief",
+      "command": "market brief",
+      "description": "Turn the live Market Mood Index payload into a concise timestamped brief of fear/greed, FII, momentum, volatility, and component signals."
+    },
+    {
+      "name": "Source-specific company research brief",
+      "command": "company brief",
+      "description": "Compose live company identity, summary, scorecard, reports, and access state into one bounded triage response."
+    },
+    {
+      "name": "Live screener catalog navigator",
+      "command": "screen catalog",
+      "description": "Organize equity and mutual-fund filters, categories, universes, and prebuilt screens while preserving premium markers."
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "Entitlement-aware scorecards",
+      "command": "company scorecard",
+      "description": "Show Tickertape score dimensions, locked fields, entry-point signals, and red flags without silently dropping premium data."
+    },
+    {
+      "name": "Company publication timeline",
+      "command": "company timeline",
+      "description": "Combine live company events, news, results, and investor-presentation metadata into a dated source-labelled stream."
+    },
+    {
+      "name": "Live multi-asset lookup",
+      "command": "lookup",
+      "description": "Triages Indian stocks, mutual funds, ETFs, indices, and US securities through one live command while retaining source-specific identity fields."
+    },
+    {
+      "name": "Access and provenance envelope",
+      "command": "inspect access",
+      "description": "Explain source host, route, observation time, entity identity, lock state, and entitlement errors for any live result."
+    },
+    {
+      "name": "MMI component brief",
+      "command": "market brief",
+      "description": "Turn the live Market Mood Index payload into a concise timestamped brief of fear/greed, FII, momentum, volatility, and component signals."
+    },
+    {
+      "name": "Source-specific company research brief",
+      "command": "company brief",
+      "description": "Compose live company identity, summary, scorecard, reports, and access state into one bounded triage response."
+    },
+    {
+      "name": "Live screener catalog navigator",
+      "command": "screen catalog",
+      "description": "Organize equity and mutual-fund filters, categories, universes, and prebuilt screens while preserving premium markers."
+    }
+  ],
+  "verify": {
+    "mode": "mock",
+    "pass_rate": 100,
+    "passed": 49,
+    "total": 49,
+    "data_pipeline": true,
+    "verdict": "PASS"
+  },
+  "scorecard": {
+    "steinberger": {
+      "percentage": 80,
+      "grade": "A",
+      "total": 80
+    }
+  }
+}

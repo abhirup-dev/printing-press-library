@@ -1,0 +1,243 @@
+{
+  "api_name": "tickertape",
+  "novelty_score": 8,
+  "alternatives": [
+    {
+      "name": "tickertape-api-client",
+      "url": "https://github.com/The-Great-One/tickertape-api-client",
+      "language": "Python",
+      "install_method": "",
+      "stars": 0,
+      "last_updated": "",
+      "command_count": 0,
+      "has_json_output": false,
+      "has_auth_support": false
+    }
+  ],
+  "gaps": [
+    "Screener POST request bodies and premium-field behavior remain intentionally deferred pending a safe fixture.",
+    "Exact authenticated bootstrap headers and entitlement response schemas were observed only through sanitized page traffic and are not copied into artifacts.",
+    "Some homepage event and chart enum values remain source-defined rather than guessed."
+  ],
+  "patterns": [],
+  "recommendation": "proceed",
+  "researched_at": "2026-09-21T23:10:00Z",
+  "novel_features": [
+    {
+      "name": "Entitlement-aware scorecards",
+      "command": "company scorecard",
+      "description": "Show Tickertape score dimensions, locked fields, entry-point signals, and red flags without silently dropping premium data.",
+      "rationale": "The scorecard envelope carries source-specific lock and element metadata that generic quote clients discard.",
+      "example": "tickertape-pp-cli company scorecard RELI --agent",
+      "why_it_matters": "Choose this when an agent needs transparent Tickertape opinion data and must distinguish locked from absent fields.",
+      "group": "Transparent research"
+    },
+    {
+      "name": "Company publication timeline",
+      "command": "company timeline",
+      "description": "Combine live company events, news, results, and investor-presentation metadata into a dated source-labelled stream.",
+      "rationale": "The CLI can compose several Tickertape summary arrays into one agent-sized view without inventing cross-source equivalence.",
+      "example": "tickertape-pp-cli company timeline RELI --limit 20 --agent",
+      "why_it_matters": "Choose this for a current company-history pass before drilling into individual reports.",
+      "group": "Transparent research"
+    },
+    {
+      "name": "Live multi-asset lookup",
+      "command": "lookup",
+      "description": "Triages Indian stocks, mutual funds, ETFs, indices, and US securities through one live command while retaining source-specific identity fields.",
+      "rationale": "Tickertape exposes an unusually broad cross-asset research graph, and the CLI can route it without creating a local mirror.",
+      "example": "tickertape-pp-cli lookup VOO --market US --agent",
+      "why_it_matters": "Choose this when the asset class is unknown or an agent needs consistent first-pass research.",
+      "group": "Cross-asset triage"
+    },
+    {
+      "name": "Access and provenance envelope",
+      "command": "inspect access",
+      "description": "Explain source host, route, observation time, entity identity, lock state, and entitlement errors for any live result.",
+      "rationale": "Undocumented web-app routes and premium fields make silent omission dangerous; the CLI can preserve the evidence envelope on every call.",
+      "example": "tickertape-pp-cli inspect access company scorecard RELI --agent",
+      "why_it_matters": "Choose this when an agent must explain whether a result is public, locked, authenticated, or unavailable.",
+      "group": "Transparent research"
+    },
+    {
+      "name": "MMI component brief",
+      "command": "market brief",
+      "description": "Turn the live Market Mood Index payload into a concise timestamped brief of fear/greed, FII, momentum, volatility, and component signals.",
+      "rationale": "The MMI endpoint returns heterogeneous indicators that benefit from a stable agent-facing presentation without persisting a snapshot.",
+      "example": "tickertape-pp-cli market brief --agent",
+      "why_it_matters": "Choose this for current market context, not as a trading signal or historical series.",
+      "group": "Market context"
+    },
+    {
+      "name": "Source-specific company research brief",
+      "command": "company brief",
+      "description": "Compose live company identity, summary, scorecard, reports, and access state into one bounded triage response.",
+      "rationale": "The CLI can join related Tickertape routes for one request without storing domain history or flattening source-specific opinions.",
+      "example": "tickertape-pp-cli company brief RELI --agent",
+      "why_it_matters": "Choose this for the first pass on a company when raw endpoint-by-endpoint calls would waste agent context.",
+      "group": "Agent-native synthesis"
+    },
+    {
+      "name": "Live screener catalog navigator",
+      "command": "screen catalog",
+      "description": "Organize equity and mutual-fund filters, categories, universes, and prebuilt screens while preserving premium markers.",
+      "rationale": "The catalog is public metadata, while saved screens and query execution are separate sensitive or contract-uncertain workflows.",
+      "example": "tickertape-pp-cli screen catalog --asset-class equity --agent",
+      "why_it_matters": "Choose this to discover what can be screened before deciding whether a live query is safe and supported.",
+      "group": "Agent-native synthesis"
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "Entitlement-aware scorecards",
+      "command": "company scorecard",
+      "description": "Show Tickertape score dimensions, locked fields, entry-point signals, and red flags without silently dropping premium data.",
+      "rationale": "The scorecard envelope carries source-specific lock and element metadata that generic quote clients discard.",
+      "example": "tickertape-pp-cli company scorecard RELI --agent",
+      "why_it_matters": "Choose this when an agent needs transparent Tickertape opinion data and must distinguish locked from absent fields.",
+      "group": "Transparent research"
+    },
+    {
+      "name": "Company publication timeline",
+      "command": "company timeline",
+      "description": "Combine live company events, news, results, and investor-presentation metadata into a dated source-labelled stream.",
+      "rationale": "The CLI can compose several Tickertape summary arrays into one agent-sized view without inventing cross-source equivalence.",
+      "example": "tickertape-pp-cli company timeline RELI --limit 20 --agent",
+      "why_it_matters": "Choose this for a current company-history pass before drilling into individual reports.",
+      "group": "Transparent research"
+    },
+    {
+      "name": "Live multi-asset lookup",
+      "command": "lookup",
+      "description": "Triages Indian stocks, mutual funds, ETFs, indices, and US securities through one live command while retaining source-specific identity fields.",
+      "rationale": "Tickertape exposes an unusually broad cross-asset research graph, and the CLI can route it without creating a local mirror.",
+      "example": "tickertape-pp-cli lookup VOO --market US --agent",
+      "why_it_matters": "Choose this when the asset class is unknown or an agent needs consistent first-pass research.",
+      "group": "Cross-asset triage"
+    },
+    {
+      "name": "Access and provenance envelope",
+      "command": "inspect access",
+      "description": "Explain source host, route, observation time, entity identity, lock state, and entitlement errors for any live result.",
+      "rationale": "Undocumented web-app routes and premium fields make silent omission dangerous; the CLI can preserve the evidence envelope on every call.",
+      "example": "tickertape-pp-cli inspect access company scorecard RELI --agent",
+      "why_it_matters": "Choose this when an agent must explain whether a result is public, locked, authenticated, or unavailable.",
+      "group": "Transparent research"
+    },
+    {
+      "name": "MMI component brief",
+      "command": "market brief",
+      "description": "Turn the live Market Mood Index payload into a concise timestamped brief of fear/greed, FII, momentum, volatility, and component signals.",
+      "rationale": "The MMI endpoint returns heterogeneous indicators that benefit from a stable agent-facing presentation without persisting a snapshot.",
+      "example": "tickertape-pp-cli market brief --agent",
+      "why_it_matters": "Choose this for current market context, not as a trading signal or historical series.",
+      "group": "Market context"
+    },
+    {
+      "name": "Source-specific company research brief",
+      "command": "company brief",
+      "description": "Compose live company identity, summary, scorecard, reports, and access state into one bounded triage response.",
+      "rationale": "The CLI can join related Tickertape routes for one request without storing domain history or flattening source-specific opinions.",
+      "example": "tickertape-pp-cli company brief RELI --agent",
+      "why_it_matters": "Choose this for the first pass on a company when raw endpoint-by-endpoint calls would waste agent context.",
+      "group": "Agent-native synthesis"
+    },
+    {
+      "name": "Live screener catalog navigator",
+      "command": "screen catalog",
+      "description": "Organize equity and mutual-fund filters, categories, universes, and prebuilt screens while preserving premium markers.",
+      "rationale": "The catalog is public metadata, while saved screens and query execution are separate sensitive or contract-uncertain workflows.",
+      "example": "tickertape-pp-cli screen catalog --asset-class equity --agent",
+      "why_it_matters": "Choose this to discover what can be screened before deciding whether a live query is safe and supported.",
+      "group": "Agent-native synthesis"
+    }
+  ],
+  "auth": {},
+  "narrative": {
+    "display_name": "Tickertape",
+    "headline": "Live, provenance-aware Tickertape research without stale local market data",
+    "value_prop": "Use Tickertape's public Indian and US research surfaces from the terminal: company fundamentals, scorecards, mutual funds, screen metadata, MMI, deal ideas, and US assets. Every domain-data call is live and carries source and access context; locked or entitlement-aware fields are surfaced rather than silently omitted.",
+    "auth_narrative": "Public research commands require no credential. The current EgoBrowser profile demonstrated authenticated page traffic for user, credit, portfolio, ratings, forecast, AI summary, and deal routes; when a supported secure credential/session mechanism is wired for optional entitlement-aware calls, credentials may live only in the secure auth store or permissioned auth config. Never copy credentials, cookies, headers, or personal portfolio values into output or domain-data storage.",
+    "quickstart": [
+      {
+        "command": "tickertape-pp-cli doctor --dry-run",
+        "comment": "Verify the live-read configuration without making a domain-data request."
+      },
+      {
+        "command": "tickertape-pp-cli market mood --agent",
+        "comment": "Start with current market mood and component indicators."
+      },
+      {
+        "command": "tickertape-pp-cli company scorecard RELI --agent",
+        "comment": "Inspect score dimensions while preserving locked fields."
+      },
+      {
+        "command": "tickertape-pp-cli mutualfund summary INF179K01BB08 --agent",
+        "comment": "Read a mutual-fund summary once an ID is known."
+      },
+      {
+        "command": "tickertape-pp-cli us security-overview VOO --agent",
+        "comment": "Use the same CLI for a US asset overview."
+      }
+    ],
+    "troubleshoots": [
+      {
+        "symptom": "A response is 401, 403, or contains locked fields",
+        "fix": "Treat it as access metadata; configure only the approved secure auth mechanism and never copy cookies or tokens into command arguments or files."
+      },
+      {
+        "symptom": "A screener query returns 400",
+        "fix": "Use screen filters, prebuilt, or universes first; query bodies and premium-field behavior are intentionally not guessed."
+      },
+      {
+        "symptom": "A chart or event query rejects a duration/type value",
+        "fix": "Use the values exposed by the live metadata/page contract and preserve the upstream error instead of retrying guessed enums."
+      },
+      {
+        "symptom": "A route is slow or rate-limited",
+        "fix": "Retry conservatively with backoff and rerun the live command; the CLI does not serve cached domain data."
+      }
+    ],
+    "when_to_use": "Use Tickertape for live, read-only investment research across Indian stocks, mutual funds, ETFs, indices, and US securities. Reach for it when scorecards, red flags, entry-point signals, MMI, deal ideas, or provenance-aware access state matter. Use a broker tool for orders and authoritative holdings, and a fundamentals source for deeper source-linked operating history.",
+    "anti_triggers": [
+      "Do not use this CLI for orders, trades, broker linking, fills, taxes, or authoritative executed holdings.",
+      "Do not use it for watchlists, saved screens, portfolio mutations, social actions, exports, payments, loans, gold, or account opening.",
+      "Do not treat Tickertape scorecards or MMI as a universal investment recommendation or as a cross-source consensus."
+    ],
+    "recipes": [
+      {
+        "title": "Explain a stock scorecard",
+        "command": "tickertape-pp-cli company scorecard RELI --agent --select data",
+        "explanation": "Keep the scorecard envelope and locked/access fields while narrowing agent output."
+      },
+      {
+        "title": "Build a live company brief",
+        "command": "tickertape-pp-cli company brief RELI --agent",
+        "explanation": "Use the composed triage command for identity, summary, scorecard, and timeline context."
+      },
+      {
+        "title": "Inspect the MMI",
+        "command": "tickertape-pp-cli market brief --agent",
+        "explanation": "Summarize current mood and component indicators without storing a snapshot."
+      },
+      {
+        "title": "Find available screen metadata",
+        "command": "tickertape-pp-cli screen catalog --asset-class equity --agent",
+        "explanation": "Discover live filters and presets before attempting a query."
+      },
+      {
+        "title": "Compare a US security",
+        "command": "tickertape-pp-cli us security-overview VOO --agent --select data",
+        "explanation": "Use the same provenance-aware output for US research."
+      }
+    ],
+    "trigger_phrases": [
+      "research RELI on Tickertape",
+      "show the Tickertape scorecard",
+      "check the Market Mood Index",
+      "look up a mutual fund on Tickertape",
+      "use Tickertape",
+      "run tickertape"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "manifest_version": "0.3",
+  "name": "tickertape-pp-mcp",
+  "display_name": "Tickertape",
+  "version": "0.1.0",
+  "description": "Live, provenance-aware Tickertape research without stale local market data",
+  "author": {
+    "name": "CLI Printing Press"
+  },
+  "license": "Apache-2.0",
+  "server": {
+    "type": "binary",
+    "entry_point": "bin/tickertape-pp-mcp",
+    "mcp_config": {
+      "command": "${__dirname}/bin/tickertape-pp-mcp",
+      "args": []
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=1.0.0",
+    "platforms": [
+      "darwin",
+      "linux",
+      "win32"
+    ]
+  }
+}

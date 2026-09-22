@@ -1,0 +1,31 @@
+{
+  "task_space_id": 9,
+  "page": "p1",
+  "homepage_auth_state": {
+    "sign_in_visible": false,
+    "generic_pro_visible": true,
+    "authenticated_bootstrap_routes_observed": [
+      "https://auth.api.tickertape.in/auth/user/v3",
+      "https://auth.api.tickertape.in/user/credit/combined/v4",
+      "https://analyze.api.tickertape.in/homepage/portfolio/v3",
+      "https://platform-ecosystem.api.tickertape.in/proMembership/offers",
+      "https://auth.api.tickertape.in/profile/<redacted>"
+    ]
+  },
+  "stock_page_auth_state": {
+    "analyst_ratings_visible": true,
+    "forecast_visible": true,
+    "current_holdings_visible": true,
+    "sign_in_visible": false,
+    "premium_routes_observed": [
+      "https://analyze.api.tickertape.in/stocks/aiSummary/RELI",
+      "https://api.tickertape.in/stocks/ratings/RELI",
+      "https://api.tickertape.in/stocks/estimates/forecast/RELI",
+      "https://api.tickertape.in/stocks/aggregateddeals/RELI"
+    ]
+  },
+  "notes": [
+    "Only route paths and generic visibility booleans were retained; no cookies, headers, profile values, holdings, or response bodies were recorded.",
+    "Synthetic credentials:include probes are not used as entitlement conclusions; page-generated authenticated traffic is authoritative for this build validation."
+  ]
+}
