@@ -1,0 +1,247 @@
+{
+  "api_name": "moneycontrol",
+  "novelty_score": 9,
+  "alternatives": [
+    {
+      "name": "moneycontrol-mcp",
+      "url": "https://github.com/pramodhapple504-arch/moneycontrol-mcp",
+      "language": "Python",
+      "install_method": "",
+      "stars": 0,
+      "last_updated": "",
+      "command_count": 8,
+      "has_json_output": false,
+      "has_auth_support": false
+    },
+    {
+      "name": "moneycontrol-pr-1701",
+      "url": "https://github.com/abhirup-dev/printing-press-library",
+      "language": "Go",
+      "install_method": "",
+      "stars": 0,
+      "last_updated": "",
+      "command_count": 10,
+      "has_json_output": false,
+      "has_auth_support": false
+    },
+    {
+      "name": "MCFinEx",
+      "url": "https://github.com/D4T4R/MCFinEx",
+      "language": "Python",
+      "install_method": "",
+      "stars": 0,
+      "last_updated": "",
+      "command_count": 1,
+      "has_json_output": false,
+      "has_auth_support": false
+    },
+    {
+      "name": "fii-dii-activity-api",
+      "url": "https://github.com/chirag127/fii-dii-activity-api",
+      "language": "Python",
+      "install_method": "",
+      "stars": 0,
+      "last_updated": "",
+      "command_count": 1,
+      "has_json_output": false,
+      "has_auth_support": false
+    }
+  ],
+  "gaps": [
+    "Moneycontrol has no official public API specification; routes are reverse-engineered.",
+    "Autosuggest and several widgets are unstable or parameter-sensitive.",
+    "Cookie replay/auth refresh must be verified by the generated secure auth path for each authenticated endpoint family.",
+    "Commodity/forex contract identifiers and deeper forecast parameters remain best-effort."
+  ],
+  "patterns": [
+    "live-only",
+    "read-only",
+    "source-limited",
+    "priceapi-specific-client",
+    "encoded-index-keys",
+    "availability-metadata"
+  ],
+  "recommendation": "proceed",
+  "researched_at": "2026-09-21T23:24:00Z",
+  "novel_features": [
+    {
+      "name": "Holding context join",
+      "command": "context holdings",
+      "description": "Join supplied broker holding symbols to live Moneycontrol quotes, tagged news, and event context.",
+      "rationale": "The combined response requires correlating several live Moneycontrol surfaces while keeping the external portfolio as input rather than persisting it.",
+      "example": "moneycontrol-pp-cli context holdings --sc-ids RI,INFY --agent --select holdings.sc_id,holdings.quote,holdings.news",
+      "why_it_matters": "Use this when a broker already supplies holdings and the agent needs Moneycontrol narrative context without copy-paste.",
+      "group": "Live portfolio context"
+    },
+    {
+      "name": "Event-risk board",
+      "command": "events upcoming",
+      "description": "Show live filings, results, and corporate actions grouped for supplied companies.",
+      "rationale": "Moneycontrol exposes these event surfaces separately; the board joins them for a current holding set without an event database.",
+      "example": "moneycontrol-pp-cli events upcoming --sc-ids RI,INFY --agent",
+      "why_it_matters": "Use this before a review when the agent must identify current company events from one source-limited call.",
+      "group": "Live event context"
+    },
+    {
+      "name": "Market breadth brief",
+      "command": "market breadth",
+      "description": "Combine live index snapshots with available breadth/change-table rows and report partial availability.",
+      "rationale": "It combines the stable encoded index feed and change-table fragment while preserving explicit failures instead of hiding fragile widgets.",
+      "example": "moneycontrol-pp-cli market breadth --agent",
+      "why_it_matters": "Use this for a compact market-opening view when index movement and breadth context are needed together.",
+      "group": "Live market synthesis"
+    },
+    {
+      "name": "Catalyst matrix",
+      "command": "catalysts",
+      "description": "Filter live dated IPO, earnings, filing, and corporate-action pages by supplied symbols and time window.",
+      "rationale": "The matrix derives a current event window across multiple Moneycontrol page families without local history or a stored cursor.",
+      "example": "moneycontrol-pp-cli catalysts --sc-ids RI,INFY --days 30 --agent",
+      "why_it_matters": "Use this when an agent needs current catalysts around a watchlist but must not rely on cached articles.",
+      "group": "Live event context"
+    },
+    {
+      "name": "Company news timeline",
+      "command": "news timeline",
+      "description": "Normalize a live company-tag page into URL-preserving chronological story rows.",
+      "rationale": "The command turns Moneycontrol-specific tag HTML and metadata into a stable agent feed without maintaining a local article index.",
+      "example": "moneycontrol-pp-cli news timeline --sc-id RI --limit 20 --agent --select articles.title,articles.timestamp,articles.url",
+      "why_it_matters": "Use this when the question is what the current Moneycontrol tag page says about one company, not general market news.",
+      "group": "Live news intelligence"
+    },
+    {
+      "name": "Portfolio news triage",
+      "command": "portfolio triage",
+      "description": "Emit live headlines, timestamps, URLs, and event labels for supplied external holdings.",
+      "rationale": "It joins current tag feeds for a supplied portfolio-shaped input but intentionally avoids sentiment models, persistence, or account mutation.",
+      "example": "moneycontrol-pp-cli portfolio triage --sc-ids RI,INFY --agent --select items.sc_id,items.title,items.timestamp,items.url",
+      "why_it_matters": "Use this for a quick source-linked review of external holdings before deeper research.",
+      "group": "Live portfolio context"
+    },
+    {
+      "name": "Research packet",
+      "command": "research packet",
+      "description": "Assemble live quote, price-volume, company news, filings, results, and corporate-action context for one company.",
+      "rationale": "The packet composes Moneycontrol's fragmented research sections into one explicit source-linked response while retaining per-surface availability.",
+      "example": "moneycontrol-pp-cli research packet --sc-id RI --agent --select quote,price_volume,news,events",
+      "why_it_matters": "Use this when an agent needs a broad but bounded company snapshot rather than many uncoordinated endpoint calls.",
+      "group": "Live research synthesis"
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "Holding context join",
+      "command": "context holdings",
+      "description": "Join supplied broker holding symbols to live Moneycontrol quotes, tagged news, and event context.",
+      "rationale": "The combined response requires correlating several live Moneycontrol surfaces while keeping the external portfolio as input rather than persisting it.",
+      "example": "moneycontrol-pp-cli context holdings --sc-ids RI,INFY --agent --select holdings.sc_id,holdings.quote,holdings.news",
+      "why_it_matters": "Use this when a broker already supplies holdings and the agent needs Moneycontrol narrative context without copy-paste.",
+      "group": "Live portfolio context"
+    },
+    {
+      "name": "Event-risk board",
+      "command": "events upcoming",
+      "description": "Show live filings, results, and corporate actions grouped for supplied companies.",
+      "rationale": "Moneycontrol exposes these event surfaces separately; the board joins them for a current holding set without an event database.",
+      "example": "moneycontrol-pp-cli events upcoming --sc-ids RI,INFY --agent",
+      "why_it_matters": "Use this before a review when the agent must identify current company events from one source-limited call.",
+      "group": "Live event context"
+    },
+    {
+      "name": "Market breadth brief",
+      "command": "market breadth",
+      "description": "Combine live index snapshots with available breadth/change-table rows and report partial availability.",
+      "rationale": "It combines the stable encoded index feed and change-table fragment while preserving explicit failures instead of hiding fragile widgets.",
+      "example": "moneycontrol-pp-cli market breadth --agent",
+      "why_it_matters": "Use this for a compact market-opening view when index movement and breadth context are needed together.",
+      "group": "Live market synthesis"
+    },
+    {
+      "name": "Catalyst matrix",
+      "command": "catalysts",
+      "description": "Filter live dated IPO, earnings, filing, and corporate-action pages by supplied symbols and time window.",
+      "rationale": "The matrix derives a current event window across multiple Moneycontrol page families without local history or a stored cursor.",
+      "example": "moneycontrol-pp-cli catalysts --sc-ids RI,INFY --days 30 --agent",
+      "why_it_matters": "Use this when an agent needs current catalysts around a watchlist but must not rely on cached articles.",
+      "group": "Live event context"
+    },
+    {
+      "name": "Company news timeline",
+      "command": "news timeline",
+      "description": "Normalize a live company-tag page into URL-preserving chronological story rows.",
+      "rationale": "The command turns Moneycontrol-specific tag HTML and metadata into a stable agent feed without maintaining a local article index.",
+      "example": "moneycontrol-pp-cli news timeline --sc-id RI --limit 20 --agent --select articles.title,articles.timestamp,articles.url",
+      "why_it_matters": "Use this when the question is what the current Moneycontrol tag page says about one company, not general market news.",
+      "group": "Live news intelligence"
+    },
+    {
+      "name": "Portfolio news triage",
+      "command": "portfolio triage",
+      "description": "Emit live headlines, timestamps, URLs, and event labels for supplied external holdings.",
+      "rationale": "It joins current tag feeds for a supplied portfolio-shaped input but intentionally avoids sentiment models, persistence, or account mutation.",
+      "example": "moneycontrol-pp-cli portfolio triage --sc-ids RI,INFY --agent --select items.sc_id,items.title,items.timestamp,items.url",
+      "why_it_matters": "Use this for a quick source-linked review of external holdings before deeper research.",
+      "group": "Live portfolio context"
+    },
+    {
+      "name": "Research packet",
+      "command": "research packet",
+      "description": "Assemble live quote, price-volume, company news, filings, results, and corporate-action context for one company.",
+      "rationale": "The packet composes Moneycontrol's fragmented research sections into one explicit source-linked response while retaining per-surface availability.",
+      "example": "moneycontrol-pp-cli research packet --sc-id RI --agent --select quote,price_volume,news,events",
+      "why_it_matters": "Use this when an agent needs a broad but bounded company snapshot rather than many uncoordinated endpoint calls.",
+      "group": "Live research synthesis"
+    }
+  ],
+  "auth": {},
+  "narrative": {
+    "display_name": "Moneycontrol",
+    "headline": "Live Indian market news and research context for every holding review",
+    "value_prop": "Moneycontrol-pp-cli turns Moneycontrol's public financial pages and price feeds into source-linked, read-only commands for Indian market research. It adds live holding context joins, event-risk views, catalyst filtering, and research packets without storing articles, portfolio data, or response history.",
+    "auth_narrative": "Public news, quote, index, research, and market commands run without authentication. Optional portfolio, watchlist, alert, and Super Pro reads are endpoint-specific and use an established secure credential/session store or the generated Chrome bootstrap where supported; credentials and session values never appear in source, logs, reports, or output. No write or transaction command is provided.",
+    "quickstart": [
+      {
+        "command": "moneycontrol-pp-cli doctor --dry-run",
+        "comment": "Check the CLI and live-source configuration without requiring credentials."
+      },
+      {
+        "command": "moneycontrol-pp-cli indices --key 'in;SEN'",
+        "comment": "Read a live Sensex snapshot using the encoded priceapi key."
+      },
+      {
+        "command": "moneycontrol-pp-cli articles latest",
+        "comment": "Fetch current financial headlines with source URLs."
+      },
+      {
+        "command": "moneycontrol-pp-cli context holdings --sc-ids RI,INFY --agent",
+        "comment": "Join current quotes and company context for supplied broker symbols."
+      }
+    ],
+    "troubleshoots": [
+      {
+        "symptom": "HTTP 503/403 or an empty widget response",
+        "fix": "Retry the command once; inspect its availability metadata. Use the stable priceapi or HTML command instead of assuming empty means success."
+      },
+      {
+        "symptom": "Index key is rejected or returns the wrong route",
+        "fix": "Use an encoded key such as `in\\;SEN` or `in\\;NSX`; the CLI preserves the required semicolon encoding."
+      },
+      {
+        "symptom": "Authenticated account or Pro command reports expired session",
+        "fix": "Run the endpoint-specific auth bootstrap again through the established secure store/Chrome auth path; public commands remain usable without auth."
+      },
+      {
+        "symptom": "A deeper financial or forecast page returns an unsupported shape",
+        "fix": "Read the command's stability/access metadata and treat the result as best-effort; do not substitute a silent empty success."
+      }
+    ],
+    "when_to_use": "Use this CLI for Indian market news, company-tagged stories, index and stock snapshots, financial research context, event risk, and source-linked holding reviews. It is especially useful when a broker or another tool supplies current holdings and the agent needs Moneycontrol's narrative around them. Keep it read-only and live; use the broker for execution and portfolio mutation.",
+    "anti_triggers": [
+      "Do not use this CLI to place orders, trade, pay, or mutate a portfolio/watchlist/alert.",
+      "Do not use it as a local article archive, sync database, offline search index, or historical cursor store.",
+      "Do not use it for politics, entertainment, lifestyle, or non-financial news.",
+      "Do not treat fragile or Super Pro surfaces as guaranteed when the command reports blocked, empty, or shape-changed access.",
+      "Do not use it instead of a broker or canonical portfolio ledger."
+    ]
+  }
+}

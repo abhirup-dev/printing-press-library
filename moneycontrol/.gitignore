@@ -1,0 +1,8 @@
+# Root-anchored so cmd/<binary>/ source stays tracked.
+/moneycontrol-pp-cli
+/moneycontrol-pp-cli.exe
+/moneycontrol-pp-mcp
+/moneycontrol-pp-mcp.exe
+/bin/
+/build/
+/dist/

@@ -1,0 +1,116 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-09-22T01:36:15.727346Z",
+  "printing_press_version": "4.32.2",
+  "api_name": "moneycontrol",
+  "display_name": "Moneycontrol",
+  "cli_name": "moneycontrol-pp-cli",
+  "creator": {
+    "handle": "dev-abhirup-sc",
+    "name": "dev-abhirup-sc"
+  },
+  "owner": "dev-abhirup-sc",
+  "printer": "dev-abhirup-sc",
+  "printer_name": "dev-abhirup-sc",
+  "spec_path": "spec.yaml",
+  "spec_format": "internal",
+  "spec_source": "sniffed",
+  "spec_checksum": "sha256:5576997d7d054c5e5d2116296ac50f0557dbc0cfdb251dcac481511ea5e63393",
+  "run_id": "20260922-044500-c6ed7010",
+  "category": "finance",
+  "description": "Live Indian market news and research context for every holding review",
+  "mcp_binary": "moneycontrol-pp-mcp",
+  "mcp_tool_count": 28,
+  "mcp_public_tool_count": 22,
+  "mcp_ready": "partial",
+  "auth_type": "cookie",
+  "novel_features": [
+    {
+      "name": "Holding context join",
+      "command": "context holdings",
+      "description": "Join supplied broker holding symbols to live Moneycontrol quotes, tagged news, and event context."
+    },
+    {
+      "name": "Event-risk board",
+      "command": "events upcoming",
+      "description": "Show live filings, results, and corporate actions grouped for supplied companies."
+    },
+    {
+      "name": "Market breadth brief",
+      "command": "market breadth",
+      "description": "Combine live index snapshots with available breadth/change-table rows and report partial availability."
+    },
+    {
+      "name": "Catalyst matrix",
+      "command": "catalysts",
+      "description": "Filter live dated IPO, earnings, filing, and corporate-action pages by supplied symbols and time window."
+    },
+    {
+      "name": "Company news timeline",
+      "command": "news timeline",
+      "description": "Normalize a live company-tag page into URL-preserving chronological story rows."
+    },
+    {
+      "name": "Portfolio news triage",
+      "command": "portfolio triage",
+      "description": "Emit live headlines, timestamps, URLs, and event labels for supplied external holdings."
+    },
+    {
+      "name": "Research packet",
+      "command": "research packet",
+      "description": "Assemble live quote, price-volume, company news, filings, results, and corporate-action context for one company."
+    }
+  ],
+  "novel_features_built": [
+    {
+      "name": "Holding context join",
+      "command": "context holdings",
+      "description": "Join supplied broker holding symbols to live Moneycontrol quotes, tagged news, and event context."
+    },
+    {
+      "name": "Event-risk board",
+      "command": "events upcoming",
+      "description": "Show live filings, results, and corporate actions grouped for supplied companies."
+    },
+    {
+      "name": "Market breadth brief",
+      "command": "market breadth",
+      "description": "Combine live index snapshots with available breadth/change-table rows and report partial availability."
+    },
+    {
+      "name": "Catalyst matrix",
+      "command": "catalysts",
+      "description": "Filter live dated IPO, earnings, filing, and corporate-action pages by supplied symbols and time window."
+    },
+    {
+      "name": "Company news timeline",
+      "command": "news timeline",
+      "description": "Normalize a live company-tag page into URL-preserving chronological story rows."
+    },
+    {
+      "name": "Portfolio news triage",
+      "command": "portfolio triage",
+      "description": "Emit live headlines, timestamps, URLs, and event labels for supplied external holdings."
+    },
+    {
+      "name": "Research packet",
+      "command": "research packet",
+      "description": "Assemble live quote, price-volume, company news, filings, results, and corporate-action context for one company."
+    }
+  ],
+  "verify": {
+    "mode": "mock",
+    "pass_rate": 100,
+    "passed": 22,
+    "total": 22,
+    "data_pipeline": true,
+    "verdict": "PASS"
+  },
+  "scorecard": {
+    "steinberger": {
+      "percentage": 80,
+      "grade": "A",
+      "total": 80
+    }
+  }
+}

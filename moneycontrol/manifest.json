@@ -1,0 +1,38 @@
+{
+  "manifest_version": "0.3",
+  "name": "moneycontrol-pp-mcp",
+  "display_name": "Moneycontrol",
+  "version": "4.32.2",
+  "description": "Live Indian market news and research context for every holding review",
+  "author": {
+    "name": "CLI Printing Press"
+  },
+  "license": "Apache-2.0",
+  "server": {
+    "type": "binary",
+    "entry_point": "bin/moneycontrol-pp-mcp",
+    "mcp_config": {
+      "command": "${__dirname}/bin/moneycontrol-pp-mcp",
+      "args": [],
+      "env": {
+        "MONEYCONTROL_AUTH_COOKIE": "${user_config.moneycontrol_auth_cookie}"
+      }
+    }
+  },
+  "user_config": {
+    "moneycontrol_auth_cookie": {
+      "type": "string",
+      "title": "MONEYCONTROL_AUTH_COOKIE",
+      "description": "Optional. Sets MONEYCONTROL_AUTH_COOKIE for the Moneycontrol MCP server. Required by the generated client for credential refresh or hand-written auth flow.",
+      "sensitive": true
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=1.0.0",
+    "platforms": [
+      "darwin",
+      "linux",
+      "win32"
+    ]
+  }
+}

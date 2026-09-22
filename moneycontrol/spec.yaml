@@ -1,0 +1,380 @@
+name: moneycontrol
+display_name: Moneycontrol
+description: >
+  Live, read-only Indian financial-market news and research from Moneycontrol: articles,
+  company tags, stocks, indices, earnings, IPO, F&O, commodities, mutual funds, forex,
+  screeners, corporate actions, filings and optional account/Pro reads. Moneycontrol has
+  no official public API; routes are reverse-engineered from live web and app traffic.
+  Every data command is on-demand and source-limited; no article cache, local database,
+  sync history, offline index or stored data cursor is allowed.
+category: finance
+base_url: https://www.moneycontrol.com
+health_check_path: /news/latest-news/
+required_headers:
+  - name: User-Agent
+    value: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120.0 Safari/537.36"
+  - name: Referer
+    value: "https://www.moneycontrol.com/"
+cli_description: "Live Indian financial news, quotes and research context with explicit best-effort availability."
+
+# Public endpoints are tagged no_auth below. Account/Pro endpoints use the optional
+# secure cookie/session companion and never write portfolio data.
+auth:
+  type: cookie
+  cookie_domain: moneycontrol.com
+  cookies:
+    - mc-auth-log
+    - nousersess
+    - stocks
+  login_url: https://www.moneycontrol.com/
+  login_complete_selector: "a[href^='/my-alerts']"
+auth_warnings:
+  - "Public commands do not require authentication. Authenticated account/Pro reads are endpoint-specific."
+  - "Session values must be held by the established secure credential/session store and never emitted."
+
+resources:
+  articles:
+    description: News articles across categories and per-stock tags.
+    endpoints:
+      latest:
+        method: GET
+        path: /news/latest-news/
+        response_format: html
+        no_auth: true
+        description: Latest financial news headlines across all categories.
+        html_extract:
+          mode: links
+          link_prefixes: ["/news"]
+      by_category:
+        method: GET
+        path: /news/{category_path}
+        response_format: html
+        no_auth: true
+        description: News headlines within a financial category (e.g. business/markets, business/stocks, earnings, ipo, mutual-funds, commodities).
+        params:
+          - name: category_path
+            location: path
+            type: string
+            required: true
+            description: "Category path, e.g. 'business/markets', 'business/stocks', 'india', 'world', 'business', 'latest-news'"
+        html_extract:
+          mode: links
+          link_prefixes: ["/news"]
+      by_tag:
+        method: GET
+        path: /news/tags/{slug}.html
+        response_format: html
+        no_auth: true
+        description: News headlines tagged to a stock or financial topic (e.g. reliance-industries, infosys, nifty).
+        params:
+          - name: slug
+            location: path
+            type: string
+            required: true
+            description: "Tag slug, e.g. 'reliance-industries', 'infosys', 'tata-consultancy-services'"
+        html_extract:
+          mode: links
+          link_prefixes: ["/news"]
+      get:
+        method: GET
+        path: /news/{slug}.html
+        response_format: html
+        no_auth: true
+        description: Full financial article page (title, description, and raw body HTML for extraction).
+        params:
+          - name: slug
+            location: path
+            type: string
+            required: true
+            description: "Full article path after /news/, e.g. 'india/tribunals-reforms-bill-2026-...-14001877' or 'business/markets/stock-market-live-updates-...-14000775'"
+        html_extract:
+          mode: page
+        example: "  moneycontrol-pp-cli articles get --slug india/census-2027-rgi-issues-directives-for-formation-of-enumeration-blocks-14002256"
+        happy_args: "slug=india/census-2027-rgi-issues-directives-for-formation-of-enumeration-blocks-14002256"
+
+  indices:
+    description: Indian index quotes (SENSEX, NIFTY 50, NIFTY BANK, NIFTY IT).
+    endpoints:
+      get:
+        method: GET
+        path: /pricefeed/notapplicable/inidicesindia/{key}
+        base_url_override: https://priceapi.moneycontrol.com
+        response_format: json
+        response_path: data
+        no_auth: true
+        description: Live quote for an Indian index.
+        params:
+          - name: key
+            location: path
+            type: string
+            required: true
+            description: "Index key: 'in;SEN' (SENSEX), 'in;NSX' (NIFTY 50), 'in;nbx' (NIFTY BANK), 'in;ccx' (NIFTY IT)"
+        example: "  moneycontrol-pp-cli indices --key \"in;SEN\""
+
+  stocks:
+    description: "Per-stock quote (full pricefeed: price, 52H/L, 1d-10y %chg, CAGR, volume, sector)"
+    endpoints:
+      quote:
+        method: GET
+        path: /pricefeed/nse/equitycash/{sc_id}
+        base_url_override: https://priceapi.moneycontrol.com
+        response_format: json
+        response_path: data
+        no_auth: true
+        description: Full NSE equity quote for a stock by its moneycontrol sc_id.
+        params:
+          - name: sc_id
+            location: path
+            type: string
+            required: true
+            description: "Moneycontrol sc_id, e.g. 'RI' (Reliance), 'HDF01' (HDFC Bank), 'ITC' (ITC), 'INF' (Infosys)"
+        example: "  moneycontrol-pp-cli stocks quote --sc-id RI"
+
+  trending:
+    description: Trending stocks widget (most-searched tickers right now).
+    endpoints:
+      list:
+        method: GET
+        path: /techmvc/mc_widgets/trending_stocks
+        response_format: html
+        no_auth: true
+        description: Currently trending stocks on moneycontrol (best-effort; empty widgets are errors).
+        params:
+          - name: limit
+            location: query
+            type: integer
+            required: false
+            default: 10
+            description: Number of trending stocks to return.
+          - name: classic
+            location: query
+            type: string
+            required: false
+            default: "true"
+        html_extract:
+          mode: links
+          link_prefixes: ["/india/stockpricequote"]
+
+  price_volume:
+    description: Live stock price-volume period data from the Moneycontrol API.
+    endpoints:
+      get:
+        method: GET
+        path: /mcapi/v1/stock/price-volume
+        base_url_override: https://api.moneycontrol.com
+        response_format: json
+        no_auth: true
+        description: Current and historical price-volume period data for a stock.
+        params:
+          - name: scId
+            location: query
+            type: string
+            required: true
+            description: Moneycontrol stock SC ID, e.g. RI.
+        example: "  moneycontrol-pp-cli price-volume --sc-id RI"
+
+  history:
+    description: Live NSE stock OHLCV history from the priceapi chart feed.
+    endpoints:
+      get:
+        method: GET
+        path: /techCharts/indianMarket/stock/history
+        base_url_override: https://priceapi.moneycontrol.com
+        response_format: json
+        no_auth: true
+        description: Historical or intraday OHLCV bars for an NSE symbol.
+        params:
+          - name: symbol
+            location: query
+            type: string
+            required: true
+            description: NSE ticker symbol.
+          - name: resolution
+            location: query
+            type: string
+            required: false
+            default: D
+            description: Chart resolution such as 1, 5, 15, 60, D, W or M.
+          - name: from
+            location: query
+            type: int
+            required: false
+            description: Unix start time.
+          - name: to
+            location: query
+            type: int
+            required: false
+            description: Unix end time.
+          - name: countback
+            location: query
+            type: int
+            required: false
+            default: 30
+            description: Number of bars requested.
+          - name: currencyCode
+            location: query
+            type: string
+            required: false
+            default: INR
+            description: Currency code.
+
+  markets:
+    description: Financial market pages and institutional activity.
+    endpoints:
+      fii_dii:
+        method: GET
+        path: /markets/fii-dii-data/
+        response_format: html
+        no_auth: true
+        description: FII and DII cash/F&O activity page; best-effort page extraction.
+        html_extract:
+          mode: page
+      indices_table:
+        method: GET
+        path: /markets/indian-indices/
+        response_format: html
+        no_auth: true
+        description: Indian indices page and change-table context.
+        html_extract:
+          mode: page
+      ipo:
+        method: GET
+        path: /ipo/
+        response_format: html
+        no_auth: true
+        description: IPO news and market pages.
+        html_extract:
+          mode: links
+          link_prefixes: ["/news", "/ipo"]
+      earnings:
+        method: GET
+        path: /markets/earnings/
+        response_format: html
+        no_auth: true
+        description: Earnings/results pages; best-effort route.
+        html_extract:
+          mode: page
+      corporate_actions:
+        method: GET
+        path: /markets/corporate-action/
+        response_format: html
+        no_auth: true
+        description: Corporate actions page; best-effort route.
+        html_extract:
+          mode: page
+      fno:
+        method: GET
+        path: /stocks/fno/marketstats/
+        response_format: html
+        no_auth: true
+        description: Futures, options and open-interest market statistics.
+        html_extract:
+          mode: page
+      commodities:
+        method: GET
+        path: /markets/commodities/
+        response_format: html
+        no_auth: true
+        description: Commodity, gold and silver market pages.
+        html_extract:
+          mode: page
+      mutual_funds:
+        method: GET
+        path: /mutual-funds/
+        response_format: html
+        no_auth: true
+        description: Mutual-fund news and quote pages.
+        html_extract:
+          mode: page
+      forex:
+        method: GET
+        path: /markets/currency/
+        response_format: html
+        no_auth: true
+        description: Currency and forex pages; best-effort route.
+        html_extract:
+          mode: page
+
+  research:
+    description: Company research pages and stock scanners.
+    endpoints:
+      technical_scanner:
+        method: GET
+        path: /stock-scanner/technical/
+        response_format: html
+        no_auth: true
+        description: Technical stock scanner; empty/blocked widgets are reported.
+        html_extract:
+          mode: page
+      fundamental_scanner:
+        method: GET
+        path: /stock-scanner/fundamental/
+        response_format: html
+        no_auth: true
+        description: Fundamental stock scanner; empty/blocked widgets are reported.
+        html_extract:
+          mode: page
+      equity_research:
+        method: GET
+        path: /equity-research/
+        response_format: html
+        no_auth: true
+        description: Equity research, forecasts and recommendations page.
+        html_extract:
+          mode: page
+      filings:
+        method: GET
+        path: /markets/filings/
+        response_format: html
+        no_auth: true
+        description: Company filings page; best-effort route.
+        html_extract:
+          mode: page
+
+  account:
+    description: Optional authenticated Moneycontrol account and Pro reads. Read-only only.
+    endpoints:
+      user_details:
+        method: GET
+        path: /user/get_userid_details/
+        response_format: json
+        description: Authenticated user/account detail shape used for endpoint gating; sensitive fields are redacted by the CLI.
+      entitlement_status:
+        method: GET
+        path: /techmvc/mc_widgets/nudge_user_status/
+        response_format: json
+        description: Authenticated account/Pro entitlement status used to select legitimate reads.
+      pro_stocklist:
+        method: GET
+        path: /mc/widget/prostocklist/
+        response_format: html
+        description: Super Pro stock-list widget; best-effort authenticated read.
+        html_extract:
+          mode: page
+      alerts:
+        method: GET
+        path: /my-alerts
+        response_format: html
+        description: Read-only current alerts page. No alert mutation is exposed.
+        html_extract:
+          mode: page
+      portfolio:
+        method: GET
+        path: /bestportfolio/wealth-management-tool/investments
+        response_format: html
+        description: Read-only current portfolio page. No portfolio mutation is exposed.
+        html_extract:
+          mode: page
+      watchlist:
+        method: GET
+        path: /my-watchlist
+        response_format: html
+        description: Read-only current watchlist page. No watchlist mutation is exposed.
+        html_extract:
+          mode: page
+
+cache:
+  enabled: false
+
+learn:
+  # learn no-entities escape: stock sc_ids and index keys are exact-match identifiers, not aliasable vocabulary

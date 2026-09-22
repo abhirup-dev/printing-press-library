@@ -1,0 +1,142 @@
+{
+  "dir": "\u003ccli-dir\u003e/moneycontrol-pp-cli",
+  "spec_path": "\u003ccli-dir\u003e/spec.yaml",
+  "spec_source": "bundled",
+  "verdict": "WARN",
+  "path_check": {
+    "tested": 0,
+    "valid": 0,
+    "valid_pct": 0,
+    "skipped": true,
+    "detail": "internal-yaml spec: paths validated at parse time"
+  },
+  "auth_check": {
+    "spec_scheme": "",
+    "generated_format": "unknown",
+    "match": true,
+    "detail": "no bot/bearer/basic scheme detected"
+  },
+  "browser_session_check": {
+    "required": false,
+    "pass": true,
+    "detail": "browser-session auth not required"
+  },
+  "oauth_scope_coverage_check": {
+    "checked": 0,
+    "covered": 0,
+    "skipped": true,
+    "detail": "no OAuth-scoped endpoints in spec"
+  },
+  "dead_flags": {
+    "total": 25,
+    "dead": 1,
+    "items": [
+      "maxAge"
+    ]
+  },
+  "dead_functions": {
+    "total": 112,
+    "dead": 5,
+    "items": [
+      "handleBinaryResponseDelivery",
+      "isDryRunResponseForClient",
+      "retainCLIQueryParams",
+      "retainExplicitQueryParams",
+      "successfulNoop"
+    ]
+  },
+  "pipeline_check": {
+    "sync_calls_domain": false,
+    "search_calls_domain": false,
+    "domain_tables": 4,
+    "sync_file_emitted": false,
+    "sync_resources_present": false,
+    "detail": "sync Upsert calls not found; search methods not found; 4 domain tables found"
+  },
+  "example_check": {
+    "tested": 10,
+    "with_examples": 10,
+    "valid_examples": 10,
+    "detail": "10/10 commands have examples"
+  },
+  "wiring_check": {
+    "command_tree": {
+      "defined": 94,
+      "registered": 94
+    },
+    "config_consistency": {
+      "write_fields": [
+        ", token, "
+      ],
+      "read_fields": [
+        " || c.CookieCredential() != "
+      ],
+      "mismatched": [
+        " || c.CookieCredential() != ",
+        ", token, "
+      ],
+      "consistent": false
+    },
+    "workflow_completeness": {
+      "skipped": true,
+      "total_steps": 0,
+      "mapped_steps": 0,
+      "detail": "no workflow_verify.yaml found"
+    }
+  },
+  "novel_features_check": {
+    "planned": 7,
+    "found": 7,
+    "depth_mismatches": [
+      {
+        "command": "portfolio triage",
+        "advertised": "portfolio",
+        "actual": "account portfolio"
+      }
+    ]
+  },
+  "mcp_surface_parity": {
+    "state": "runtime_walking",
+    "pass": true,
+    "detail": "MCP surface mirrors the Cobra tree at runtime"
+  },
+  "reimplementation_check": {
+    "checked": 7,
+    "exempted_via_store": 0
+  },
+  "description_drift_check": {
+    "expected": "Live Indian market news and research context for every holding review",
+    "findings": [
+      {
+        "surface": "root.Short",
+        "file": "internal/cli/root.go",
+        "actual": "Live Indian financial news, quotes and research context with explicit best-effort availability.",
+        "expected": "Live Indian market news and research context for every holding review"
+      }
+    ]
+  },
+  "source_client_check": {
+    "checked": 9
+  },
+  "print_json_filtered_check": {
+    "checked": 70
+  },
+  "test_presence": {
+    "checked": 2
+  },
+  "naming_check": {
+    "checked": 70
+  },
+  "sync_param_drop_check": {
+    "checked": 0,
+    "skipped": true
+  },
+  "issues": [
+    "1 dead flags found",
+    "5 dead helper functions found",
+    "sync uses generic Upsert only",
+    "config inconsistency: write fields [, token, ] vs read fields [ || c.CookieCredential() != ]",
+    "1 novel feature command-depth mismatches: portfolio triage advertised as portfolio but registered as account portfolio",
+    "1 description surface(s) drifted from research.json narrative: root.Short in internal/cli/root.go is \"Live Indian financial news, quotes and research context with explicit best-effort availability.\"; expected \"Live Indian market news and research context for every holding review\""
+  ]
+}
